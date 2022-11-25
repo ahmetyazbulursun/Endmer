@@ -1,0 +1,62 @@
+﻿@model Endmer.Models.Entity.Tbl_Personel
+
+@{
+    ViewBag.Title = "PersonelGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+
+                <div class="card-header">
+                    <h6 class="text-center fs-4">Personel Bilgilerini Güncelle</h6>
+                </div>
+
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <div class="container">
+
+                            <form method="post">
+                                <div class="row mb-3">
+
+                                    @Html.HiddenFor(x => x.ID)
+
+                                    <div class="col-4">
+                                        <label class="form-label">Ad</label>
+                                        @Html.TextBoxFor(x=>x.AD, new { @class="form-control", @placeholder="Ad..", @required="required"})
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="form-label">Soyad</label>
+                                        @Html.TextBoxFor(x => x.SOYAD, new { @class = "form-control", @placeholder = "Soyad..", @required = "required" })
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="form-label">Departman</label>
+                                        @Html.DropDownListFor(x => x.Tbl_Departmanlar.ID, (List<SelectListItem>)ViewBag.Departman, new { @class = "form-select" })
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-success">Güncelle</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    var personel = document.getElementById('personel');
+    personel.classList.add('active');
+</script>

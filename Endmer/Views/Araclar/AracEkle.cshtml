@@ -1,0 +1,84 @@
+﻿@model Endmer.Models.Entity.Tbl_Araclar
+
+@{
+    ViewBag.Title = "AracEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+
+                <div class="card-header">
+                    <h6 class="text-center fs-4">Yeni Araç Ekle</h6>
+                </div>
+
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <div class="container">
+
+                            <form method="post" action="/Araclar/AracEkle" enctype="multipart/form-data">
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <label class="form-label">Marka - Model</label>
+                                        <input type="text" class="form-control" name="MARKA" placeholder="Marka - Model.." />
+                                    </div>
+
+                                    <div class="col-6">
+                                        <label class="form-label">Plaka</label>
+                                        <input type="text" class="form-control" name="PLAKA" placeholder="Plaka.." />
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <label class="form-label">Lokasyon</label>
+                                        <input type="text" class="form-control" name="LOKASYON" placeholder="Lokasyon.." />
+                                    </div>
+
+                                    <div class="col-6">
+                                        <label class="form-label">KM</label>
+                                        <input type="text" class="form-control" name="KM" placeholder="KM.." />
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+
+                                    <div class="col-4">
+                                        <label class="form-label">Teslim Eden</label>
+                                        @Html.DropDownListFor(x => x.Tbl_Personel.ID, (List<SelectListItem>)ViewBag.TeslimEden, new { @class = "form-select" })
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="form-label">Teslim Alan</label>
+                                        @Html.DropDownListFor(x => x.Tbl_Personel1.ID, (List<SelectListItem>)ViewBag.TeslimAlan, new { @class = "form-select" })
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="form-label">Resim</label>
+                                        <input type="file" name="RESIM" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2 mb-3">
+                                    <input type="submit" value="Yeni Araç Ekle" class="btn btn-info" />
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    var araclar = document.getElementById('araclar');
+    araclar.classList.add('active');
+</script>

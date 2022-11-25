@@ -1,0 +1,53 @@
+﻿@model Endmer.Models.Entity.Tbl_Departmanlar
+
+@{
+    ViewBag.Title = "DepartmanGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+
+                <div class="card-header">
+                    <h6 class="text-center fs-4">Departman Bilgilerini Güncelle</h6>
+                </div>
+
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <div class="container">
+
+                            <form method="post">
+                                <div class="row mb-3">
+
+                                    @Html.HiddenFor(x => x.ID)
+
+                                    <div class="col-12">
+                                        <label class="form-label">Departman Adı</label>
+                                        @Html.TextBoxFor(x => x.DEPARTMAN, new { @class = "form-control", @placeholder = "Departman Adı..", @required = "required" })
+                                    </div>
+
+                                </div>
+
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-success">Güncelle</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    var departman = document.getElementById('departman');
+    departman.classList.add('active');
+</script>

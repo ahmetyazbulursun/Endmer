@@ -1,0 +1,60 @@
+﻿@model Endmer.Models.Entity.Tbl_Personel
+
+@{
+    ViewBag.Title = "PersonelEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+
+                <div class="card-header">
+                    <h6 class="text-center fs-4">Yeni Personel Ekle</h6>
+                </div>
+
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <div class="container">
+
+                            <form method="post">
+
+                                <div class="row mb-3">
+                                    <div class="col-4">
+                                        <label class="form-label">Ad</label>
+                                        <input type="text" class="form-control" name="AD" placeholder="Ad.." required />
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="form-label">Soyad</label>
+                                        <input type="text" class="form-control" name="SOYAD" placeholder="Soyad.." required />
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="form-label">Departman</label>
+                                        @Html.DropDownListFor(x => x.Tbl_Departmanlar.ID, (List<SelectListItem>)ViewBag.Departman, new { @class = "form-select" })
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2 mb-3">
+                                    <input type="submit" value="Yeni Personel Ekle" class="btn btn-info" />
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    var personel = document.getElementById('personel');
+    personel.classList.add('active');
+</script>

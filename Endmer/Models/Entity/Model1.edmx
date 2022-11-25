@@ -1,0 +1,688 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EndmerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Tbl_AracKayit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ARAC" Type="int" />
+          <Property Name="KULLANICI" Type="varchar" MaxLength="100" />
+          <Property Name="TESLIMEDEN" Type="int" />
+          <Property Name="TESLIMALAN" Type="int" />
+          <Property Name="KM" Type="varchar" MaxLength="50" />
+          <Property Name="LOKASYON" Type="varchar" MaxLength="50" />
+          <Property Name="TARIH" Type="datetime" />
+          <Property Name="DURUM" Type="bit" />
+        </EntityType>
+        <EntityType Name="Tbl_Araclar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MARKA" Type="varchar" MaxLength="100" />
+          <Property Name="RESIM" Type="varchar" MaxLength="500" />
+          <Property Name="PLAKA" Type="varchar" MaxLength="50" />
+          <Property Name="KM" Type="varchar" MaxLength="50" />
+          <Property Name="LOKASYON" Type="varchar" MaxLength="50" />
+          <Property Name="TESLIMEDEN" Type="int" />
+          <Property Name="TESLIMALAN" Type="int" />
+          <Property Name="DURUM" Type="bit" />
+        </EntityType>
+        <EntityType Name="Tbl_Departmanlar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEPARTMAN" Type="varchar" MaxLength="100" />
+          <Property Name="DURUM" Type="bit" />
+        </EntityType>
+        <EntityType Name="Tbl_Kategoriler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KATEGORIADI" Type="varchar" MaxLength="100" />
+          <Property Name="DURUM" Type="bit" />
+        </EntityType>
+        <EntityType Name="Tbl_Konumlar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KONUM" Type="varchar" MaxLength="250" />
+          <Property Name="DURUM" Type="bit" />
+        </EntityType>
+        <EntityType Name="Tbl_Personel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AD" Type="varchar" MaxLength="30" />
+          <Property Name="SOYAD" Type="varchar" MaxLength="30" />
+          <Property Name="KULLANICIADI" Type="varchar" MaxLength="20" />
+          <Property Name="PAROLA" Type="varchar" MaxLength="20" />
+          <Property Name="YETKI" Type="char" MaxLength="1" />
+          <Property Name="DEPARTMAN" Type="int" />
+          <Property Name="DURUM" Type="bit" />
+        </EntityType>
+        <EntityType Name="Tbl_Urunler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URUNADI" Type="varchar" MaxLength="200" />
+          <Property Name="RESIM" Type="varchar" MaxLength="500" />
+          <Property Name="BARKODNO" Type="varchar" MaxLength="50" />
+          <Property Name="ADET" Type="varchar" MaxLength="10" />
+          <Property Name="KATEGORI" Type="int" />
+          <Property Name="MARKA" Type="varchar" MaxLength="100" />
+          <Property Name="MODEL" Type="varchar" MaxLength="100" />
+          <Property Name="SERINO" Type="varchar" MaxLength="50" />
+          <Property Name="ACIKLAMA" Type="varchar" MaxLength="500" />
+          <Property Name="DURUM" Type="bit" />
+        </EntityType>
+        <EntityType Name="Tbl_Zimmetler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PERSONEL" Type="int" />
+          <Property Name="ZIMMET" Type="int" />
+          <Property Name="ADET" Type="varchar" MaxLength="10" />
+          <Property Name="KONUM" Type="int" />
+          <Property Name="TARIH" Type="datetime" />
+          <Property Name="DURUM" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Tbl_AracKayit_Tbl_Araclar">
+          <End Role="Tbl_Araclar" Type="Self.Tbl_Araclar" Multiplicity="0..1" />
+          <End Role="Tbl_AracKayit" Type="Self.Tbl_AracKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Araclar">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_AracKayit">
+              <PropertyRef Name="ARAC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_AracKayit_Tbl_Personel">
+          <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
+          <End Role="Tbl_AracKayit" Type="Self.Tbl_AracKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Personel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_AracKayit">
+              <PropertyRef Name="TESLIMEDEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_AracKayit_Tbl_Personel1">
+          <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
+          <End Role="Tbl_AracKayit" Type="Self.Tbl_AracKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Personel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_AracKayit">
+              <PropertyRef Name="TESLIMALAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Araclar_Tbl_Personel">
+          <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
+          <End Role="Tbl_Araclar" Type="Self.Tbl_Araclar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Personel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Araclar">
+              <PropertyRef Name="TESLIMEDEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Araclar_Tbl_Personel1">
+          <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
+          <End Role="Tbl_Araclar" Type="Self.Tbl_Araclar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Personel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Araclar">
+              <PropertyRef Name="TESLIMALAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Personel_Tbl_Departmanlar">
+          <End Role="Tbl_Departmanlar" Type="Self.Tbl_Departmanlar" Multiplicity="0..1" />
+          <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Departmanlar">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Personel">
+              <PropertyRef Name="DEPARTMAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Urunler_Tbl_Kategoriler">
+          <End Role="Tbl_Kategoriler" Type="Self.Tbl_Kategoriler" Multiplicity="0..1" />
+          <End Role="Tbl_Urunler" Type="Self.Tbl_Urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Kategoriler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Urunler">
+              <PropertyRef Name="KATEGORI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Zimmetler_Tbl_Konumlar">
+          <End Role="Tbl_Konumlar" Type="Self.Tbl_Konumlar" Multiplicity="0..1" />
+          <End Role="Tbl_Zimmetler" Type="Self.Tbl_Zimmetler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Konumlar">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Zimmetler">
+              <PropertyRef Name="KONUM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Zimmetler_Tbl_Personel">
+          <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
+          <End Role="Tbl_Zimmetler" Type="Self.Tbl_Zimmetler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Personel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Zimmetler">
+              <PropertyRef Name="PERSONEL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Zimmetler_Tbl_Urunler">
+          <End Role="Tbl_Urunler" Type="Self.Tbl_Urunler" Multiplicity="0..1" />
+          <End Role="Tbl_Zimmetler" Type="Self.Tbl_Zimmetler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Urunler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Zimmetler">
+              <PropertyRef Name="ZIMMET" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EndmerModelStoreContainer">
+          <EntitySet Name="Tbl_AracKayit" EntityType="Self.Tbl_AracKayit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Araclar" EntityType="Self.Tbl_Araclar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Departmanlar" EntityType="Self.Tbl_Departmanlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Kategoriler" EntityType="Self.Tbl_Kategoriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Konumlar" EntityType="Self.Tbl_Konumlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Personel" EntityType="Self.Tbl_Personel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Urunler" EntityType="Self.Tbl_Urunler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Zimmetler" EntityType="Self.Tbl_Zimmetler" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Tbl_AracKayit_Tbl_Araclar" Association="Self.FK_Tbl_AracKayit_Tbl_Araclar">
+            <End Role="Tbl_Araclar" EntitySet="Tbl_Araclar" />
+            <End Role="Tbl_AracKayit" EntitySet="Tbl_AracKayit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_AracKayit_Tbl_Personel" Association="Self.FK_Tbl_AracKayit_Tbl_Personel">
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+            <End Role="Tbl_AracKayit" EntitySet="Tbl_AracKayit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_AracKayit_Tbl_Personel1" Association="Self.FK_Tbl_AracKayit_Tbl_Personel1">
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+            <End Role="Tbl_AracKayit" EntitySet="Tbl_AracKayit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Araclar_Tbl_Personel" Association="Self.FK_Tbl_Araclar_Tbl_Personel">
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+            <End Role="Tbl_Araclar" EntitySet="Tbl_Araclar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Araclar_Tbl_Personel1" Association="Self.FK_Tbl_Araclar_Tbl_Personel1">
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+            <End Role="Tbl_Araclar" EntitySet="Tbl_Araclar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Personel_Tbl_Departmanlar" Association="Self.FK_Tbl_Personel_Tbl_Departmanlar">
+            <End Role="Tbl_Departmanlar" EntitySet="Tbl_Departmanlar" />
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Urunler_Tbl_Kategoriler" Association="Self.FK_Tbl_Urunler_Tbl_Kategoriler">
+            <End Role="Tbl_Kategoriler" EntitySet="Tbl_Kategoriler" />
+            <End Role="Tbl_Urunler" EntitySet="Tbl_Urunler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Zimmetler_Tbl_Konumlar" Association="Self.FK_Tbl_Zimmetler_Tbl_Konumlar">
+            <End Role="Tbl_Konumlar" EntitySet="Tbl_Konumlar" />
+            <End Role="Tbl_Zimmetler" EntitySet="Tbl_Zimmetler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Zimmetler_Tbl_Personel" Association="Self.FK_Tbl_Zimmetler_Tbl_Personel">
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+            <End Role="Tbl_Zimmetler" EntitySet="Tbl_Zimmetler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Zimmetler_Tbl_Urunler" Association="Self.FK_Tbl_Zimmetler_Tbl_Urunler">
+            <End Role="Tbl_Urunler" EntitySet="Tbl_Urunler" />
+            <End Role="Tbl_Zimmetler" EntitySet="Tbl_Zimmetler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EndmerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Tbl_Departmanlar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEPARTMAN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DURUM" Type="Boolean" />
+          <NavigationProperty Name="Tbl_Personel" Relationship="Self.FK_Tbl_Personel_Tbl_Departmanlar" FromRole="Tbl_Departmanlar" ToRole="Tbl_Personel" />
+        </EntityType>
+        <EntityType Name="Tbl_Kategoriler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KATEGORIADI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DURUM" Type="Boolean" />
+          <NavigationProperty Name="Tbl_Urunler" Relationship="Self.FK_Tbl_Urunler_Tbl_Kategoriler" FromRole="Tbl_Kategoriler" ToRole="Tbl_Urunler" />
+        </EntityType>
+        <EntityType Name="Tbl_Personel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SOYAD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DEPARTMAN" Type="Int32" />
+          <Property Name="DURUM" Type="Boolean" />
+          <NavigationProperty Name="Tbl_Departmanlar" Relationship="Self.FK_Tbl_Personel_Tbl_Departmanlar" FromRole="Tbl_Personel" ToRole="Tbl_Departmanlar" />
+          <NavigationProperty Name="Tbl_Araclar" Relationship="EndmerModel.FK_Tbl_Araclar_Tbl_Personel" FromRole="Tbl_Personel" ToRole="Tbl_Araclar" />
+          <NavigationProperty Name="Tbl_Araclar1" Relationship="EndmerModel.FK_Tbl_Araclar_Tbl_Personel1" FromRole="Tbl_Personel" ToRole="Tbl_Araclar" />
+          <NavigationProperty Name="Tbl_AracKayit" Relationship="EndmerModel.FK_Tbl_AracKayit_Tbl_Personel" FromRole="Tbl_Personel" ToRole="Tbl_AracKayit" />
+          <NavigationProperty Name="Tbl_AracKayit1" Relationship="EndmerModel.FK_Tbl_AracKayit_Tbl_Personel1" FromRole="Tbl_Personel" ToRole="Tbl_AracKayit" />
+          <NavigationProperty Name="Tbl_Zimmetler" Relationship="EndmerModel.FK_Tbl_Zimmetler_Tbl_Personel" FromRole="Tbl_Personel" ToRole="Tbl_Zimmetler" />
+          <Property Name="KULLANICIADI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PAROLA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="YETKI" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Urunler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URUNADI" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="BARKODNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KATEGORI" Type="Int32" />
+          <Property Name="MARKA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MODEL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SERINO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ACIKLAMA" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DURUM" Type="Boolean" />
+          <NavigationProperty Name="Tbl_Kategoriler" Relationship="Self.FK_Tbl_Urunler_Tbl_Kategoriler" FromRole="Tbl_Urunler" ToRole="Tbl_Kategoriler" />
+          <NavigationProperty Name="Tbl_Zimmetler" Relationship="EndmerModel.FK_Tbl_Zimmetler_Tbl_Urunler" FromRole="Tbl_Urunler" ToRole="Tbl_Zimmetler" />
+          <Property Name="RESIM" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ADET" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Tbl_Personel_Tbl_Departmanlar">
+          <End Role="Tbl_Departmanlar" Type="Self.Tbl_Departmanlar" Multiplicity="0..1" />
+          <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Departmanlar">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Personel">
+              <PropertyRef Name="DEPARTMAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Urunler_Tbl_Kategoriler">
+          <End Role="Tbl_Kategoriler" Type="Self.Tbl_Kategoriler" Multiplicity="0..1" />
+          <End Role="Tbl_Urunler" Type="Self.Tbl_Urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Kategoriler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Urunler">
+              <PropertyRef Name="KATEGORI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EndmerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tbl_Departmanlar" EntityType="Self.Tbl_Departmanlar" />
+          <EntitySet Name="Tbl_Kategoriler" EntityType="Self.Tbl_Kategoriler" />
+          <EntitySet Name="Tbl_Personel" EntityType="Self.Tbl_Personel" />
+          <EntitySet Name="Tbl_Urunler" EntityType="Self.Tbl_Urunler" />
+          <AssociationSet Name="FK_Tbl_Personel_Tbl_Departmanlar" Association="Self.FK_Tbl_Personel_Tbl_Departmanlar">
+            <End Role="Tbl_Departmanlar" EntitySet="Tbl_Departmanlar" />
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Urunler_Tbl_Kategoriler" Association="Self.FK_Tbl_Urunler_Tbl_Kategoriler">
+            <End Role="Tbl_Kategoriler" EntitySet="Tbl_Kategoriler" />
+            <End Role="Tbl_Urunler" EntitySet="Tbl_Urunler" />
+          </AssociationSet>
+          <EntitySet Name="Tbl_Araclar" EntityType="EndmerModel.Tbl_Araclar" />
+          <AssociationSet Name="FK_Tbl_Araclar_Tbl_Personel" Association="EndmerModel.FK_Tbl_Araclar_Tbl_Personel">
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+            <End Role="Tbl_Araclar" EntitySet="Tbl_Araclar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Araclar_Tbl_Personel1" Association="EndmerModel.FK_Tbl_Araclar_Tbl_Personel1">
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+            <End Role="Tbl_Araclar" EntitySet="Tbl_Araclar" />
+          </AssociationSet>
+          <EntitySet Name="Tbl_AracKayit" EntityType="EndmerModel.Tbl_AracKayit" />
+          <AssociationSet Name="FK_Tbl_AracKayit_Tbl_Araclar" Association="EndmerModel.FK_Tbl_AracKayit_Tbl_Araclar">
+            <End Role="Tbl_Araclar" EntitySet="Tbl_Araclar" />
+            <End Role="Tbl_AracKayit" EntitySet="Tbl_AracKayit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_AracKayit_Tbl_Personel" Association="EndmerModel.FK_Tbl_AracKayit_Tbl_Personel">
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+            <End Role="Tbl_AracKayit" EntitySet="Tbl_AracKayit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_AracKayit_Tbl_Personel1" Association="EndmerModel.FK_Tbl_AracKayit_Tbl_Personel1">
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+            <End Role="Tbl_AracKayit" EntitySet="Tbl_AracKayit" />
+          </AssociationSet>
+          <EntitySet Name="Tbl_Zimmetler" EntityType="EndmerModel.Tbl_Zimmetler" />
+          <AssociationSet Name="FK_Tbl_Zimmetler_Tbl_Personel" Association="EndmerModel.FK_Tbl_Zimmetler_Tbl_Personel">
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+            <End Role="Tbl_Zimmetler" EntitySet="Tbl_Zimmetler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Zimmetler_Tbl_Urunler" Association="EndmerModel.FK_Tbl_Zimmetler_Tbl_Urunler">
+            <End Role="Tbl_Urunler" EntitySet="Tbl_Urunler" />
+            <End Role="Tbl_Zimmetler" EntitySet="Tbl_Zimmetler" />
+          </AssociationSet>
+          <EntitySet Name="Tbl_Konumlar" EntityType="EndmerModel.Tbl_Konumlar" />
+          <AssociationSet Name="FK_Tbl_Zimmetler_Tbl_Konumlar" Association="EndmerModel.FK_Tbl_Zimmetler_Tbl_Konumlar">
+            <End Role="Tbl_Konumlar" EntitySet="Tbl_Konumlar" />
+            <End Role="Tbl_Zimmetler" EntitySet="Tbl_Zimmetler" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Tbl_Araclar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PLAKA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LOKASYON" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TESLIMEDEN" Type="Int32" />
+          <Property Name="TESLIMALAN" Type="Int32" />
+          <NavigationProperty Name="Tbl_Personel" Relationship="EndmerModel.FK_Tbl_Araclar_Tbl_Personel" FromRole="Tbl_Araclar" ToRole="Tbl_Personel" />
+          <NavigationProperty Name="Tbl_Personel1" Relationship="EndmerModel.FK_Tbl_Araclar_Tbl_Personel1" FromRole="Tbl_Araclar" ToRole="Tbl_Personel" />
+          <Property Name="DURUM" Type="Boolean" />
+          <Property Name="RESIM" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="KM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MARKA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_AracKayit" Relationship="EndmerModel.FK_Tbl_AracKayit_Tbl_Araclar" FromRole="Tbl_Araclar" ToRole="Tbl_AracKayit" />
+        </EntityType>
+        <Association Name="FK_Tbl_Araclar_Tbl_Personel">
+          <End Type="EndmerModel.Tbl_Personel" Role="Tbl_Personel" Multiplicity="0..1" />
+          <End Type="EndmerModel.Tbl_Araclar" Role="Tbl_Araclar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Personel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Araclar">
+              <PropertyRef Name="TESLIMEDEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Araclar_Tbl_Personel1">
+          <End Type="EndmerModel.Tbl_Personel" Role="Tbl_Personel" Multiplicity="0..1" />
+          <End Type="EndmerModel.Tbl_Araclar" Role="Tbl_Araclar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Personel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Araclar">
+              <PropertyRef Name="TESLIMALAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tbl_AracKayit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ARAC" Type="Int32" />
+          <Property Name="KULLANICI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TESLIMEDEN" Type="Int32" />
+          <Property Name="TESLIMALAN" Type="Int32" />
+          <Property Name="TARIH" Type="DateTime" Precision="3" />
+          <Property Name="DURUM" Type="Boolean" />
+          <NavigationProperty Name="Tbl_Araclar" Relationship="EndmerModel.FK_Tbl_AracKayit_Tbl_Araclar" FromRole="Tbl_AracKayit" ToRole="Tbl_Araclar" />
+          <NavigationProperty Name="Tbl_Personel" Relationship="EndmerModel.FK_Tbl_AracKayit_Tbl_Personel" FromRole="Tbl_AracKayit" ToRole="Tbl_Personel" />
+          <NavigationProperty Name="Tbl_Personel1" Relationship="EndmerModel.FK_Tbl_AracKayit_Tbl_Personel1" FromRole="Tbl_AracKayit" ToRole="Tbl_Personel" />
+          <Property Name="KM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LOKASYON" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Tbl_AracKayit_Tbl_Araclar">
+          <End Type="EndmerModel.Tbl_Araclar" Role="Tbl_Araclar" Multiplicity="0..1" />
+          <End Type="EndmerModel.Tbl_AracKayit" Role="Tbl_AracKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Araclar">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_AracKayit">
+              <PropertyRef Name="ARAC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_AracKayit_Tbl_Personel">
+          <End Type="EndmerModel.Tbl_Personel" Role="Tbl_Personel" Multiplicity="0..1" />
+          <End Type="EndmerModel.Tbl_AracKayit" Role="Tbl_AracKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Personel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_AracKayit">
+              <PropertyRef Name="TESLIMEDEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_AracKayit_Tbl_Personel1">
+          <End Type="EndmerModel.Tbl_Personel" Role="Tbl_Personel" Multiplicity="0..1" />
+          <End Type="EndmerModel.Tbl_AracKayit" Role="Tbl_AracKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Personel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_AracKayit">
+              <PropertyRef Name="TESLIMALAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tbl_Zimmetler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PERSONEL" Type="Int32" />
+          <Property Name="ZIMMET" Type="Int32" />
+          <Property Name="TARIH" Type="DateTime" Precision="3" />
+          <Property Name="DURUM" Type="Boolean" />
+          <NavigationProperty Name="Tbl_Personel" Relationship="EndmerModel.FK_Tbl_Zimmetler_Tbl_Personel" FromRole="Tbl_Zimmetler" ToRole="Tbl_Personel" />
+          <NavigationProperty Name="Tbl_Urunler" Relationship="EndmerModel.FK_Tbl_Zimmetler_Tbl_Urunler" FromRole="Tbl_Zimmetler" ToRole="Tbl_Urunler" />
+          <Property Name="KONUM" Type="Int32" />
+          <NavigationProperty Name="Tbl_Konumlar" Relationship="EndmerModel.FK_Tbl_Zimmetler_Tbl_Konumlar" FromRole="Tbl_Zimmetler" ToRole="Tbl_Konumlar" />
+          <Property Name="ADET" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Tbl_Zimmetler_Tbl_Personel">
+          <End Type="EndmerModel.Tbl_Personel" Role="Tbl_Personel" Multiplicity="0..1" />
+          <End Type="EndmerModel.Tbl_Zimmetler" Role="Tbl_Zimmetler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Personel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Zimmetler">
+              <PropertyRef Name="PERSONEL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Zimmetler_Tbl_Urunler">
+          <End Type="EndmerModel.Tbl_Urunler" Role="Tbl_Urunler" Multiplicity="0..1" />
+          <End Type="EndmerModel.Tbl_Zimmetler" Role="Tbl_Zimmetler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Urunler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Zimmetler">
+              <PropertyRef Name="ZIMMET" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tbl_Konumlar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KONUM" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DURUM" Type="Boolean" />
+          <NavigationProperty Name="Tbl_Zimmetler" Relationship="EndmerModel.FK_Tbl_Zimmetler_Tbl_Konumlar" FromRole="Tbl_Konumlar" ToRole="Tbl_Zimmetler" />
+        </EntityType>
+        <Association Name="FK_Tbl_Zimmetler_Tbl_Konumlar">
+          <End Type="EndmerModel.Tbl_Konumlar" Role="Tbl_Konumlar" Multiplicity="0..1" />
+          <End Type="EndmerModel.Tbl_Zimmetler" Role="Tbl_Zimmetler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Konumlar">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Zimmetler">
+              <PropertyRef Name="KONUM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EndmerModelStoreContainer" CdmEntityContainer="EndmerEntities">
+          <EntitySetMapping Name="Tbl_Departmanlar">
+            <EntityTypeMapping TypeName="EndmerModel.Tbl_Departmanlar">
+              <MappingFragment StoreEntitySet="Tbl_Departmanlar">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DEPARTMAN" ColumnName="DEPARTMAN" />
+                <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Kategoriler">
+            <EntityTypeMapping TypeName="EndmerModel.Tbl_Kategoriler">
+              <MappingFragment StoreEntitySet="Tbl_Kategoriler">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="KATEGORIADI" ColumnName="KATEGORIADI" />
+                <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Personel">
+            <EntityTypeMapping TypeName="EndmerModel.Tbl_Personel">
+              <MappingFragment StoreEntitySet="Tbl_Personel">
+                <ScalarProperty Name="YETKI" ColumnName="YETKI" />
+                <ScalarProperty Name="PAROLA" ColumnName="PAROLA" />
+                <ScalarProperty Name="KULLANICIADI" ColumnName="KULLANICIADI" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+                <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
+                <ScalarProperty Name="DEPARTMAN" ColumnName="DEPARTMAN" />
+                <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Urunler">
+            <EntityTypeMapping TypeName="EndmerModel.Tbl_Urunler">
+              <MappingFragment StoreEntitySet="Tbl_Urunler">
+                <ScalarProperty Name="ADET" ColumnName="ADET" />
+                <ScalarProperty Name="RESIM" ColumnName="RESIM" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="URUNADI" ColumnName="URUNADI" />
+                <ScalarProperty Name="BARKODNO" ColumnName="BARKODNO" />
+                <ScalarProperty Name="KATEGORI" ColumnName="KATEGORI" />
+                <ScalarProperty Name="MARKA" ColumnName="MARKA" />
+                <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+                <ScalarProperty Name="SERINO" ColumnName="SERINO" />
+                <ScalarProperty Name="ACIKLAMA" ColumnName="ACIKLAMA" />
+                <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Araclar">
+            <EntityTypeMapping TypeName="EndmerModel.Tbl_Araclar">
+              <MappingFragment StoreEntitySet="Tbl_Araclar">
+                <ScalarProperty Name="MARKA" ColumnName="MARKA" />
+                <ScalarProperty Name="KM" ColumnName="KM" />
+                <ScalarProperty Name="RESIM" ColumnName="RESIM" />
+                <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+                <ScalarProperty Name="TESLIMALAN" ColumnName="TESLIMALAN" />
+                <ScalarProperty Name="TESLIMEDEN" ColumnName="TESLIMEDEN" />
+                <ScalarProperty Name="LOKASYON" ColumnName="LOKASYON" />
+                <ScalarProperty Name="PLAKA" ColumnName="PLAKA" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_AracKayit">
+            <EntityTypeMapping TypeName="EndmerModel.Tbl_AracKayit">
+              <MappingFragment StoreEntitySet="Tbl_AracKayit">
+                <ScalarProperty Name="LOKASYON" ColumnName="LOKASYON" />
+                <ScalarProperty Name="KM" ColumnName="KM" />
+                <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+                <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+                <ScalarProperty Name="TESLIMALAN" ColumnName="TESLIMALAN" />
+                <ScalarProperty Name="TESLIMEDEN" ColumnName="TESLIMEDEN" />
+                <ScalarProperty Name="KULLANICI" ColumnName="KULLANICI" />
+                <ScalarProperty Name="ARAC" ColumnName="ARAC" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Zimmetler">
+            <EntityTypeMapping TypeName="EndmerModel.Tbl_Zimmetler">
+              <MappingFragment StoreEntitySet="Tbl_Zimmetler">
+                <ScalarProperty Name="ADET" ColumnName="ADET" />
+                <ScalarProperty Name="KONUM" ColumnName="KONUM" />
+                <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+                <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+                <ScalarProperty Name="ZIMMET" ColumnName="ZIMMET" />
+                <ScalarProperty Name="PERSONEL" ColumnName="PERSONEL" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Konumlar">
+            <EntityTypeMapping TypeName="EndmerModel.Tbl_Konumlar">
+              <MappingFragment StoreEntitySet="Tbl_Konumlar">
+                <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+                <ScalarProperty Name="KONUM" ColumnName="KONUM" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

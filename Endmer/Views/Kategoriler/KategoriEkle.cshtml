@@ -1,0 +1,50 @@
+﻿@model Endmer.Models.Entity.Tbl_Kategoriler
+
+@{
+    ViewBag.Title = "KategoriEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+
+                <div class="card-header">
+                    <h6 class="text-center fs-4">Yeni Personel Ekle</h6>
+                </div>
+
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <div class="container">
+
+                            <form method="post">
+
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <label class="form-label">Kategori Adı</label>
+                                        <input type="text" class="form-control" name="KATEGORIADI" placeholder="Kategori Adı.." required />
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2 mb-3">
+                                    <input type="submit" value="Yeni Kategori Ekle" class="btn btn-info" />
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    var kategoriler = document.getElementById('kategoriler');
+    kategoriler.classList.add('active');
+</script>

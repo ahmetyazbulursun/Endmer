@@ -1,0 +1,57 @@
+﻿@using Endmer.Models.Entity
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Tbl_Urunler>
+
+@{
+    ViewBag.Title = "Urunler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h6 class="text-center fs-4">Kategoriye Ait Ürünler</h6>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table table-hover align-items-center mb-0">
+                            <thead align="center">
+                                <tr>
+                                    <th>Resim</th>
+                                    <th>Ürün</th>
+                                    <th>Marka</th>
+                                    <th>Model</th>
+                                    <th>Zimmet Sahibi</th>
+                                </tr>
+                            </thead>
+                            @foreach (var x in Model)
+                            {
+                                <tbody align="center">
+                                    <tr>
+                                        <td><img src="@x.RESIM" width="300" /></td>
+                                        <td>@x.URUNADI</td>
+                                        <td>@x.MARKA</td>
+                                        <td>@x.MODEL</td>
+                                        <td>@x.Tbl_Personel.AD @x.Tbl_Personel.SOYAD</td>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    var kategoriler = document.getElementById('kategoriler');
+    kategoriler.classList.add('active');
+</script>

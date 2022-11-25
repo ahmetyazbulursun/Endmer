@@ -1,0 +1,64 @@
+﻿@model Endmer.Models.Entity.Tbl_Araclar
+
+@{
+    ViewBag.Title = "AracGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+
+                <div class="card-header">
+                    <h6 class="text-center fs-4">Araç Bilgilerini Güncelle</h6>
+                </div>
+
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <div class="container">
+
+                            @using (Html.BeginForm("AracGuncelle", "Araclar", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+
+                                <div class="row mb-3">
+
+                                    @Html.HiddenFor(x => x.ID)
+
+                                    <div class="col-4">
+                                        <label class="form-label">Marka - Model</label>
+                                        @Html.TextBoxFor(x => x.MARKA, new { @class = "form-control", @placeholder = "Marka.." })
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="form-label">Plaka</label>
+                                        @Html.TextBoxFor(x => x.PLAKA, new { @class = "form-control", @placeholder = "Plaka.." })
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="form-label">Lokasyon</label>
+                                        @Html.TextBoxFor(x => x.LOKASYON, new { @class = "form-control", @placeholder = "Lokasyon.." })
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-success">Güncelle</button>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    var araclar = document.getElementById('araclar');
+    araclar.classList.add('active');
+</script>

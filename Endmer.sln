@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Endmer", "Endmer\Endmer.csproj", "{1FEC0B75-8BF3-4240-A5B8-7C2D3ECAC43C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1FEC0B75-8BF3-4240-A5B8-7C2D3ECAC43C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FEC0B75-8BF3-4240-A5B8-7C2D3ECAC43C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FEC0B75-8BF3-4240-A5B8-7C2D3ECAC43C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FEC0B75-8BF3-4240-A5B8-7C2D3ECAC43C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2B6752BC-D820-4594-A995-C5813B5C39FA}
+	EndGlobalSection
+EndGlobal

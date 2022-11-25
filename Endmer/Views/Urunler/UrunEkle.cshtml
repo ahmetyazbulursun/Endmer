@@ -1,0 +1,95 @@
+﻿@model Endmer.Models.Entity.Tbl_Urunler
+
+@{
+    ViewBag.Title = "UrunEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+
+                <div class="card-header">
+                    <h6 class="text-center fs-4">Yeni Ürün Ekle</h6>
+                </div>
+
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <div class="container">
+
+                            <form method="post" action="/Urunler/UrunEkle" enctype="multipart/form-data">
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <label class="form-label">Ürün Adı</label>
+                                        <input type="text" class="form-control" name="URUNADI" placeholder="Ürün Adı.." required />
+                                    </div>
+
+                                    <div class="col-6">
+                                        <label class="form-label">Resim</label>
+                                        <input type="file" class="form-control" name="RESIM" />
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-4">
+                                        <label class="form-label">Kategori</label>
+                                        @Html.DropDownListFor(x => x.Tbl_Kategoriler.ID, (List<SelectListItem>)ViewBag.Category, new { @class = "form-select" })
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="form-label">Marka</label>
+                                        <input type="text" class="form-control" name="MARKA" placeholder="Marka.." required />
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="form-label">Model</label>
+                                        <input type="text" class="form-control" name="MODEL" placeholder="Model.." required />
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-4">
+                                        <label class="form-label">Barkod</label>
+                                        <input type="text" class="form-control" name="BARKODNO" placeholder="Barkod.." required />
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="form-label">Seri No</label>
+                                        <input type="text" class="form-control" name="SERINO" placeholder="Seri No.." required />
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="form-label">Zimmet Sahibi</label>
+                                        @Html.DropDownListFor(x => x.Tbl_Personel.ID, (List<SelectListItem>)ViewBag.Debit, new { @class = "form-select" })
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <label class="form-label">Açıklama</label>
+                                        <textarea class="form-control" rows="7" name="ACIKLAMA" placeholder="Açıklama.."></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2 mb-3">
+                                    <input type="submit" value="Yeni Ürün Ekle" class="btn btn-info" />
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    var urunler = document.getElementById('urunler');
+    urunler.classList.add('active');
+</script>

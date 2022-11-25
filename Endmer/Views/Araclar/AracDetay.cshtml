@@ -1,0 +1,52 @@
+﻿@using Endmer.Models.Entity
+@model List<Tbl_Araclar>
+
+@{
+    ViewBag.Title = "AracDetay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h6 class="text-center fs-4">Araç Detayları</h6>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table table-hover align-items-center mb-0">
+                            <thead align="center">
+                                <tr>
+                                    <th>Teslim Eden</th>
+                                    <th>Teslim Alan</th>
+                                    <th colspan="2">İŞLEMLER</th>
+                                </tr>
+                            </thead>
+                            @foreach (var x in Model)
+                            {
+                                <tbody align="center">
+                                    <tr>
+                                        <td>@x.Tbl_Personel.AD @x.Tbl_Personel.SOYAD</td>
+                                        <td>@x.Tbl_Personel1.AD @x.Tbl_Personel1.SOYAD</td>
+                                        <td><a href="/Araclar/YeniKullanici/@x.ID" class="btn btn-success">Yeni Kullanıcı</a></td>
+                                        <td><a href="/Araclar/Kayitlar/@x.ID" class="btn btn-warning">Kayıtlar</a></td>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    var araclar = document.getElementById('araclar');
+    araclar.classList.add('active');
+</script>

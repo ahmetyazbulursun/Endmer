@@ -1,0 +1,100 @@
+﻿@model Endmer.Models.Entity.Tbl_Urunler
+
+@{
+    ViewBag.Title = "UrunDetay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+
+                <div class="card-header">
+                    <h6 class="text-center fs-4">Ürün Detayları</h6>
+                </div>
+
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <div class="container">
+
+                            <div class="row mb-3">
+
+                                <div class="col-sm-12 col-md-4 col-lg-4">
+                                    <img src="@Html.DisplayFor(x=>x.RESIM)" class="img-fluid" />
+                                </div>
+
+                                <div class="col-sm-12 col-md-8 col-lg-8">
+
+                                    <div class="row">
+                                        <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+                                            <label class="form-label">Ürün</label>
+                                            @Html.TextBoxFor(x => x.URUNADI, new { @class = "form-control", @readonly = "readonly" })
+                                        </div>
+
+                                        <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+                                            <label class="form-label">Marka</label>
+                                            @Html.TextBoxFor(x => x.MARKA, new { @class = "form-control", @readonly = "readonly" })
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+                                            <label class="form-label">Model</label>
+                                            @Html.TextBoxFor(x => x.MODEL, new { @class = "form-control", @readonly = "readonly" })
+                                        </div>
+
+                                        <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+                                            <label class="form-label">Kategori</label>
+                                            @Html.TextBoxFor(x => x.Tbl_Kategoriler.KATEGORIADI, new { @class = "form-control", @readonly = "readonly" })
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+                                            <label class="form-label">Barkod</label>
+                                            @Html.TextBoxFor(x => x.BARKODNO, new { @class = "form-control", @readonly = "readonly" })
+                                        </div>
+
+                                        <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+                                            <label class="form-label">Seri No</label>
+                                            @Html.TextBoxFor(x => x.SERINO, new { @class = "form-control", @readonly = "readonly" })
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="mb-3 col-12">
+                                            <label class="form-label">Zimmet Sahibi</label>
+                                            <input type="text" class="form-control" name="ZIMMET" readonly value="@Html.DisplayFor(x=>x.Tbl_Personel.AD) @Html.DisplayFor(x=>x.Tbl_Personel.SOYAD)" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="mb-3 col-12">
+                                            <label class="form-label">Açıklama</label>
+                                            @Html.TextAreaFor(x=>x.ACIKLAMA, new { @class= "form-control", @readonly = "readonly", @rows = "7" })
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    var urunler = document.getElementById('urunler');
+    urunler.classList.add('active');
+</script>
