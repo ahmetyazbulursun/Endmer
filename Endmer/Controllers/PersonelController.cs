@@ -83,11 +83,17 @@ namespace Endmer.Controllers
             value.Tbl_Departmanlar = departman;
             value.AD = p.AD;
             value.SOYAD = p.SOYAD;
+            value.LOKASYON = p.LOKASYON; 
 
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
+        public ActionResult PersonelZimmet(int id)
+        {
+            var value = db.Tbl_Zimmetler.Where(x => x.PERSONEL == id && x.DURUM == true).ToList();
+            return View(value);
+        }
 
     }
 }

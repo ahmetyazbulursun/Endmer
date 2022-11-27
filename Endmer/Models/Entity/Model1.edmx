@@ -68,6 +68,7 @@
           <Property Name="PAROLA" Type="varchar" MaxLength="20" />
           <Property Name="YETKI" Type="char" MaxLength="1" />
           <Property Name="DEPARTMAN" Type="int" />
+          <Property Name="LOKASYON" Type="varchar" MaxLength="50" />
           <Property Name="DURUM" Type="bit" />
         </EntityType>
         <EntityType Name="Tbl_Urunler">
@@ -308,6 +309,7 @@
           <Property Name="KULLANICIADI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="PAROLA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="YETKI" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="LOKASYON" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Tbl_Urunler">
           <Key>
@@ -582,6 +584,7 @@
           <EntitySetMapping Name="Tbl_Personel">
             <EntityTypeMapping TypeName="EndmerModel.Tbl_Personel">
               <MappingFragment StoreEntitySet="Tbl_Personel">
+                <ScalarProperty Name="LOKASYON" ColumnName="LOKASYON" />
                 <ScalarProperty Name="YETKI" ColumnName="YETKI" />
                 <ScalarProperty Name="PAROLA" ColumnName="PAROLA" />
                 <ScalarProperty Name="KULLANICIADI" ColumnName="KULLANICIADI" />

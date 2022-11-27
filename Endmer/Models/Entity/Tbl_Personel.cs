@@ -32,6 +32,7 @@ namespace Endmer.Models.Entity
         public string KULLANICIADI { get; set; }
         public string PAROLA { get; set; }
         public string YETKI { get; set; }
+        public string LOKASYON { get; set; }
     
         public virtual Tbl_Departmanlar Tbl_Departmanlar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

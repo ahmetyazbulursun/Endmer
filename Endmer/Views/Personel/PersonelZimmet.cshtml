@@ -1,0 +1,57 @@
+﻿@using Endmer.Models.Entity
+@model List<Tbl_Zimmetler>
+
+@{
+    ViewBag.Title = "PersonelZimmet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h6 class="text-center fs-4">Kategoriye Ait Ürünler</h6>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table table-hover align-items-center mb-0">
+                            <thead align="center">
+                                <tr>
+                                    <th>Ürün</th>
+                                    <th>Marka</th>
+                                    <th>Model</th>
+                                    <th>Barkod</th>
+                                    <th>Adet</th>
+                                    <th>Konum</th>
+                                </tr>
+                            </thead>
+                            @foreach (var x in Model)
+                            {
+                                <tbody align="center">
+                                    <tr>
+                                        <td>@x.Tbl_Urunler.URUNADI</td>
+                                        <td>@x.Tbl_Urunler.MARKA</td>
+                                        <td>@x.Tbl_Urunler.MODEL</td>
+                                        <td>@x.Tbl_Urunler.BARKODNO</td>
+                                        <td>@x.ADET</td>
+                                        <td>@x.Tbl_Konumlar.KONUM</td>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    var personel = document.getElementById('personel');
+    personel.classList.add('active');
+</script>

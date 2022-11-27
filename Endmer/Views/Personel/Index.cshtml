@@ -41,6 +41,7 @@
                                     <th>Ad</th>
                                     <th>Soyad</th>
                                     <th>Departman</th>
+                                    <th>Lokasyon</th>
                                     <th colspan="3">İşlemler</th>
                                 </tr>
                             </thead>
@@ -51,6 +52,7 @@
                                         <td>@x.AD</td>
                                         <td>@x.SOYAD</td>
                                         <td>@x.Tbl_Departmanlar.DEPARTMAN</td>
+                                        <td>@x.LOKASYON</td>
                                         <td><a href="/Personel/PersonelGuncelle/@x.ID" class="btn btn-success">Güncelle</a></td>
                                         <td>@Html.ActionLink("Sil", "PersonelSil", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Personeli Silmek İstediğinize Emin Misiniz?')" })</td>
                                         <td><a href="/Personel/PersonelZimmet/@x.ID" class="btn btn-primary">Zimmet</a></td>

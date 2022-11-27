@@ -21,19 +21,26 @@
                             <form method="post">
 
                                 <div class="row mb-3">
-                                    <div class="col-4">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="form-label">Ad</label>
                                         <input type="text" class="form-control" name="AD" placeholder="Ad.." required />
                                     </div>
 
-                                    <div class="col-4">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="form-label">Soyad</label>
                                         <input type="text" class="form-control" name="SOYAD" placeholder="Soyad.." required />
                                     </div>
+                                </div>
 
-                                    <div class="col-4">
+                                <div class="row mb-3">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="form-label">Departman</label>
                                         @Html.DropDownListFor(x => x.Tbl_Departmanlar.ID, (List<SelectListItem>)ViewBag.Departman, new { @class = "form-select" })
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <label class="form-label">Lokasyon</label>
+                                        <input type="text" class="form-control" name="LOKASYON" placeholder="Lokasyon.." required />
                                     </div>
                                 </div>
 

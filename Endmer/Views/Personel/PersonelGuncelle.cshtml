@@ -23,20 +23,30 @@
 
                                     @Html.HiddenFor(x => x.ID)
 
-                                    <div class="col-4">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="form-label">Ad</label>
                                         @Html.TextBoxFor(x=>x.AD, new { @class="form-control", @placeholder="Ad..", @required="required"})
                                     </div>
 
-                                    <div class="col-4">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="form-label">Soyad</label>
                                         @Html.TextBoxFor(x => x.SOYAD, new { @class = "form-control", @placeholder = "Soyad..", @required = "required" })
                                     </div>
 
-                                    <div class="col-4">
+                                </div>
+
+                                <div class="row mb-3">
+
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="form-label">Departman</label>
                                         @Html.DropDownListFor(x => x.Tbl_Departmanlar.ID, (List<SelectListItem>)ViewBag.Departman, new { @class = "form-select" })
                                     </div>
+
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <label class="form-label">Lokasyon</label>
+                                        @Html.TextBoxFor(x => x.LOKASYON, new { @class = "form-control", @placeholder = "Lokasyon..", @required = "required" })
+                                    </div>
+
                                 </div>
 
                                 <div class="d-grid gap-2">
