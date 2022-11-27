@@ -14,11 +14,15 @@
             <div class="card mb-4">
 
                 <div class="card-header">
-                    <h6 class="text-center fs-4">Zimmetlerim</h6>
+                    <h6 class="text-center fs-4">Zimmetler</h6>
                 </div>
 
                 <div class="row">
                     <div class="col">
+                        <div class="float-start ms-3">
+                            <a href="/Zimmetler/ZimmetVer" class="btn btn-info">Zimmet Ver</a>
+                        </div>
+
                         <div class="float-end me-3">
                             @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
                                 {

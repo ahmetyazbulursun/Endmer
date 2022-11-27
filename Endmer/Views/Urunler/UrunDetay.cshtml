@@ -64,15 +64,8 @@
 
                                     <div class="row">
                                         <div class="mb-3 col-12">
-                                            <label class="form-label">Zimmet Sahibi</label>
-                                            <input type="text" class="form-control" name="ZIMMET" readonly value="@Html.DisplayFor(x=>x.Tbl_Personel.AD) @Html.DisplayFor(x=>x.Tbl_Personel.SOYAD)" />
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="mb-3 col-12">
                                             <label class="form-label">Açıklama</label>
-                                            @Html.TextAreaFor(x=>x.ACIKLAMA, new { @class= "form-control", @readonly = "readonly", @rows = "7" })
+                                            @Html.TextAreaFor(x => x.ACIKLAMA, new { @class = "form-control", @readonly = "readonly", @rows = "7" })
                                         </div>
                                     </div>
 
@@ -90,7 +83,7 @@
     </div>
 </div>
 
-
+@Html.Action("ZimmetSahipleri", "Urunler")
 
 
 

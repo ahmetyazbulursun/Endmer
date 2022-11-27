@@ -568,6 +568,8 @@
     <Content Include="Views\AnaSayfa\PersonalByDepartman.cshtml" />
     <Content Include="Views\Zimmetlerim\Index.cshtml" />
     <Content Include="Views\Zimmetler\Index.cshtml" />
+    <Content Include="Views\Urunler\ZimmetSahipleri.cshtml" />
+    <Content Include="Views\Zimmetler\ZimmetVer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using Endmer.Models.Entity;
 using PagedList;
 using PagedList.Mvc;
@@ -21,5 +22,6 @@ namespace Endmer.Controllers
             var value = db.Tbl_Zimmetler.Where(x => x.PERSONEL == userID).ToList().ToPagedList(page, 50);
             return View(value);
         }
+
     }
 }

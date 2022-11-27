@@ -66,6 +66,11 @@ namespace Endmer.Controllers
             return View("UrunDetay", value);
         }
 
+        public PartialViewResult ZimmetSahipleri(int id)
+        {
+            var value = db.Tbl_Zimmetler.Where(x => x.ZIMMET == id && x.DURUM == true).ToList();
+            return PartialView(value);
+        }
 
     }
 }
