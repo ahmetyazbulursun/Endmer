@@ -14,7 +14,7 @@
         <EntityTypeShape EntityType="EndmerModel.Tbl_Araclar" Width="1.5" PointX="0.875" PointY="4.875" />
         <AssociationConnector Association="EndmerModel.FK_Tbl_Araclar_Tbl_Personel" />
         <AssociationConnector Association="EndmerModel.FK_Tbl_Araclar_Tbl_Personel1" />
-        <EntityTypeShape EntityType="EndmerModel.Tbl_AracKayit" Width="1.5" PointX="3.875" PointY="5.5" />
+        <EntityTypeShape EntityType="EndmerModel.Tbl_AracKayit" Width="1.5" PointX="3.25" PointY="6.375" />
         <AssociationConnector Association="EndmerModel.FK_Tbl_AracKayit_Tbl_Araclar" />
         <AssociationConnector Association="EndmerModel.FK_Tbl_AracKayit_Tbl_Personel" />
         <AssociationConnector Association="EndmerModel.FK_Tbl_AracKayit_Tbl_Personel1" />
@@ -23,6 +23,11 @@
         <AssociationConnector Association="EndmerModel.FK_Tbl_Zimmetler_Tbl_Urunler" />
         <EntityTypeShape EntityType="EndmerModel.Tbl_Konumlar" Width="1.5" PointX="8.375" PointY="8.875" />
         <AssociationConnector Association="EndmerModel.FK_Tbl_Zimmetler_Tbl_Konumlar" />
+        <EntityTypeShape EntityType="EndmerModel.Tbl_ZimmetAktar" Width="1.5" PointX="10.625" PointY="4.25" />
+        <AssociationConnector Association="EndmerModel.FK_Tbl_ZimmetAktar_Tbl_Konumlar" />
+        <AssociationConnector Association="EndmerModel.FK_Tbl_ZimmetAktar_Tbl_Personel" />
+        <AssociationConnector Association="EndmerModel.FK_Tbl_ZimmetAktar_Tbl_Personel1" />
+        <AssociationConnector Association="EndmerModel.FK_Tbl_ZimmetAktar_Tbl_Urunler" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

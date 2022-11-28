@@ -39,7 +39,7 @@
                                     <th>Marka</th>
                                     <th>Model</th>
                                     <th>Adet</th>
-                                    <th colspan="3">İşlemler</th>
+                                    <th colspan="1">İşlemler</th>
                                 </tr>
                             </thead>
                             @foreach (var x in Model)
@@ -51,9 +51,7 @@
                                         <td>@x.Tbl_Urunler.MARKA</td>
                                         <td>@x.Tbl_Urunler.MODEL</td>
                                         <td>@x.ADET</td>
-                                        <td><a href="/Urunler/UrunDetay/@x.ID" class="btn btn-primary">Detay</a></td>
-                                        <td>@Html.ActionLink("Sil", "UrunSil", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Ürünü Silmek İstediğinize Emin Misiniz?')" })</td>
-                                        <td><a href="/Urunler/UrunGuncelle/@x.ID" class="btn btn-success">Güncelle</a></td>
+                                        <td><a href="/Zimmetlerim/Aktar/@x.ID" class="btn btn-warning">Aktar</a></td>
                                     </tr>
                                 </tbody>
                             }

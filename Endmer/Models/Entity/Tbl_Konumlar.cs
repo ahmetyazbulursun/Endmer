@@ -18,6 +18,7 @@ namespace Endmer.Models.Entity
         public Tbl_Konumlar()
         {
             this.Tbl_Zimmetler = new HashSet<Tbl_Zimmetler>();
+            this.Tbl_ZimmetAktar = new HashSet<Tbl_ZimmetAktar>();
         }
     
         public int ID { get; set; }
@@ -26,5 +27,7 @@ namespace Endmer.Models.Entity
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_Zimmetler> Tbl_Zimmetler { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_ZimmetAktar> Tbl_ZimmetAktar { get; set; }
     }
 }

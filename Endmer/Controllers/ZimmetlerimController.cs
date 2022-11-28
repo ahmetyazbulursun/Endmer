@@ -23,5 +23,47 @@ namespace Endmer.Controllers
             return View(value);
         }
 
+        [HttpGet]
+        public ActionResult Aktar(int id)
+        {
+            List<SelectListItem> personnel = (from x in db.Tbl_Personel.Where(x => x.DURUM == true)
+                                              select new SelectListItem
+                                              {
+                                                  Text = x.AD + " " + x.SOYAD,
+                                                  Value = x.ID.ToString()
+                                              }).ToList();
+            ViewBag.Personnel = personnel;
+
+            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x=>x.DURUM == true)
+                                             select new SelectListItem
+                                             {
+                                                 Text = x.KONUM,
+                                                 Value = x.ID.ToString()
+                                             }).ToList();
+            ViewBag.Location = location;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Aktar(Tbl_ZimmetAktar p, Tbl_Zimmetler z)
+        {
+            var giver = db.Tbl_Zimmetler.Find(z.ID);
+            var personnel = db.Tbl_Personel.Where(x => x.ID == p.Tbl_Personel.ID).FirstOrDefault();
+            var product = db.Tbl_Zimmetler.Find(z.ID);
+            var location = db.Tbl_Konumlar.Where(x=>x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
+
+            p.Tbl_Personel = giver.Tbl_Personel;
+            p.Tbl_Personel1 = personnel;
+            p.URUN = product.ZIMMET;
+            p.Tbl_Konumlar = location;
+            p.DURUM = true;
+            p.TARIH = DateTime.Now;
+
+            db.Tbl_ZimmetAktar.Add(p);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }

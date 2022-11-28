@@ -1,0 +1,61 @@
+﻿@model Endmer.Models.Entity.Tbl_ZimmetAktar
+
+@{
+    ViewBag.Title = "Aktar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+
+                <div class="card-header">
+                    <h6 class="text-center fs-4">Yeni Zimmet Ver</h6>
+                </div>
+
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <div class="container">
+
+                            <form method="post">
+
+                                <div class="row mb-3">
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <label class="form-label">Aktarılacak Personel</label>
+                                        @Html.DropDownListFor(x => x.Tbl_Personel.ID, (List<SelectListItem>)ViewBag.Personnel, new { @class = "form-select" })
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <label class="form-label">Adet</label>
+                                        <input type="text" class="form-control" name="ADET" placeholder="Adet.." required />
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <label class="form-label">Konum</label>
+                                        @Html.DropDownListFor(x => x.Tbl_Konumlar.ID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-select" })
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2 mb-3">
+                                    <input type="submit" value="Zimmet Ver" class="btn btn-info" />
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    var zimmetlerim = document.getElementById('zimmetlerim');
+    zimmetlerim.classList.add('active');
+</script>
