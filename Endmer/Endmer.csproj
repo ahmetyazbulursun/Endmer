@@ -140,6 +140,7 @@
     <Compile Include="Controllers\DepartmanlarController.cs" />
     <Compile Include="Controllers\KategorilerController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OnaylarController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
     <Compile Include="Controllers\UrunlerController.cs" />
     <Compile Include="Controllers\ZimmetlerController.cs" />
@@ -575,6 +576,7 @@
     <Content Include="Views\Zimmetler\ZimmetVer.cshtml" />
     <Content Include="Views\Personel\PersonelZimmet.cshtml" />
     <Content Include="Views\Zimmetlerim\Aktar.cshtml" />
+    <Content Include="Views\Onaylar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

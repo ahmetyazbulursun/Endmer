@@ -62,6 +62,7 @@ namespace Endmer.Controllers
             p.Tbl_Urunler = product;
             p.Tbl_Konumlar = location;
             p.DURUM = true;
+            p.ONAYMESAJ = "Zimmetli";
 
             db.Tbl_Zimmetler.Add(p);
             db.SaveChanges();

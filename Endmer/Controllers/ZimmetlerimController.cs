@@ -19,7 +19,7 @@ namespace Endmer.Controllers
         public ActionResult Index(int page = 1)
         {
             int userID = Convert.ToInt32(Session["ID"]);
-            var value = db.Tbl_Zimmetler.Where(x => x.PERSONEL == userID).ToList().ToPagedList(page, 50);
+            var value = db.Tbl_Zimmetler.Where(x => x.PERSONEL == userID && x.DURUM == true).ToList().ToPagedList(page, 50);
             return View(value);
         }
 
@@ -52,6 +52,7 @@ namespace Endmer.Controllers
             var personnel = db.Tbl_Personel.Where(x => x.ID == p.Tbl_Personel.ID).FirstOrDefault();
             var product = db.Tbl_Zimmetler.Find(z.ID);
             var location = db.Tbl_Konumlar.Where(x=>x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
+            var debit = db.Tbl_Zimmetler.Find(z.ID);
 
             p.Tbl_Personel = giver.Tbl_Personel;
             p.Tbl_Personel1 = personnel;
@@ -59,6 +60,7 @@ namespace Endmer.Controllers
             p.Tbl_Konumlar = location;
             p.DURUM = true;
             p.TARIH = DateTime.Now;
+            debit.ONAYMESAJ = "Onay Bekliyor";
 
             db.Tbl_ZimmetAktar.Add(p);
             db.SaveChanges();

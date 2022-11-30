@@ -98,6 +98,7 @@
           <Property Name="LOKASYON" Type="int" />
           <Property Name="ADET" Type="varchar" MaxLength="10" />
           <Property Name="TARIH" Type="date" />
+          <Property Name="ONAYDURUM" Type="bit" />
           <Property Name="DURUM" Type="bit" />
         </EntityType>
         <EntityType Name="Tbl_Zimmetler">
@@ -110,6 +111,7 @@
           <Property Name="ADET" Type="varchar" MaxLength="10" />
           <Property Name="KONUM" Type="int" />
           <Property Name="TARIH" Type="datetime" />
+          <Property Name="ONAYMESAJ" Type="varchar" MaxLength="50" />
           <Property Name="DURUM" Type="bit" />
         </EntityType>
         <Association Name="FK_Tbl_AracKayit_Tbl_Araclar">
@@ -609,6 +611,7 @@
           <Property Name="KONUM" Type="Int32" />
           <NavigationProperty Name="Tbl_Konumlar" Relationship="EndmerModel.FK_Tbl_Zimmetler_Tbl_Konumlar" FromRole="Tbl_Zimmetler" ToRole="Tbl_Konumlar" />
           <Property Name="ADET" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ONAYMESAJ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Tbl_Zimmetler_Tbl_Personel">
           <End Type="EndmerModel.Tbl_Personel" Role="Tbl_Personel" Multiplicity="0..1" />
@@ -672,6 +675,7 @@
           <NavigationProperty Name="Tbl_Personel" Relationship="EndmerModel.FK_Tbl_ZimmetAktar_Tbl_Personel" FromRole="Tbl_ZimmetAktar" ToRole="Tbl_Personel" />
           <NavigationProperty Name="Tbl_Personel1" Relationship="EndmerModel.FK_Tbl_ZimmetAktar_Tbl_Personel1" FromRole="Tbl_ZimmetAktar" ToRole="Tbl_Personel" />
           <NavigationProperty Name="Tbl_Urunler" Relationship="EndmerModel.FK_Tbl_ZimmetAktar_Tbl_Urunler" FromRole="Tbl_ZimmetAktar" ToRole="Tbl_Urunler" />
+          <Property Name="ONAYDURUM" Type="Boolean" />
         </EntityType>
         <Association Name="FK_Tbl_ZimmetAktar_Tbl_Konumlar">
           <End Type="EndmerModel.Tbl_Konumlar" Role="Tbl_Konumlar" Multiplicity="0..1" />
@@ -810,6 +814,7 @@
           <EntitySetMapping Name="Tbl_Zimmetler">
             <EntityTypeMapping TypeName="EndmerModel.Tbl_Zimmetler">
               <MappingFragment StoreEntitySet="Tbl_Zimmetler">
+                <ScalarProperty Name="ONAYMESAJ" ColumnName="ONAYMESAJ" />
                 <ScalarProperty Name="ADET" ColumnName="ADET" />
                 <ScalarProperty Name="KONUM" ColumnName="KONUM" />
                 <ScalarProperty Name="DURUM" ColumnName="DURUM" />
@@ -832,6 +837,7 @@
           <EntitySetMapping Name="Tbl_ZimmetAktar">
             <EntityTypeMapping TypeName="EndmerModel.Tbl_ZimmetAktar">
               <MappingFragment StoreEntitySet="Tbl_ZimmetAktar">
+                <ScalarProperty Name="ONAYDURUM" ColumnName="ONAYDURUM" />
                 <ScalarProperty Name="DURUM" ColumnName="DURUM" />
                 <ScalarProperty Name="TARIH" ColumnName="TARIH" />
                 <ScalarProperty Name="ADET" ColumnName="ADET" />

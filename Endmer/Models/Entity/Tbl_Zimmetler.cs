@@ -21,6 +21,7 @@ namespace Endmer.Models.Entity
         public Nullable<bool> DURUM { get; set; }
         public Nullable<int> KONUM { get; set; }
         public string ADET { get; set; }
+        public string ONAYMESAJ { get; set; }
     
         public virtual Tbl_Personel Tbl_Personel { get; set; }
         public virtual Tbl_Urunler Tbl_Urunler { get; set; }
