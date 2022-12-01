@@ -30,6 +30,15 @@ namespace Endmer.Controllers
             debit.DURUM = false;
             debit.ONAYMESAJ = "Onaylandı";
 
+            z.PERSONEL = value.ALANPERSONEL;
+            z.ZIMMET = value.URUN;
+            z.ADET = value.ADET;
+            z.KONUM = value.LOKASYON;
+            z.TARIH = DateTime.Now;
+            z.DURUM = true;
+            z.ONAYMESAJ = "Zimmetli";
+
+            db.Tbl_Zimmetler.Add(z);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

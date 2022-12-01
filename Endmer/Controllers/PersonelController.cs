@@ -83,7 +83,10 @@ namespace Endmer.Controllers
             value.Tbl_Departmanlar = departman;
             value.AD = p.AD;
             value.SOYAD = p.SOYAD;
-            value.LOKASYON = p.LOKASYON; 
+            value.LOKASYON = p.LOKASYON;
+            value.KULLANICIADI = p.KULLANICIADI;
+            value.PAROLA = p.PAROLA;
+            value.YETKI = p.YETKI;
 
             db.SaveChanges();
             return RedirectToAction("Index");
