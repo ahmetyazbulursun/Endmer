@@ -29,7 +29,7 @@ namespace Endmer.Controllers
         {
             var value = db.Tbl_Personel.FirstOrDefault(x => x.KULLANICIADI == p.KULLANICIADI && x.PAROLA == p.PAROLA);
 
-            if(value != null)
+            if (value != null && value.YETKI == "A")
             {
                 FormsAuthentication.SetAuthCookie(value.KULLANICIADI, false);
                 Session["ID"] = value.ID.ToString();
@@ -39,6 +39,17 @@ namespace Endmer.Controllers
                 Session["PAROLA"] = value.PAROLA.ToString();
                 Session["YETKI"] = value.YETKI.ToString();
                 return RedirectToAction("Index", "AnaSayfa");
+            }
+            if (value != null && value.YETKI == "P")
+            {
+                FormsAuthentication.SetAuthCookie(value.KULLANICIADI, false);
+                Session["ID"] = value.ID.ToString();
+                Session["AD"] = value.AD.ToString();
+                Session["SOYAD"] = value.SOYAD.ToString();
+                Session["KULLANICIADI"] = value.KULLANICIADI.ToString();
+                Session["PAROLA"] = value.PAROLA.ToString();
+                Session["YETKI"] = value.YETKI.ToString();
+                return RedirectToAction("Index", "Zimmetlerim");
             }
             else
             {
