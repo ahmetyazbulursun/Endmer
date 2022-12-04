@@ -1,7 +1,7 @@
 ﻿@model Endmer.Models.Entity.Tbl_Urunler
 
 @{
-    ViewBag.Title = "UrunEkle";
+    ViewBag.Title = "UrunGuncelle";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -18,11 +18,19 @@
                     <div class="table-responsive p-0">
                         <div class="container">
 
-                            <form method="post">
+                            <form method="post" action="/Urunler/UrunGuncelle" enctype="multipart/form-data">
+
+                                @Html.HiddenFor(x=>x.ID)
+
                                 <div class="row mb-3">
-                                    <div class="col-12">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="form-label">Ürün Adı</label>
-                                        <input type="text" class="form-control" name="URUNADI" placeholder="Ürün Adı.." required />
+                                        @Html.TextBoxFor(x => x.URUNADI, new { @class = "form-control", @placeholder = "Ürün adı..", @required = "required" })
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <label class="form-label">Resim</label>
+                                        <input type="file" class="form-control" name="RESIM" />
                                     </div>
                                 </div>
 
@@ -34,41 +42,41 @@
 
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Marka</label>
-                                        <input type="text" class="form-control" name="MARKA" placeholder="Marka.." required />
+                                        @Html.TextBoxFor(x => x.MARKA, new { @class = "form-control", @placeholder = "Marka..", @required = "required" })
                                     </div>
 
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Model</label>
-                                        <input type="text" class="form-control" name="MODEL" placeholder="Model.." required />
+                                        @Html.TextBoxFor(x => x.MODEL, new { @class = "form-control", @placeholder = "Model..", @required = "required" })
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Barkod</label>
-                                        <input type="text" class="form-control" name="BARKODNO" placeholder="Barkod.." required />
+                                        @Html.TextBoxFor(x => x.BARKODNO, new { @class = "form-control", @placeholder = "Barkod..", @required = "required" })
                                     </div>
 
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Seri No</label>
-                                        <input type="text" class="form-control" name="SERINO" placeholder="Seri No.." required />
+                                        @Html.TextBoxFor(x => x.SERINO, new { @class = "form-control", @placeholder = "Seri No..", @required = "required" })
                                     </div>
 
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Adet</label>
-                                        <input type="text" class="form-control" name="ADET" placeholder="Adet.." required />
+                                        @Html.TextBoxFor(x => x.ADET, new { @class = "form-control", @placeholder = "Adet..", @required = "required" })
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <div class="col-12">
                                         <label class="form-label">Açıklama</label>
-                                        <textarea class="form-control" rows="7" name="ACIKLAMA" placeholder="Açıklama.."></textarea>
+                                        @Html.TextAreaFor(x => x.ACIKLAMA, new { @class = "form-control", @placeholder = "Açıklama..", @required = "required", @rows="7" })
                                     </div>
                                 </div>
 
                                 <div class="d-grid gap-2 mb-3">
-                                    <input type="submit" value="Yeni Ürün Ekle" class="btn btn-info" />
+                                    <input type="submit" value="Güncelle" class="btn btn-success" />
                                 </div>
                             </form>
 

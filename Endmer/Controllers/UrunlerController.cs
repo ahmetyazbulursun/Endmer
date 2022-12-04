@@ -36,9 +36,53 @@ namespace Endmer.Controllers
         }
 
         [HttpPost]
-        public ActionResult UrunEkle(Tbl_Urunler p, HttpPostedFileBase RESIM)
+        public ActionResult UrunEkle(Tbl_Urunler p)
         {
-            if(RESIM.ContentLength > 0)
+            //if(RESIM.ContentLength > 0)
+            //{
+            //    string filePath = Path.Combine(Server.MapPath("~/Images/Products"), Path.GetFileName(RESIM.FileName));
+            //    RESIM.SaveAs(filePath);
+
+            //    string fileName = Path.GetFileName(Request.Files[0].FileName);
+            //    string extension = Path.GetExtension(Request.Files[0].FileName);
+            //    string path = "~/Images/Products/" + fileName;
+            //    Request.Files[0].SaveAs(Server.MapPath(path));
+            //    p.RESIM = "/Images/Products/" + fileName;
+            //}
+
+            var category = db.Tbl_Kategoriler.Where(x => x.ID == p.Tbl_Kategoriler.ID).FirstOrDefault();
+
+            p.Tbl_Kategoriler = category;
+            p.DURUM = true;
+            p.RESIM = "/template/default-img.jpg";
+
+            db.Tbl_Urunler.Add(p);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult UrunGuncelle(int id)
+        {
+            var value = db.Tbl_Urunler.Find(id);
+
+            List<SelectListItem> category = (from x in db.Tbl_Kategoriler.Where(x => x.DURUM == true)
+                                             select new SelectListItem
+                                             {
+                                                 Text = x.KATEGORIADI,
+                                                 Value = x.ID.ToString()
+                                             }).ToList();
+            ViewBag.Category = category;
+
+            return View(value);
+        }
+
+        [HttpPost]
+        public ActionResult UrunGuncelle(Tbl_Urunler p, HttpPostedFileBase RESIM)
+        {
+            var value = db.Tbl_Urunler.Find(p.ID);
+
+            if (RESIM.ContentLength > 0)
             {
                 string filePath = Path.Combine(Server.MapPath("~/Images/Products"), Path.GetFileName(RESIM.FileName));
                 RESIM.SaveAs(filePath);
@@ -47,15 +91,19 @@ namespace Endmer.Controllers
                 string extension = Path.GetExtension(Request.Files[0].FileName);
                 string path = "~/Images/Products/" + fileName;
                 Request.Files[0].SaveAs(Server.MapPath(path));
-                p.RESIM = "/Images/Products/" + fileName;
+                value.RESIM = "/Images/Products/" + fileName;
             }
 
             var category = db.Tbl_Kategoriler.Where(x => x.ID == p.Tbl_Kategoriler.ID).FirstOrDefault();
 
-            p.Tbl_Kategoriler = category;
-            p.DURUM = true;
+            value.Tbl_Kategoriler = category;
+            value.URUNADI = p.URUNADI;
+            value.BARKODNO = p.BARKODNO;
+            value.MARKA = p.MARKA;
+            value.MODEL = p.MODEL;
+            value.SERINO = p.SERINO;
+            value.ACIKLAMA = p.ACIKLAMA;
 
-            db.Tbl_Urunler.Add(p);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

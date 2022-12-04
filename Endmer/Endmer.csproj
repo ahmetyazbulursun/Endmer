@@ -299,6 +299,7 @@
     <Content Include="template\assets\js\plugins\chartjs.min.js" />
     <Content Include="template\assets\js\plugins\perfect-scrollbar.min.js" />
     <Content Include="template\assets\js\plugins\smooth-scrollbar.min.js" />
+    <Content Include="template\default-img.jpg" />
     <Content Include="template\docs\documentation.html" />
     <Content Include="template\gulpfile.js" />
     <Content Include="template\index.html" />
@@ -577,6 +578,7 @@
     <Content Include="Views\Personel\PersonelZimmet.cshtml" />
     <Content Include="Views\Zimmetlerim\Aktar.cshtml" />
     <Content Include="Views\Onaylar\Index.cshtml" />
+    <Content Include="Views\Urunler\UrunGuncelle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
