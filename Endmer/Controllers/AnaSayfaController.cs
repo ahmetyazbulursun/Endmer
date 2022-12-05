@@ -7,6 +7,9 @@ using System.Web.Mvc;
 
 namespace Endmer.Controllers
 {
+
+    [Authorize(Roles = "A")]
+
     public class AnaSayfaController : Controller
     {
 

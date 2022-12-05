@@ -24,7 +24,7 @@
                                     <tr>
                                         <td>@x.Tbl_Personel.AD @x.Tbl_Personel.SOYAD</td>
                                         <td>@x.ADET</td>
-                                        <td>@x.TARIH</td>
+                                        <td>@(((DateTime)x.TARIH).ToString("dd MMMM yyyy"))</td>
                                     </tr>
                                 </tbody>
                             }

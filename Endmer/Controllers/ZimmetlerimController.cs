@@ -11,6 +11,9 @@ using PagedList.Mvc;
 
 namespace Endmer.Controllers
 {
+
+    [Authorize(Roles = "P")]
+
     public class ZimmetlerimController : Controller
     {
 

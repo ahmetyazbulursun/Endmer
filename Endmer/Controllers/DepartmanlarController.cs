@@ -10,6 +10,9 @@ using PagedList.Mvc;
 
 namespace Endmer.Controllers
 {
+
+    [Authorize(Roles = "A")]
+
     public class DepartmanlarController : Controller
     {
 
