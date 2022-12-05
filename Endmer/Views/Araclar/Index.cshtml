@@ -54,7 +54,7 @@
                                         <td>@x.MARKA</td>
                                         <td>@x.PLAKA</td>
                                         <td>@x.KM</td>
-                                        <td>@x.LOKASYON</td>
+                                        <td>@x.Tbl_Konumlar.KONUM</td>
                                         <td><a href="/Araclar/AracDetay/@x.ID" class="btn btn-primary">Detay</a></td>
                                         <td>@Html.ActionLink("Sil", "AracSil", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Aracı Silmek İstediğinize Emin Misiniz?')" })</td>
                                         <td><a href="/Araclar/AracGuncelle/@x.ID" class="btn btn-success">Güncelle</a></td>

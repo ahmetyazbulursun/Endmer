@@ -16,16 +16,18 @@ namespace Endmer.Models.Entity
     {
         public int ID { get; set; }
         public Nullable<int> ARAC { get; set; }
-        public string KULLANICI { get; set; }
         public Nullable<int> TESLIMEDEN { get; set; }
         public Nullable<int> TESLIMALAN { get; set; }
         public Nullable<System.DateTime> TARIH { get; set; }
         public Nullable<bool> DURUM { get; set; }
         public string KM { get; set; }
-        public string LOKASYON { get; set; }
+        public Nullable<int> LOKASYON { get; set; }
+        public Nullable<int> KULLANICI { get; set; }
     
         public virtual Tbl_Araclar Tbl_Araclar { get; set; }
         public virtual Tbl_Personel Tbl_Personel { get; set; }
         public virtual Tbl_Personel Tbl_Personel1 { get; set; }
+        public virtual Tbl_Personel Tbl_Personel2 { get; set; }
+        public virtual Tbl_Konumlar Tbl_Konumlar { get; set; }
     }
 }

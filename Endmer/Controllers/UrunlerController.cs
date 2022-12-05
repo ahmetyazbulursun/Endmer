@@ -38,18 +38,6 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult UrunEkle(Tbl_Urunler p)
         {
-            //if(RESIM.ContentLength > 0)
-            //{
-            //    string filePath = Path.Combine(Server.MapPath("~/Images/Products"), Path.GetFileName(RESIM.FileName));
-            //    RESIM.SaveAs(filePath);
-
-            //    string fileName = Path.GetFileName(Request.Files[0].FileName);
-            //    string extension = Path.GetExtension(Request.Files[0].FileName);
-            //    string path = "~/Images/Products/" + fileName;
-            //    Request.Files[0].SaveAs(Server.MapPath(path));
-            //    p.RESIM = "/Images/Products/" + fileName;
-            //}
-
             var category = db.Tbl_Kategoriler.Where(x => x.ID == p.Tbl_Kategoriler.ID).FirstOrDefault();
 
             p.Tbl_Kategoriler = category;
@@ -82,16 +70,23 @@ namespace Endmer.Controllers
         {
             var value = db.Tbl_Urunler.Find(p.ID);
 
-            if (RESIM.ContentLength > 0)
+            try
             {
-                string filePath = Path.Combine(Server.MapPath("~/Images/Products"), Path.GetFileName(RESIM.FileName));
-                RESIM.SaveAs(filePath);
+                if (RESIM.ContentLength > 0)
+                {
+                    string filePath = Path.Combine(Server.MapPath("~/Images/Products"), Path.GetFileName(RESIM.FileName));
+                    RESIM.SaveAs(filePath);
 
-                string fileName = Path.GetFileName(Request.Files[0].FileName);
-                string extension = Path.GetExtension(Request.Files[0].FileName);
-                string path = "~/Images/Products/" + fileName;
-                Request.Files[0].SaveAs(Server.MapPath(path));
-                value.RESIM = "/Images/Products/" + fileName;
+                    string fileName = Path.GetFileName(Request.Files[0].FileName);
+                    string extension = Path.GetExtension(Request.Files[0].FileName);
+                    string path = "~/Images/Products/" + fileName;
+                    Request.Files[0].SaveAs(Server.MapPath(path));
+                    value.RESIM = "/Images/Products/" + fileName;
+                }
+            }
+            catch (Exception)
+            {
+                value.RESIM = value.RESIM;
             }
 
             var category = db.Tbl_Kategoriler.Where(x => x.ID == p.Tbl_Kategoriler.ID).FirstOrDefault();
@@ -112,6 +107,16 @@ namespace Endmer.Controllers
         {
             var value = db.Tbl_Urunler.Find(id);
             return View("UrunDetay", value);
+        }
+
+        public ActionResult UrunSil(Tbl_Urunler p)
+        {
+            var value = db.Tbl_Urunler.Find(p.ID);
+
+            value.DURUM = false;
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public PartialViewResult ZimmetSahipleri(int id)

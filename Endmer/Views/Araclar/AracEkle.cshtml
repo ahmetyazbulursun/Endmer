@@ -20,24 +20,19 @@
 
                             <form method="post" action="/Araclar/AracEkle" enctype="multipart/form-data">
                                 <div class="row mb-3">
-                                    <div class="col-6">
+                                    <div class="col-12">
                                         <label class="form-label">Marka - Model</label>
                                         <input type="text" class="form-control" name="MARKA" placeholder="Marka - Model.." />
-                                    </div>
-
-                                    <div class="col-6">
-                                        <label class="form-label">Plaka</label>
-                                        <input type="text" class="form-control" name="PLAKA" placeholder="Plaka.." />
-                                    </div>
+                                    </div>                                  
                                 </div>
 
                                 <div class="row mb-3">
-                                    <div class="col-6">
-                                        <label class="form-label">Lokasyon</label>
-                                        <input type="text" class="form-control" name="LOKASYON" placeholder="Lokasyon.." />
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <label class="form-label">Plaka</label>
+                                        <input type="text" class="form-control" name="PLAKA" placeholder="Plaka.." />
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="form-label">KM</label>
                                         <input type="text" class="form-control" name="KM" placeholder="KM.." />
                                     </div>
@@ -45,20 +40,16 @@
 
                                 <div class="row mb-3">
 
-                                    <div class="col-4">
-                                        <label class="form-label">Teslim Eden</label>
-                                        @Html.DropDownListFor(x => x.Tbl_Personel.ID, (List<SelectListItem>)ViewBag.TeslimEden, new { @class = "form-select" })
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <label class="form-label">Personel</label>
+                                        @Html.DropDownListFor(x => x.Tbl_Personel.ID, (List<SelectListItem>)ViewBag.Profit, new { @class = "form-select" })
                                     </div>
 
-                                    <div class="col-4">
-                                        <label class="form-label">Teslim Alan</label>
-                                        @Html.DropDownListFor(x => x.Tbl_Personel1.ID, (List<SelectListItem>)ViewBag.TeslimAlan, new { @class = "form-select" })
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <label class="form-label">Konum</label>
+                                        @Html.DropDownListFor(x => x.Tbl_Konumlar.ID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-select" })
                                     </div>
 
-                                    <div class="col-4">
-                                        <label class="form-label">Resim</label>
-                                        <input type="file" name="RESIM" class="form-control" />
-                                    </div>
                                 </div>
 
                                 <div class="d-grid gap-2 mb-3">

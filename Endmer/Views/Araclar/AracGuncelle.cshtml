@@ -25,20 +25,35 @@
 
                                     @Html.HiddenFor(x => x.ID)
 
-                                    <div class="col-4">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="form-label">Marka - Model</label>
                                         @Html.TextBoxFor(x => x.MARKA, new { @class = "form-control", @placeholder = "Marka.." })
                                     </div>
 
-                                    <div class="col-4">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="form-label">Plaka</label>
                                         @Html.TextBoxFor(x => x.PLAKA, new { @class = "form-control", @placeholder = "Plaka.." })
                                     </div>
 
-                                    <div class="col-4">
-                                        <label class="form-label">Lokasyon</label>
-                                        @Html.TextBoxFor(x => x.LOKASYON, new { @class = "form-control", @placeholder = "Lokasyon.." })
+                                </div>
+
+                                <div class="row mb-3">
+
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <label class="form-label">KM</label>
+                                        @Html.TextBoxFor(x => x.KM, new { @class = "form-control", @placeholder = "KM.." })
                                     </div>
+
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <label class="form-label">Konum</label>
+                                        @Html.DropDownListFor(x => x.Tbl_Konumlar.ID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-select" })
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <label class="form-label">Resim</label>
+                                        <input type="file" class="form-control" name="RESIM" />
+                                    </div>
+
                                 </div>
 
                                 <div class="d-grid gap-2">

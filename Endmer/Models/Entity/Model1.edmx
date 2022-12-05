@@ -11,11 +11,11 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ARAC" Type="int" />
-          <Property Name="KULLANICI" Type="varchar" MaxLength="100" />
           <Property Name="TESLIMEDEN" Type="int" />
           <Property Name="TESLIMALAN" Type="int" />
+          <Property Name="KULLANICI" Type="int" />
           <Property Name="KM" Type="varchar" MaxLength="50" />
-          <Property Name="LOKASYON" Type="varchar" MaxLength="50" />
+          <Property Name="LOKASYON" Type="int" />
           <Property Name="TARIH" Type="datetime" />
           <Property Name="DURUM" Type="bit" />
         </EntityType>
@@ -28,7 +28,7 @@
           <Property Name="RESIM" Type="varchar" MaxLength="500" />
           <Property Name="PLAKA" Type="varchar" MaxLength="50" />
           <Property Name="KM" Type="varchar" MaxLength="50" />
-          <Property Name="LOKASYON" Type="varchar" MaxLength="50" />
+          <Property Name="LOKASYON" Type="int" />
           <Property Name="TESLIMEDEN" Type="int" />
           <Property Name="TESLIMALAN" Type="int" />
           <Property Name="DURUM" Type="bit" />
@@ -126,6 +126,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tbl_AracKayit_Tbl_Konumlar">
+          <End Role="Tbl_Konumlar" Type="Self.Tbl_Konumlar" Multiplicity="0..1" />
+          <End Role="Tbl_AracKayit" Type="Self.Tbl_AracKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Konumlar">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_AracKayit">
+              <PropertyRef Name="LOKASYON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tbl_AracKayit_Tbl_Personel">
           <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
           <End Role="Tbl_AracKayit" Type="Self.Tbl_AracKayit" Multiplicity="*" />
@@ -147,6 +159,30 @@
             </Principal>
             <Dependent Role="Tbl_AracKayit">
               <PropertyRef Name="TESLIMALAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_AracKayit_Tbl_Personel2">
+          <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
+          <End Role="Tbl_AracKayit" Type="Self.Tbl_AracKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Personel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_AracKayit">
+              <PropertyRef Name="KULLANICI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Araclar_Tbl_Konumlar">
+          <End Role="Tbl_Konumlar" Type="Self.Tbl_Konumlar" Multiplicity="0..1" />
+          <End Role="Tbl_Araclar" Type="Self.Tbl_Araclar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Konumlar">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Araclar">
+              <PropertyRef Name="LOKASYON" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -296,6 +332,10 @@
             <End Role="Tbl_Araclar" EntitySet="Tbl_Araclar" />
             <End Role="Tbl_AracKayit" EntitySet="Tbl_AracKayit" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tbl_AracKayit_Tbl_Konumlar" Association="Self.FK_Tbl_AracKayit_Tbl_Konumlar">
+            <End Role="Tbl_Konumlar" EntitySet="Tbl_Konumlar" />
+            <End Role="Tbl_AracKayit" EntitySet="Tbl_AracKayit" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tbl_AracKayit_Tbl_Personel" Association="Self.FK_Tbl_AracKayit_Tbl_Personel">
             <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
             <End Role="Tbl_AracKayit" EntitySet="Tbl_AracKayit" />
@@ -303,6 +343,14 @@
           <AssociationSet Name="FK_Tbl_AracKayit_Tbl_Personel1" Association="Self.FK_Tbl_AracKayit_Tbl_Personel1">
             <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
             <End Role="Tbl_AracKayit" EntitySet="Tbl_AracKayit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_AracKayit_Tbl_Personel2" Association="Self.FK_Tbl_AracKayit_Tbl_Personel2">
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+            <End Role="Tbl_AracKayit" EntitySet="Tbl_AracKayit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Araclar_Tbl_Konumlar" Association="Self.FK_Tbl_Araclar_Tbl_Konumlar">
+            <End Role="Tbl_Konumlar" EntitySet="Tbl_Konumlar" />
+            <End Role="Tbl_Araclar" EntitySet="Tbl_Araclar" />
           </AssociationSet>
           <AssociationSet Name="FK_Tbl_Araclar_Tbl_Personel" Association="Self.FK_Tbl_Araclar_Tbl_Personel">
             <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
@@ -392,6 +440,7 @@
           <Property Name="LOKASYON" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Tbl_ZimmetAktar" Relationship="EndmerModel.FK_Tbl_ZimmetAktar_Tbl_Personel" FromRole="Tbl_Personel" ToRole="Tbl_ZimmetAktar" />
           <NavigationProperty Name="Tbl_ZimmetAktar1" Relationship="EndmerModel.FK_Tbl_ZimmetAktar_Tbl_Personel1" FromRole="Tbl_Personel" ToRole="Tbl_ZimmetAktar" />
+          <NavigationProperty Name="Tbl_AracKayit2" Relationship="EndmerModel.FK_Tbl_AracKayit_Tbl_Personel2" FromRole="Tbl_Personel" ToRole="Tbl_AracKayit" />
           </EntityType>
         <EntityType Name="Tbl_Urunler">
           <Key>
@@ -502,6 +551,18 @@
             <End Role="Tbl_Urunler" EntitySet="Tbl_Urunler" />
             <End Role="Tbl_ZimmetAktar" EntitySet="Tbl_ZimmetAktar" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Araclar_Tbl_Konumlar" Association="EndmerModel.FK_Tbl_Araclar_Tbl_Konumlar">
+            <End Role="Tbl_Konumlar" EntitySet="Tbl_Konumlar" />
+            <End Role="Tbl_Araclar" EntitySet="Tbl_Araclar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_AracKayit_Tbl_Personel2" Association="EndmerModel.FK_Tbl_AracKayit_Tbl_Personel2">
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+            <End Role="Tbl_AracKayit" EntitySet="Tbl_AracKayit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_AracKayit_Tbl_Konumlar" Association="EndmerModel.FK_Tbl_AracKayit_Tbl_Konumlar">
+            <End Role="Tbl_Konumlar" EntitySet="Tbl_Konumlar" />
+            <End Role="Tbl_AracKayit" EntitySet="Tbl_AracKayit" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Tbl_Araclar">
           <Key>
@@ -509,7 +570,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PLAKA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LOKASYON" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LOKASYON" Type="Int32" />
           <Property Name="TESLIMEDEN" Type="Int32" />
           <Property Name="TESLIMALAN" Type="Int32" />
           <NavigationProperty Name="Tbl_Personel" Relationship="EndmerModel.FK_Tbl_Araclar_Tbl_Personel" FromRole="Tbl_Araclar" ToRole="Tbl_Personel" />
@@ -519,6 +580,7 @@
           <Property Name="KM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MARKA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Tbl_AracKayit" Relationship="EndmerModel.FK_Tbl_AracKayit_Tbl_Araclar" FromRole="Tbl_Araclar" ToRole="Tbl_AracKayit" />
+          <NavigationProperty Name="Tbl_Konumlar" Relationship="EndmerModel.FK_Tbl_Araclar_Tbl_Konumlar" FromRole="Tbl_Araclar" ToRole="Tbl_Konumlar" />
         </EntityType>
         <Association Name="FK_Tbl_Araclar_Tbl_Personel">
           <End Type="EndmerModel.Tbl_Personel" Role="Tbl_Personel" Multiplicity="0..1" />
@@ -550,7 +612,6 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ARAC" Type="Int32" />
-          <Property Name="KULLANICI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TESLIMEDEN" Type="Int32" />
           <Property Name="TESLIMALAN" Type="Int32" />
           <Property Name="TARIH" Type="DateTime" Precision="3" />
@@ -559,7 +620,10 @@
           <NavigationProperty Name="Tbl_Personel" Relationship="EndmerModel.FK_Tbl_AracKayit_Tbl_Personel" FromRole="Tbl_AracKayit" ToRole="Tbl_Personel" />
           <NavigationProperty Name="Tbl_Personel1" Relationship="EndmerModel.FK_Tbl_AracKayit_Tbl_Personel1" FromRole="Tbl_AracKayit" ToRole="Tbl_Personel" />
           <Property Name="KM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LOKASYON" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LOKASYON" Type="Int32" />
+          <Property Name="KULLANICI" Type="Int32" />
+          <NavigationProperty Name="Tbl_Personel2" Relationship="EndmerModel.FK_Tbl_AracKayit_Tbl_Personel2" FromRole="Tbl_AracKayit" ToRole="Tbl_Personel" />
+          <NavigationProperty Name="Tbl_Konumlar" Relationship="EndmerModel.FK_Tbl_AracKayit_Tbl_Konumlar" FromRole="Tbl_AracKayit" ToRole="Tbl_Konumlar" />
         </EntityType>
         <Association Name="FK_Tbl_AracKayit_Tbl_Araclar">
           <End Type="EndmerModel.Tbl_Araclar" Role="Tbl_Araclar" Multiplicity="0..1" />
@@ -646,6 +710,8 @@
           <Property Name="DURUM" Type="Boolean" />
           <NavigationProperty Name="Tbl_Zimmetler" Relationship="EndmerModel.FK_Tbl_Zimmetler_Tbl_Konumlar" FromRole="Tbl_Konumlar" ToRole="Tbl_Zimmetler" />
           <NavigationProperty Name="Tbl_ZimmetAktar" Relationship="EndmerModel.FK_Tbl_ZimmetAktar_Tbl_Konumlar" FromRole="Tbl_Konumlar" ToRole="Tbl_ZimmetAktar" />
+          <NavigationProperty Name="Tbl_Araclar" Relationship="EndmerModel.FK_Tbl_Araclar_Tbl_Konumlar" FromRole="Tbl_Konumlar" ToRole="Tbl_Araclar" />
+          <NavigationProperty Name="Tbl_AracKayit" Relationship="EndmerModel.FK_Tbl_AracKayit_Tbl_Konumlar" FromRole="Tbl_Konumlar" ToRole="Tbl_AracKayit" />
         </EntityType>
         <Association Name="FK_Tbl_Zimmetler_Tbl_Konumlar">
           <End Type="EndmerModel.Tbl_Konumlar" Role="Tbl_Konumlar" Multiplicity="0..1" />
@@ -725,6 +791,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tbl_Araclar_Tbl_Konumlar">
+          <End Type="EndmerModel.Tbl_Konumlar" Role="Tbl_Konumlar" Multiplicity="0..1" />
+          <End Type="EndmerModel.Tbl_Araclar" Role="Tbl_Araclar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Konumlar">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Araclar">
+              <PropertyRef Name="LOKASYON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_AracKayit_Tbl_Personel2">
+          <End Type="EndmerModel.Tbl_Personel" Role="Tbl_Personel" Multiplicity="0..1" />
+          <End Type="EndmerModel.Tbl_AracKayit" Role="Tbl_AracKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Personel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_AracKayit">
+              <PropertyRef Name="KULLANICI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_AracKayit_Tbl_Konumlar">
+          <End Type="EndmerModel.Tbl_Konumlar" Role="Tbl_Konumlar" Multiplicity="0..1" />
+          <End Type="EndmerModel.Tbl_AracKayit" Role="Tbl_AracKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Konumlar">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_AracKayit">
+              <PropertyRef Name="LOKASYON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -799,13 +901,13 @@
           <EntitySetMapping Name="Tbl_AracKayit">
             <EntityTypeMapping TypeName="EndmerModel.Tbl_AracKayit">
               <MappingFragment StoreEntitySet="Tbl_AracKayit">
+                <ScalarProperty Name="KULLANICI" ColumnName="KULLANICI" />
                 <ScalarProperty Name="LOKASYON" ColumnName="LOKASYON" />
                 <ScalarProperty Name="KM" ColumnName="KM" />
                 <ScalarProperty Name="DURUM" ColumnName="DURUM" />
                 <ScalarProperty Name="TARIH" ColumnName="TARIH" />
                 <ScalarProperty Name="TESLIMALAN" ColumnName="TESLIMALAN" />
                 <ScalarProperty Name="TESLIMEDEN" ColumnName="TESLIMEDEN" />
-                <ScalarProperty Name="KULLANICI" ColumnName="KULLANICI" />
                 <ScalarProperty Name="ARAC" ColumnName="ARAC" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

@@ -28,6 +28,9 @@
         <AssociationConnector Association="EndmerModel.FK_Tbl_ZimmetAktar_Tbl_Personel" />
         <AssociationConnector Association="EndmerModel.FK_Tbl_ZimmetAktar_Tbl_Personel1" />
         <AssociationConnector Association="EndmerModel.FK_Tbl_ZimmetAktar_Tbl_Urunler" />
+        <AssociationConnector Association="EndmerModel.FK_Tbl_Araclar_Tbl_Konumlar" />
+        <AssociationConnector Association="EndmerModel.FK_Tbl_AracKayit_Tbl_Personel2" />
+        <AssociationConnector Association="EndmerModel.FK_Tbl_AracKayit_Tbl_Konumlar" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
