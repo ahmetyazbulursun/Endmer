@@ -25,7 +25,7 @@ namespace Endmer.Controllers
 
             if (!string.IsNullOrEmpty(ara))
             {
-                value = value.Where(x => x.URUNADI.ToLower().Contains(ara));
+                value = value.Where(x => x.URUNADI.ToLower().Contains(ara) || x.BARKODNO.ToLower().Contains(ara) || x.Tbl_Kategoriler.KATEGORIADI.ToLower().Contains(ara) || x.MARKA.ToLower().Contains(ara) || x.MODEL.ToLower().Contains(ara) || x.SERINO.ToLower().Contains(ara) || x.Tbl_Konumlar.KONUM.ToLower().Contains(ara) || x.URUNDURUM.ToLower().Contains(ara) && x.DURUM == true);
             }
 
             return View(value.ToList().ToPagedList(page, 50));

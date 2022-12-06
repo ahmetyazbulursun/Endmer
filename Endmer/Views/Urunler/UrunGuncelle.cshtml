@@ -23,7 +23,7 @@
                                 @Html.HiddenFor(x=>x.ID)
 
                                 <div class="row mb-3">
-                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Ürün Adı</label>
                                         @Html.TextBoxFor(x => x.URUNADI, new { @class = "form-control", @placeholder = "Ürün adı..", @required = "required" })
                                     </div>
@@ -33,10 +33,11 @@
                                         @Html.DropDownListFor(x => x.Tbl_Konumlar.ID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-select" })
                                     </div>
 
-                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Resim</label>
                                         <input type="file" class="form-control" name="RESIM" />
                                     </div>
+
                                 </div>
 
                                 <div class="row mb-3">
@@ -51,23 +52,31 @@
                                     </div>
 
                                     <div class="col-sm-12 col-md-4 col-lg-4">
-                                        <label class="form-label">Model</label>
-                                        @Html.TextBoxFor(x => x.MODEL, new { @class = "form-control", @placeholder = "Model..", @required = "required" })
+                                        <label class="form-label">Ürün Durumu</label>
+                                        <select class="form-select" name="URUNDURUM">
+                                            <option value="Çalışıyor">Çalışıyor</option>
+                                            <option value="Bozuk">Bozuk</option>
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
-                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                    <div class="col-sm-12 col-md-3 col-lg-3">
+                                        <label class="form-label">Model</label>
+                                        @Html.TextBoxFor(x => x.MODEL, new { @class = "form-control", @placeholder = "Model..", @required = "required" })
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-3 col-lg-3">
                                         <label class="form-label">Barkod</label>
                                         @Html.TextBoxFor(x => x.BARKODNO, new { @class = "form-control", @placeholder = "Barkod..", @required = "required" })
                                     </div>
 
-                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                    <div class="col-sm-12 col-md-3 col-lg-3">
                                         <label class="form-label">Seri No</label>
                                         @Html.TextBoxFor(x => x.SERINO, new { @class = "form-control", @placeholder = "Seri No..", @required = "required" })
                                     </div>
 
-                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                    <div class="col-sm-12 col-md-3 col-lg-3">
                                         <label class="form-label">Adet</label>
                                         @Html.TextBoxFor(x => x.ADET, new { @class = "form-control", @placeholder = "Adet..", @required = "required" })
                                     </div>

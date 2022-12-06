@@ -18,10 +18,16 @@ namespace Endmer.Controllers
 
         EndmerEntities db = new EndmerEntities();
 
-        public ActionResult Index(int page = 1)
+        public ActionResult Index(int page = 1, string ara = "")
         {
-            var value = db.Tbl_Departmanlar.Where(x => x.DURUM == true).ToList().ToPagedList(page, 50);
-            return View(value);
+            var value = from x in db.Tbl_Departmanlar.Where(x => x.DURUM == true) select x;
+
+            if(!string.IsNullOrEmpty(ara))
+            {
+                value = db.Tbl_Departmanlar.Where(x => x.DEPARTMAN.ToLower().Contains(ara) && x.DURUM == true);
+            }
+
+            return View(value.ToList().ToPagedList(page, 50));
         }
 
         [HttpGet]

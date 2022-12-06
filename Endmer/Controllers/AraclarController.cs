@@ -21,10 +21,16 @@ namespace Endmer.Controllers
 
         EndmerEntities db = new EndmerEntities();
 
-        public ActionResult Index(int page = 1)
+        public ActionResult Index(int page = 1, string ara = "")
         {
-            var value = db.Tbl_Araclar.Where(x => x.DURUM == true).ToList().ToPagedList(page, 50);
-            return View(value);
+            var value = from x in db.Tbl_Araclar.Where(x => x.DURUM == true) select x;
+
+            if (!string.IsNullOrEmpty(ara))
+            {
+                value = value.Where(x => x.MARKA.ToLower().Contains(ara) || x.PLAKA.ToLower().Contains(ara) || x.KM.ToLower().Contains(ara) || x.Tbl_Konumlar.KONUM.ToLower().Contains(ara) || x.Tbl_Personel.AD.ToLower().Contains(ara) || x.Tbl_Personel.SOYAD.ToLower().Contains(ara) && x.DURUM == true);
+            }
+
+            return View(value.ToList().ToPagedList(page, 50));
         }
 
         [HttpGet]

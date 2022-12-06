@@ -27,14 +27,21 @@
                                 <div class="col-sm-12 col-md-8 col-lg-8">
 
                                     <div class="row">
-                                        <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+                                        <div class="mb-3 col-12">
                                             <label class="form-label">Ürün</label>
                                             @Html.TextBoxFor(x => x.URUNADI, new { @class = "form-control", @readonly = "readonly" })
                                         </div>
+                                    </div>
 
+                                    <div class="row mb-3">
                                         <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
                                             <label class="form-label">Marka</label>
                                             @Html.TextBoxFor(x => x.MARKA, new { @class = "form-control", @readonly = "readonly" })
+                                        </div>
+
+                                        <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+                                            <label class="form-label">Kategori</label>
+                                            @Html.TextBoxFor(x => x.Tbl_Kategoriler.KATEGORIADI, new { @class = "form-control", @readonly = "readonly" })
                                         </div>
                                     </div>
 
@@ -44,9 +51,9 @@
                                             @Html.TextBoxFor(x => x.MODEL, new { @class = "form-control", @readonly = "readonly" })
                                         </div>
 
-                                        <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
-                                            <label class="form-label">Kategori</label>
-                                            @Html.TextBoxFor(x => x.Tbl_Kategoriler.KATEGORIADI, new { @class = "form-control", @readonly = "readonly" })
+                                        <div class="col-sm-12 col-md-6 col-lg-6">
+                                            <label class="form-label">Ürün Durumu</label>
+                                            @Html.TextBoxFor(x => x.URUNDURUM, new { @class = "form-control", @readonly = "readonly" })
                                         </div>
                                     </div>
 
