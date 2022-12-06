@@ -80,6 +80,7 @@
           <Property Name="RESIM" Type="varchar" MaxLength="500" />
           <Property Name="BARKODNO" Type="varchar" MaxLength="50" />
           <Property Name="ADET" Type="varchar" MaxLength="10" />
+          <Property Name="ARIZALIADET" Type="varchar" MaxLength="10" />
           <Property Name="KATEGORI" Type="int" />
           <Property Name="MARKA" Type="varchar" MaxLength="100" />
           <Property Name="MODEL" Type="varchar" MaxLength="100" />
@@ -481,6 +482,7 @@
           <Property Name="KONUM" Type="Int32" />
           <NavigationProperty Name="Tbl_Konumlar" Relationship="EndmerModel.FK_Tbl_Urunler_Tbl_Konumlar" FromRole="Tbl_Urunler" ToRole="Tbl_Konumlar" />
           <Property Name="URUNDURUM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ARIZALIADET" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Tbl_Personel_Tbl_Departmanlar">
           <End Role="Tbl_Departmanlar" Type="Self.Tbl_Departmanlar" Multiplicity="0..1" />
@@ -907,6 +909,7 @@
           <EntitySetMapping Name="Tbl_Urunler">
             <EntityTypeMapping TypeName="EndmerModel.Tbl_Urunler">
               <MappingFragment StoreEntitySet="Tbl_Urunler">
+                <ScalarProperty Name="ARIZALIADET" ColumnName="ARIZALIADET" />
                 <ScalarProperty Name="URUNDURUM" ColumnName="URUNDURUM" />
                 <ScalarProperty Name="KONUM" ColumnName="KONUM" />
                 <ScalarProperty Name="ADET" ColumnName="ADET" />

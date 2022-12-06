@@ -129,6 +129,8 @@ namespace Endmer.Controllers
             value.SERINO = p.SERINO;
             value.ACIKLAMA = p.ACIKLAMA;
             value.URUNDURUM = p.URUNDURUM;
+            value.ARIZALIADET = p.ARIZALIADET;
+            value.ADET = p.ADET;
 
             db.SaveChanges();
             return RedirectToAction("Index");
