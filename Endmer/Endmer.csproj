@@ -579,6 +579,8 @@
     <Content Include="Views\Zimmetlerim\Aktar.cshtml" />
     <Content Include="Views\Onaylar\Index.cshtml" />
     <Content Include="Views\Urunler\UrunGuncelle.cshtml" />
+    <Content Include="Views\Zimmetler\Guncelle.cshtml" />
+    <Content Include="Views\Zimmetlerim\Guncelle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

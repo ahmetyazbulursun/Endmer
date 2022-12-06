@@ -112,6 +112,7 @@
           <Property Name="PERSONEL" Type="int" />
           <Property Name="ZIMMET" Type="int" />
           <Property Name="ADET" Type="varchar" MaxLength="10" />
+          <Property Name="ARIZALIADET" Type="varchar" MaxLength="10" />
           <Property Name="KONUM" Type="int" />
           <Property Name="TARIH" Type="datetime" />
           <Property Name="ONAYMESAJ" Type="varchar" MaxLength="50" />
@@ -703,6 +704,7 @@
           <NavigationProperty Name="Tbl_Konumlar" Relationship="EndmerModel.FK_Tbl_Zimmetler_Tbl_Konumlar" FromRole="Tbl_Zimmetler" ToRole="Tbl_Konumlar" />
           <Property Name="ADET" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="ONAYMESAJ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ARIZALIADET" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Tbl_Zimmetler_Tbl_Personel">
           <End Type="EndmerModel.Tbl_Personel" Role="Tbl_Personel" Multiplicity="0..1" />
@@ -959,6 +961,7 @@
           <EntitySetMapping Name="Tbl_Zimmetler">
             <EntityTypeMapping TypeName="EndmerModel.Tbl_Zimmetler">
               <MappingFragment StoreEntitySet="Tbl_Zimmetler">
+                <ScalarProperty Name="ARIZALIADET" ColumnName="ARIZALIADET" />
                 <ScalarProperty Name="ONAYMESAJ" ColumnName="ONAYMESAJ" />
                 <ScalarProperty Name="ADET" ColumnName="ADET" />
                 <ScalarProperty Name="KONUM" ColumnName="KONUM" />

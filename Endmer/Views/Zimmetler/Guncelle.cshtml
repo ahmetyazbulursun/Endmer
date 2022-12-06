@@ -1,0 +1,58 @@
+﻿@model Endmer.Models.Entity.Tbl_Zimmetler
+
+@{
+    ViewBag.Title = "Guncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+
+                <div class="card-header">
+                    <h6 class="text-center fs-4">Kategori Bilgilerini Güncelle</h6>
+                </div>
+
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <div class="container">
+
+                            <form method="post">
+                                <div class="row mb-3">
+
+                                    @Html.HiddenFor(x => x.ID)
+
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <label class="form-label">Adet</label>
+                                        @Html.TextBoxFor(x => x.ADET, new { @class = "form-control", @placeholder = "Adet..", @required = "required" })
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <label class="form-label">Arızalı Adet</label>
+                                        @Html.TextBoxFor(x => x.ARIZALIADET, new { @class = "form-control", @placeholder = "Arızalı adet..", @required = "required" })
+                                    </div>
+
+                                </div>
+
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-success">Güncelle</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    var zimmetler = document.getElementById('zimmetler');
+    zimmetler.classList.add('active');
+</script>

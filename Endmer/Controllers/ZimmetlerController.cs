@@ -88,5 +88,24 @@ namespace Endmer.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ActionResult Guncelle(int id)
+        {
+            var value = db.Tbl_Zimmetler.Find(id);
+            return View("Guncelle", value);
+        }
+
+        [HttpPost]
+        public ActionResult Guncelle(Tbl_Zimmetler p)
+        {
+            var value = db.Tbl_Zimmetler.Find(p.ID);
+
+            value.ADET = p.ADET;
+            value.ARIZALIADET = p.ARIZALIADET;
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }

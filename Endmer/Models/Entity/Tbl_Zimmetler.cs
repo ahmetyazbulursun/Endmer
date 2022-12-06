@@ -22,6 +22,7 @@ namespace Endmer.Models.Entity
         public Nullable<int> KONUM { get; set; }
         public string ADET { get; set; }
         public string ONAYMESAJ { get; set; }
+        public string ARIZALIADET { get; set; }
     
         public virtual Tbl_Personel Tbl_Personel { get; set; }
         public virtual Tbl_Urunler Tbl_Urunler { get; set; }

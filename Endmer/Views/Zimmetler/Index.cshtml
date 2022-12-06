@@ -44,9 +44,10 @@
                                     <th>Model</th>
                                     <th>Zimmet Sahibi</th>
                                     <th>Adet</th>
+                                    <th>Arızalı</th>
                                     <th>Konum</th>
                                     <th>Tarih</th>
-                                    <th colspan="1">İşlemler</th>
+                                    <th colspan="2">İşlemler</th>
                                 </tr>
                             </thead>
                             @foreach (var x in Model)
@@ -59,9 +60,11 @@
                                         <td>@x.Tbl_Urunler.MODEL</td>
                                         <td>@x.Tbl_Personel.AD @x.Tbl_Personel.SOYAD</td>
                                         <td>@x.ADET</td>
+                                        <td>@x.ARIZALIADET</td>
                                         <td>@x.Tbl_Konumlar.KONUM</td>
                                         <td>@(((DateTime)x.TARIH).ToString("dd MMMM yyyy"))</td>
                                         <td>@Html.ActionLink("Sil", "ZimmetSil", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstediğinize Emin Misiniz?')" })</td>
+                                        <td><a href="/Zimmetler/Guncelle/@x.ID" class="btn btn-success">Güncelle</a></td> 
                                     </tr>
                                 </tbody>
                             }

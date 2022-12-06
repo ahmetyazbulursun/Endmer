@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
 using Endmer.Models.Entity;
+using Newtonsoft.Json.Linq;
 using PagedList;
 using PagedList.Mvc;
 
@@ -76,6 +77,26 @@ namespace Endmer.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public ActionResult Guncelle(int id)
+        {
+            var value = db.Tbl_Zimmetler.Find(id);
+            return View("Guncelle", value);
+        }
+
+        [HttpPost]
+        public ActionResult Guncelle(Tbl_Zimmetler p)
+        {
+            var value = db.Tbl_Zimmetler.Find(p.ID);
+
+            value.ADET = p.ADET;
+            value.ARIZALIADET = p.ARIZALIADET;
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
 
     }
 }
