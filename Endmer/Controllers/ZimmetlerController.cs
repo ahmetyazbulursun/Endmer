@@ -19,7 +19,7 @@ namespace Endmer.Controllers
 
         public ActionResult Index(int page = 1)
         {
-            var value = db.Tbl_Zimmetler.Where(x => x.DURUM == true).ToList().ToPagedList(page, 50);
+            var value = db.Tbl_Zimmetler.Where(x => x.DURUM == true && x.Tbl_Personel.DURUM == true && x.Tbl_Urunler.DURUM == true).ToList().ToPagedList(page, 50);
             return View(value);
         }
 
@@ -72,6 +72,15 @@ namespace Endmer.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult ZimmetSil(Tbl_Zimmetler p)
+        {
+            var value = db.Tbl_Zimmetler.Find(p.ID);
+
+            value.DURUM = false;
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
     }
 }

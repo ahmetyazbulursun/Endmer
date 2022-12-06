@@ -32,11 +32,14 @@ namespace Endmer.Models.Entity
         public Nullable<bool> DURUM { get; set; }
         public string RESIM { get; set; }
         public string ADET { get; set; }
+        public Nullable<int> KONUM { get; set; }
+        public string URUNDURUM { get; set; }
     
         public virtual Tbl_Kategoriler Tbl_Kategoriler { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_Zimmetler> Tbl_Zimmetler { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_ZimmetAktar> Tbl_ZimmetAktar { get; set; }
+        public virtual Tbl_Konumlar Tbl_Konumlar { get; set; }
     }
 }

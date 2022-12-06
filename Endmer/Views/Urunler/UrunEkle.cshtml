@@ -20,16 +20,29 @@
 
                             <form method="post">
                                 <div class="row mb-3">
-                                    <div class="col-12">
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Ürün Adı</label>
                                         <input type="text" class="form-control" name="URUNADI" placeholder="Ürün Adı.." required />
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <label class="form-label">Kategori</label>
+                                        @Html.DropDownListFor(x => x.Tbl_Kategoriler.ID, (List<SelectListItem>)ViewBag.Category, new { @class = "form-select" })
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <label class="form-label">Ürün Durumu</label>
+                                        <select class="form-select" name="URUNDURUM">
+                                            <option value="Çalışıyor">Çalışıyor</option> 
+                                            <option value="Bozuk">Bozuk</option> 
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <div class="col-sm-12 col-md-4 col-lg-4">
-                                        <label class="form-label">Kategori</label>
-                                        @Html.DropDownListFor(x => x.Tbl_Kategoriler.ID, (List<SelectListItem>)ViewBag.Category, new { @class = "form-select" })
+                                        <label class="form-label">Konum</label>
+                                        @Html.DropDownListFor(x => x.Tbl_Konumlar.ID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-select" })
                                     </div>
 
                                     <div class="col-sm-12 col-md-4 col-lg-4">
@@ -63,7 +76,7 @@
                                 <div class="row mb-3">
                                     <div class="col-12">
                                         <label class="form-label">Açıklama</label>
-                                        <textarea class="form-control" rows="7" name="ACIKLAMA" placeholder="Açıklama.."></textarea>
+                                        <textarea class="form-control" rows="7" name="ACIKLAMA" placeholder="Açıklama.." ></textarea>
                                     </div>
                                 </div>
 

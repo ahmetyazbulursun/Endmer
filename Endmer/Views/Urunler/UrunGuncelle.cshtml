@@ -28,6 +28,11 @@
                                         @Html.TextBoxFor(x => x.URUNADI, new { @class = "form-control", @placeholder = "Ürün adı..", @required = "required" })
                                     </div>
 
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <label class="form-label">Konum</label>
+                                        @Html.DropDownListFor(x => x.Tbl_Konumlar.ID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-select" })
+                                    </div>
+
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="form-label">Resim</label>
                                         <input type="file" class="form-control" name="RESIM" />
@@ -71,7 +76,7 @@
                                 <div class="row mb-3">
                                     <div class="col-12">
                                         <label class="form-label">Açıklama</label>
-                                        @Html.TextAreaFor(x => x.ACIKLAMA, new { @class = "form-control", @placeholder = "Açıklama..", @required = "required", @rows="7" })
+                                        @Html.TextAreaFor(x => x.ACIKLAMA, new { @class = "form-control", @placeholder = "Açıklama..", @rows="7" })
                                     </div>
                                 </div>
 

@@ -63,6 +63,18 @@
                                     </div>
 
                                     <div class="row">
+                                        <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+                                            <label class="form-label">Adet</label>
+                                            @Html.TextBoxFor(x => x.ADET, new { @class = "form-control", @readonly = "readonly" })
+                                        </div>
+
+                                        <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+                                            <label class="form-label">Konum</label>
+                                            @Html.TextBoxFor(x => x.Tbl_Konumlar.KONUM, new { @class = "form-control", @readonly = "readonly" })
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
                                         <div class="mb-3 col-12">
                                             <label class="form-label">Açıklama</label>
                                             @Html.TextAreaFor(x => x.ACIKLAMA, new { @class = "form-control", @readonly = "readonly", @rows = "7" })

@@ -122,7 +122,7 @@ namespace Endmer.Controllers
             var vehicle = db.Tbl_AracKayit.Find(p.ID);
             var location = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
 
-            value.MARKA = p .MARKA;
+            value.MARKA = p.MARKA;
             value.PLAKA = p.PLAKA;
             value.KM = p.KM;
             value.Tbl_Konumlar = location;
@@ -144,14 +144,6 @@ namespace Endmer.Controllers
         {
             var value = db.Tbl_Araclar.Find(id);
 
-            List<SelectListItem> teslimEden = (from x in db.Tbl_Personel.Where(x => x.DURUM == true).ToList()
-                                               select new SelectListItem
-                                               {
-                                                   Text = x.AD + " " + x.SOYAD,
-                                                   Value = x.ID.ToString()
-                                               }).ToList();
-            ViewBag.TeslimEden = teslimEden;
-
             List<SelectListItem> teslimAlan = (from x in db.Tbl_Personel.Where(x => x.DURUM == true).ToList()
                                                select new SelectListItem
                                                {
@@ -160,40 +152,18 @@ namespace Endmer.Controllers
                                                }).ToList();
             ViewBag.TeslimAlan = teslimAlan;
 
-            return View("YeniKullanici", value);
+            return View(value);
         }
 
         [HttpPost]
         public ActionResult YeniKullanici(Tbl_Araclar p, Tbl_AracKayit k)
         {
-            var value = db.Tbl_Araclar.Find(p.ID);
-            var history = k;
-
-            var vehicle = db.Tbl_Araclar.Find(p.ID);
-
-            var teslimEden = db.Tbl_Personel.Where(x => x.ID == p.Tbl_Personel.ID).FirstOrDefault();
-            var teslimAlan = db.Tbl_Personel.Where(x => x.ID == p.Tbl_Personel1.ID).FirstOrDefault();
-
-            value.Tbl_Personel = teslimEden;
-            value.Tbl_Personel1 = teslimAlan;
-            value.KM = p.KM;
-            value.LOKASYON = p.LOKASYON;
-
-            history.ARAC = vehicle.ID;
-            history.Tbl_Personel = teslimEden;
-            history.Tbl_Personel1 = teslimAlan;
-            history.TARIH = DateTime.Now;
-            history.DURUM = true;
-
-            db.Tbl_AracKayit.Add(k);
-
-            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         public ActionResult Kayitlar(int id)
         {
-            var value = db.Tbl_AracKayit.Where(x => x.ARAC == id).ToList();
+            var value = db.Tbl_AracKayit.Where(x => x.ARAC == id && x.DURUM == true).ToList();
             return View(value);
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -18,10 +19,16 @@ namespace Endmer.Controllers
 
         EndmerEntities db = new EndmerEntities();
 
-        public ActionResult Index(int page = 1)
+        public ActionResult Index(int page = 1, string ara = "")
         {
-            var value = db.Tbl_Urunler.Where(x => x.DURUM == true).ToList().ToPagedList(page, 50);
-            return View(value);
+            var value = from x in db.Tbl_Urunler.Where(x => x.DURUM == true) select x;
+
+            if (!string.IsNullOrEmpty(ara))
+            {
+                value = value.Where(x => x.URUNADI.ToLower().Contains(ara));
+            }
+
+            return View(value.ToList().ToPagedList(page, 50));
         }
 
         [HttpGet]
@@ -35,6 +42,14 @@ namespace Endmer.Controllers
                                              }).ToList();
             ViewBag.Category = category;
 
+            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
+                                             select new SelectListItem
+                                             {
+                                                 Text = x.KONUM,
+                                                 Value = x.ID.ToString()
+                                             }).ToList();
+            ViewBag.Location = location;
+
             return View();
         }
 
@@ -42,8 +57,10 @@ namespace Endmer.Controllers
         public ActionResult UrunEkle(Tbl_Urunler p)
         {
             var category = db.Tbl_Kategoriler.Where(x => x.ID == p.Tbl_Kategoriler.ID).FirstOrDefault();
+            var location = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
 
             p.Tbl_Kategoriler = category;
+            p.Tbl_Konumlar = location;
             p.DURUM = true;
             p.RESIM = "/template/default-img.jpg";
 
@@ -64,6 +81,14 @@ namespace Endmer.Controllers
                                                  Value = x.ID.ToString()
                                              }).ToList();
             ViewBag.Category = category;
+
+            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
+                                             select new SelectListItem
+                                             {
+                                                 Text = x.KONUM,
+                                                 Value = x.ID.ToString()
+                                             }).ToList();
+            ViewBag.Location = location;
 
             return View(value);
         }
@@ -93,14 +118,17 @@ namespace Endmer.Controllers
             }
 
             var category = db.Tbl_Kategoriler.Where(x => x.ID == p.Tbl_Kategoriler.ID).FirstOrDefault();
+            var location = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
 
             value.Tbl_Kategoriler = category;
+            value.Tbl_Konumlar = location;
             value.URUNADI = p.URUNADI;
             value.BARKODNO = p.BARKODNO;
             value.MARKA = p.MARKA;
             value.MODEL = p.MODEL;
             value.SERINO = p.SERINO;
             value.ACIKLAMA = p.ACIKLAMA;
+            value.URUNDURUM = p.URUNDURUM;
 
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -124,7 +152,7 @@ namespace Endmer.Controllers
 
         public PartialViewResult ZimmetSahipleri(int id)
         {
-            var value = db.Tbl_Zimmetler.Where(x => x.ZIMMET == id && x.DURUM == true).ToList();
+            var value = db.Tbl_Zimmetler.Where(x => x.ZIMMET == id && x.DURUM == true && x.Tbl_Personel.DURUM == true).ToList();
             return PartialView(value);
         }
 

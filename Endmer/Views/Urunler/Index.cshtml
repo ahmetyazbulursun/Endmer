@@ -14,7 +14,16 @@
             <div class="card mb-4">
 
                 <div class="card-header">
-                    <h6 class="text-center fs-4">Ürünler</h6>
+                    <div class="row">
+                        <h6 class="text-center fs-4">Ürünler</h6>
+                        @using (Html.BeginForm())
+                        {
+                            <div class="input-group">
+                                <span class="input-group-text text-body"><i class="fas fa-search"></i></span>
+                                <input type="text" name="ara" class="form-control" placeholder="Ara...">
+                            </div>
+                        }
+                    </div>
                 </div>
 
                 <div class="row">
@@ -43,6 +52,8 @@
                                     <th>Ürün</th>
                                     <th>Marka</th>
                                     <th>Model</th>
+                                    <th>Barkod</th>
+                                    <th>Konum</th>
                                     <th>Adet</th>
                                     <th colspan="3">İşlemler</th>
                                 </tr>
@@ -51,14 +62,16 @@
                             {
                                 <tbody align="center">
                                     <tr>
-                                        <td><img src="@x.RESIM" width="300" /></td>
+                                        <td><img src="@x.RESIM" width="150" /></td>
                                         <td>@x.Tbl_Kategoriler.KATEGORIADI</td>
                                         <td>@x.URUNADI</td>
                                         <td>@x.MARKA</td>
                                         <td>@x.MODEL</td>
+                                        <td>@x.BARKODNO</td>
+                                        <td>@x.Tbl_Konumlar.KONUM</td>
                                         <td>@x.ADET</td>
                                         <td><a href="/Urunler/UrunDetay/@x.ID" class="btn btn-primary">Detay</a></td>
-                                        <td>@Html.ActionLink("Sil", "UrunSil", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Ürünü Silmek İstediğinize Emin Misiniz?')" })</td>
+                                        <td>@Html.ActionLink("Sil", "UrunSil", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstediğinize Emin Misiniz?')" })</td>
                                         <td><a href="/Urunler/UrunGuncelle/@x.ID" class="btn btn-success">Güncelle</a></td>
                                     </tr>
                                 </tbody>

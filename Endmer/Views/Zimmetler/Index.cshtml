@@ -44,22 +44,22 @@
                                     <th>Model</th>
                                     <th>Zimmet Sahibi</th>
                                     <th>Adet</th>
-                                    <th colspan="3">İşlemler</th>
+                                    <th>Tarih</th>
+                                    <th colspan="1">İşlemler</th>
                                 </tr>
                             </thead>
                             @foreach (var x in Model)
                             {
                                 <tbody align="center">
                                     <tr>
-                                        <td><img src="@x.Tbl_Urunler.RESIM" width="300" /></td>
+                                        <td><img src="@x.Tbl_Urunler.RESIM" width="150" /></td>
                                         <td>@x.Tbl_Urunler.URUNADI</td>
                                         <td>@x.Tbl_Urunler.MARKA</td>
                                         <td>@x.Tbl_Urunler.MODEL</td>
                                         <td>@x.Tbl_Personel.AD @x.Tbl_Personel.SOYAD</td>
                                         <td>@x.ADET</td>
-                                        <td><a href="/Urunler/UrunDetay/@x.ID" class="btn btn-primary">Detay</a></td>
-                                        <td>@Html.ActionLink("Sil", "UrunSil", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Ürünü Silmek İstediğinize Emin Misiniz?')" })</td>
-                                        <td><a href="/Urunler/UrunGuncelle/@x.ID" class="btn btn-success">Güncelle</a></td>
+                                        <td>@(((DateTime)x.TARIH).ToString("dd MMMM yyyy"))</td>
+                                        <td>@Html.ActionLink("Sil", "ZimmetSil", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstediğinize Emin Misiniz?')" })</td>
                                     </tr>
                                 </tbody>
                             }
