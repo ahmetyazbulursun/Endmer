@@ -1,0 +1,53 @@
+﻿@model Endmer.Models.Entity.Tbl_Konumlar
+
+@{
+    ViewBag.Title = "KonumGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+
+                <div class="card-header">
+                    <h6 class="text-center fs-4">Konum Bilgilerini Güncelle</h6>
+                </div>
+
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <div class="container">
+
+                            <form method="post">
+                                <div class="row mb-3">
+
+                                    @Html.HiddenFor(x => x.ID)
+
+                                    <div class="col-12">
+                                        <label class="form-label">Konum</label>
+                                        @Html.TextBoxFor(x => x.KONUM, new { @class = "form-control", @placeholder = "Konum..", @required = "required" })
+                                    </div>
+
+                                </div>
+
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-success">Güncelle</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    var konumlar = document.getElementById('konumlar');
+    konumlar.classList.add('active');
+</script>

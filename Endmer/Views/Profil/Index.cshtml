@@ -1,0 +1,48 @@
+﻿@using Endmer.Models.Entity
+@model List<Tbl_Personel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+
+                <div class="card-header">
+                    <h6 class="text-center fs-4">Profil</h6>
+                </div>
+
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table table-hover align-items-center mb-0">
+                            <thead align="center">
+                                <tr>
+                                    <th>Ad</th>
+                                    <th>Soyad</th>
+                                    <th>Kullanıcı Adı</th>
+                                    <th>Parola</th>
+                                    <th colspan="1">Güncelle</th>
+                                </tr>
+                            </thead>
+                            @foreach (var x in Model)
+                            {
+                                <tbody align="center">
+                                    <tr>
+                                        <td>@x.AD</td>
+                                        <td>@x.SOYAD</td>
+                                        <td>@x.KULLANICIADI</td>
+                                        <td>@x.PAROLA</td>
+                                        <td><a href="/Profil/ProfilGuncelle/@x.ID" class="btn btn-success">Güncelle</a></td>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

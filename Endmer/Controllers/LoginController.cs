@@ -27,7 +27,7 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult Index(Tbl_Personel p)
         {
-            var value = db.Tbl_Personel.FirstOrDefault(x => x.KULLANICIADI == p.KULLANICIADI && x.PAROLA == p.PAROLA);
+            var value = db.Tbl_Personel.FirstOrDefault(x => x.KULLANICIADI == p.KULLANICIADI && x.PAROLA == p.PAROLA && x.DURUM == true);
 
             if (value != null && value.YETKI == "A")
             {
