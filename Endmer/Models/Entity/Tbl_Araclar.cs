@@ -23,17 +23,15 @@ namespace Endmer.Models.Entity
         public int ID { get; set; }
         public string PLAKA { get; set; }
         public Nullable<int> LOKASYON { get; set; }
-        public Nullable<int> TESLIMEDEN { get; set; }
-        public Nullable<int> TESLIMALAN { get; set; }
         public Nullable<bool> DURUM { get; set; }
         public string RESIM { get; set; }
         public string KM { get; set; }
         public string MARKA { get; set; }
+        public Nullable<int> KULLANICI { get; set; }
     
-        public virtual Tbl_Personel Tbl_Personel { get; set; }
-        public virtual Tbl_Personel Tbl_Personel1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_AracKayit> Tbl_AracKayit { get; set; }
         public virtual Tbl_Konumlar Tbl_Konumlar { get; set; }
+        public virtual Tbl_Personel Tbl_Personel { get; set; }
     }
 }

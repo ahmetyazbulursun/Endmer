@@ -22,33 +22,24 @@
                             {
 
                                 <div class="row mb-3">
-                                    <div class="col-6">
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">KM</label>
                                         @Html.TextBoxFor(x => x.KM, new { @class = "form-control", @placeholder = "KM.." })
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Lokasyon</label>
-                                        @Html.TextBoxFor(x => x.LOKASYON, new { @class = "form-control", @placeholder = "Lokasyon.." })
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    @Html.HiddenFor(x => x.ID)
-
-                                    <div class="col-6">
-                                        <label class="form-label">Teslim Eden</label>
-                                        @Html.DropDownListFor(x => x.Tbl_Personel.ID, (List<SelectListItem>)ViewBag.TeslimEden, new { @class = "form-select" })
+                                        @Html.DropDownListFor(x => x.Tbl_Konumlar.ID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-select" })
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Teslim Alan</label>
-                                        @Html.DropDownListFor(x => x.Tbl_Personel1.ID, (List<SelectListItem>)ViewBag.TeslimAlan, new { @class = "form-select" })
+                                        @Html.DropDownListFor(x => x.Tbl_Personel.ID, (List<SelectListItem>)ViewBag.Delivery, new { @class = "form-select" })
                                     </div>
                                 </div>
 
                                 <div class="d-grid gap-2">
-                                    <button class="btn btn-success">Güncelle</button>
+                                    <button class="btn btn-success">Aktar</button>
                                 </div>
                             }
 

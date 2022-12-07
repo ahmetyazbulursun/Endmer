@@ -22,12 +22,10 @@ namespace Endmer.Models.Entity
         public Nullable<bool> DURUM { get; set; }
         public string KM { get; set; }
         public Nullable<int> LOKASYON { get; set; }
-        public Nullable<int> KULLANICI { get; set; }
     
         public virtual Tbl_Araclar Tbl_Araclar { get; set; }
         public virtual Tbl_Personel Tbl_Personel { get; set; }
         public virtual Tbl_Personel Tbl_Personel1 { get; set; }
-        public virtual Tbl_Personel Tbl_Personel2 { get; set; }
         public virtual Tbl_Konumlar Tbl_Konumlar { get; set; }
     }
 }

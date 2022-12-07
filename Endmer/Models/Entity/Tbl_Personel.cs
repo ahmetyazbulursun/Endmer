@@ -17,14 +17,12 @@ namespace Endmer.Models.Entity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tbl_Personel()
         {
-            this.Tbl_Araclar = new HashSet<Tbl_Araclar>();
-            this.Tbl_Araclar1 = new HashSet<Tbl_Araclar>();
             this.Tbl_AracKayit = new HashSet<Tbl_AracKayit>();
             this.Tbl_AracKayit1 = new HashSet<Tbl_AracKayit>();
             this.Tbl_Zimmetler = new HashSet<Tbl_Zimmetler>();
             this.Tbl_ZimmetAktar = new HashSet<Tbl_ZimmetAktar>();
             this.Tbl_ZimmetAktar1 = new HashSet<Tbl_ZimmetAktar>();
-            this.Tbl_AracKayit2 = new HashSet<Tbl_AracKayit>();
+            this.Tbl_Araclar = new HashSet<Tbl_Araclar>();
         }
     
         public int ID { get; set; }
@@ -39,10 +37,6 @@ namespace Endmer.Models.Entity
     
         public virtual Tbl_Departmanlar Tbl_Departmanlar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tbl_Araclar> Tbl_Araclar { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tbl_Araclar> Tbl_Araclar1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_AracKayit> Tbl_AracKayit { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_AracKayit> Tbl_AracKayit1 { get; set; }
@@ -53,6 +47,6 @@ namespace Endmer.Models.Entity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_ZimmetAktar> Tbl_ZimmetAktar1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tbl_AracKayit> Tbl_AracKayit2 { get; set; }
+        public virtual ICollection<Tbl_Araclar> Tbl_Araclar { get; set; }
     }
 }

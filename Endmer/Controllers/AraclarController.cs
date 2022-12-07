@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.Mvc;
 using Endmer.Models.Entity;
+using Newtonsoft.Json.Linq;
 using PagedList;
 using PagedList.Mvc;
 
@@ -27,7 +28,7 @@ namespace Endmer.Controllers
 
             if (!string.IsNullOrEmpty(ara))
             {
-                value = value.Where(x => x.MARKA.ToLower().Contains(ara) || x.PLAKA.ToLower().Contains(ara) || x.KM.ToLower().Contains(ara) || x.Tbl_Konumlar.KONUM.ToLower().Contains(ara) || x.Tbl_Personel.AD.ToLower().Contains(ara) || x.Tbl_Personel.SOYAD.ToLower().Contains(ara) && x.DURUM == true);
+                value = value.Where(x => x.MARKA.ToLower().Contains(ara) || x.PLAKA.ToLower().Contains(ara) || x.KM.ToLower().Contains(ara) || x.Tbl_Konumlar.KONUM.ToLower().Contains(ara) && x.DURUM == true);
             }
 
             return View(value.ToList().ToPagedList(page, 50));
@@ -36,13 +37,13 @@ namespace Endmer.Controllers
         [HttpGet]
         public ActionResult AracEkle()
         {
-            List<SelectListItem> profit = (from x in db.Tbl_Personel.Where(x => x.DURUM == true)
-                                           select new SelectListItem
-                                           {
-                                               Text = x.AD + " " + x.SOYAD,
-                                               Value = x.ID.ToString()
-                                           }).ToList();
-            ViewBag.Profit = profit;
+            List<SelectListItem> debit = (from x in db.Tbl_Personel.Where(x => x.DURUM == true)
+                                          select new SelectListItem
+                                          {
+                                              Text = x.AD + " " + x.SOYAD,
+                                              Value = x.ID.ToString()
+                                          }).ToList();
+            ViewBag.Debit = debit;
 
             List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
                                              select new SelectListItem
@@ -56,14 +57,32 @@ namespace Endmer.Controllers
         }
 
         [HttpPost]
-        public ActionResult AracEkle(Tbl_Araclar p)
+        public ActionResult AracEkle(Tbl_Araclar p, HttpPostedFileBase RESIM)
         {
-            var profit = db.Tbl_Personel.Where(x => x.ID == p.Tbl_Personel.ID).FirstOrDefault();
-            var location = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
+            try
+            {
+                if (RESIM.ContentLength > 0)
+                {
+                    string filePath = Path.Combine(Server.MapPath("~/Images/Vehicles"), Path.GetFileName(RESIM.FileName));
+                    RESIM.SaveAs(filePath);
 
-            p.Tbl_Personel = profit;
+                    string fileName = Path.GetFileName(Request.Files[0].FileName);
+                    string extension = Path.GetExtension(Request.Files[0].FileName);
+                    string path = "~/Images/Vehicles/" + fileName;
+                    Request.Files[0].SaveAs(Server.MapPath(path));
+                    p.RESIM = "/Images/Vehicles/" + fileName;
+                }
+            }
+            catch (Exception)
+            {
+                p.RESIM = "/template/default-img.jpg";
+            }
+
+            var location = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
+            var debit = db.Tbl_Personel.Where(x => x.ID == p.Tbl_Personel.ID).FirstOrDefault();
+
             p.Tbl_Konumlar = location;
-            p.RESIM = "/template/default-img.jpg";
+            p.Tbl_Personel = debit;
             p.DURUM = true;
 
             db.Tbl_Araclar.Add(p);
@@ -102,7 +121,7 @@ namespace Endmer.Controllers
         }
 
         [HttpPost]
-        public ActionResult AracGuncelle(Tbl_Araclar p, Tbl_AracKayit k, HttpPostedFileBase RESIM)
+        public ActionResult AracGuncelle(Tbl_Araclar p, HttpPostedFileBase RESIM)
         {
             var value = db.Tbl_Araclar.Find(p.ID);
 
@@ -133,14 +152,6 @@ namespace Endmer.Controllers
             value.KM = p.KM;
             value.Tbl_Konumlar = location;
 
-            k.ARAC = value.ID;
-            k.KULLANICI = value.TESLIMEDEN;
-            k.KM = p.KM;
-            k.Tbl_Konumlar = location;
-            k.TARIH = DateTime.Now;
-            k.DURUM = true;
-
-            db.Tbl_AracKayit.Add(k);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -150,13 +161,21 @@ namespace Endmer.Controllers
         {
             var value = db.Tbl_Araclar.Find(id);
 
-            List<SelectListItem> teslimAlan = (from x in db.Tbl_Personel.Where(x => x.DURUM == true).ToList()
+            List<SelectListItem> delivery = (from x in db.Tbl_Personel.Where(x => x.DURUM == true).ToList()
                                                select new SelectListItem
                                                {
                                                    Text = x.AD + " " + x.SOYAD,
                                                    Value = x.ID.ToString()
                                                }).ToList();
-            ViewBag.TeslimAlan = teslimAlan;
+            ViewBag.Delivery = delivery;
+
+            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).ToList()
+                                          select new SelectListItem
+                                          {
+                                              Text = x.KONUM,
+                                              Value = x.ID.ToString()
+                                          }).ToList();
+            ViewBag.Location = location;
 
             return View(value);
         }
@@ -164,6 +183,24 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult YeniKullanici(Tbl_Araclar p, Tbl_AracKayit k)
         {
+            var vehicle = db.Tbl_Araclar.Find(p.ID);
+            var newDebit = db.Tbl_Personel.Where(x => x.ID == p.Tbl_Personel.ID).FirstOrDefault();
+            var newLocation = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
+
+            k.ARAC = vehicle.ID;
+            k.Tbl_Personel = vehicle.Tbl_Personel;
+            k.Tbl_Personel1 = newDebit;
+            k.KM = p.KM;
+            k.Tbl_Konumlar = newLocation;
+            k.TARIH = DateTime.Now;
+            k.DURUM = true;
+
+            vehicle.Tbl_Personel = newDebit;
+            vehicle.Tbl_Konumlar = newLocation;
+            vehicle.KM = p.KM;
+
+            db.Tbl_AracKayit.Add(k);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Endmer.Models.Entity;
+using Newtonsoft.Json.Linq;
 using PagedList;
 using PagedList.Mvc;
 
@@ -54,15 +55,33 @@ namespace Endmer.Controllers
         }
 
         [HttpPost]
-        public ActionResult UrunEkle(Tbl_Urunler p)
+        public ActionResult UrunEkle(Tbl_Urunler p, HttpPostedFileBase RESIM)
         {
+            try
+            {
+                if (RESIM.ContentLength > 0)
+                {
+                    string filePath = Path.Combine(Server.MapPath("~/Images/Products"), Path.GetFileName(RESIM.FileName));
+                    RESIM.SaveAs(filePath);
+
+                    string fileName = Path.GetFileName(Request.Files[0].FileName);
+                    string extension = Path.GetExtension(Request.Files[0].FileName);
+                    string path = "~/Images/Products/" + fileName;
+                    Request.Files[0].SaveAs(Server.MapPath(path));
+                    p.RESIM = "/Images/Products/" + fileName;
+                }
+            }
+            catch (Exception)
+            {
+                p.RESIM = "/template/default-img.jpg";
+            }
+
             var category = db.Tbl_Kategoriler.Where(x => x.ID == p.Tbl_Kategoriler.ID).FirstOrDefault();
             var location = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
 
             p.Tbl_Kategoriler = category;
             p.Tbl_Konumlar = location;
             p.DURUM = true;
-            p.RESIM = "/template/default-img.jpg";
 
             db.Tbl_Urunler.Add(p);
             db.SaveChanges();

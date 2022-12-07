@@ -20,36 +20,37 @@
 
                             <form method="post" action="/Araclar/AracEkle" enctype="multipart/form-data">
                                 <div class="row mb-3">
-                                    <div class="col-12">
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Marka - Model</label>
                                         <input type="text" class="form-control" name="MARKA" placeholder="Marka - Model.." />
-                                    </div>                                  
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <label class="form-label">Resim</label>
+                                        <input type="file" class="form-control" name="RESIM" />
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <label class="form-label">Kullanan Personel</label>
+                                        @Html.DropDownListFor(x => x.Tbl_Personel.ID, (List<SelectListItem>)ViewBag.Debit, new { @class = "form-select" })
+                                    </div>
                                 </div>
 
                                 <div class="row mb-3">
-                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Plaka</label>
                                         <input type="text" class="form-control" name="PLAKA" placeholder="Plaka.." />
                                     </div>
 
-                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">KM</label>
                                         <input type="text" class="form-control" name="KM" placeholder="KM.." />
                                     </div>
-                                </div>
 
-                                <div class="row mb-3">
-
-                                    <div class="col-sm-12 col-md-6 col-lg-6">
-                                        <label class="form-label">Personel</label>
-                                        @Html.DropDownListFor(x => x.Tbl_Personel.ID, (List<SelectListItem>)ViewBag.Profit, new { @class = "form-select" })
-                                    </div>
-
-                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Konum</label>
                                         @Html.DropDownListFor(x => x.Tbl_Konumlar.ID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-select" })
                                     </div>
-
                                 </div>
 
                                 <div class="d-grid gap-2 mb-3">
