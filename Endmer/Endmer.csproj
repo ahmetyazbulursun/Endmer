@@ -138,6 +138,7 @@
     <Compile Include="Controllers\AnaSayfaController.cs" />
     <Compile Include="Controllers\AraclarController.cs" />
     <Compile Include="Controllers\DepartmanlarController.cs" />
+    <Compile Include="Controllers\HataController.cs" />
     <Compile Include="Controllers\KategorilerController.cs" />
     <Compile Include="Controllers\KonumlarController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -196,6 +197,9 @@
     <Compile Include="Roles\AdminRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ErrorTemplate\css\style.css" />
+    <Content Include="ErrorTemplate\index.html" />
+    <Content Include="ErrorTemplate\readme.txt" />
     <Content Include="template\.gitignore" />
     <Content Include="template\assets\css\argon-dashboard.css" />
     <Content Include="template\assets\css\argon-dashboard.min.css" />
@@ -305,6 +309,8 @@
     <Content Include="template\docs\documentation.html" />
     <Content Include="template\gulpfile.js" />
     <Content Include="template\index.html" />
+    <Content Include="template\logo.ico" />
+    <Content Include="template\logo.png" />
     <Content Include="template\pages\billing.html" />
     <Content Include="template\pages\dashboard.html" />
     <Content Include="template\pages\profile.html" />
@@ -588,6 +594,7 @@
     <Content Include="Views\Konumlar\KonumEkle.cshtml" />
     <Content Include="Views\Konumlar\KonumGuncelle.cshtml" />
     <Content Include="Views\Profil\ProfilGuncelle.cshtml" />
+    <Content Include="Views\Hata\Hata404.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
