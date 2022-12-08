@@ -44,7 +44,7 @@
 
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="form-label">Lokasyon</label>
-                                        @Html.TextBoxFor(x => x.LOKASYON, new { @class = "form-control", @placeholder = "Lokasyon..", @required = "required" })
+                                        @Html.DropDownListFor(x => x.Tbl_Konumlar.ID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-select" })
                                     </div>
 
                                 </div>

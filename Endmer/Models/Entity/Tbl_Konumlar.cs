@@ -22,6 +22,7 @@ namespace Endmer.Models.Entity
             this.Tbl_Araclar = new HashSet<Tbl_Araclar>();
             this.Tbl_AracKayit = new HashSet<Tbl_AracKayit>();
             this.Tbl_Urunler = new HashSet<Tbl_Urunler>();
+            this.Tbl_Personel = new HashSet<Tbl_Personel>();
         }
     
         public int ID { get; set; }
@@ -38,5 +39,7 @@ namespace Endmer.Models.Entity
         public virtual ICollection<Tbl_AracKayit> Tbl_AracKayit { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_Urunler> Tbl_Urunler { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_Personel> Tbl_Personel { get; set; }
     }
 }

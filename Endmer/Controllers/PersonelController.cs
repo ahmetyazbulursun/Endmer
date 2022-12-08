@@ -21,9 +21,9 @@ namespace Endmer.Controllers
         {
             var value = from x in db.Tbl_Personel.Where(x => x.DURUM == true) select x;
 
-            if(!string.IsNullOrEmpty(ara))
+            if (!string.IsNullOrEmpty(ara))
             {
-                value = db.Tbl_Personel.Where(x => x.AD.ToLower().Contains(ara) || x.SOYAD.ToLower().Contains(ara) || x.YETKI.ToLower().Contains(ara) || x.Tbl_Departmanlar.DEPARTMAN.ToLower().Contains(ara) || x.LOKASYON.ToLower().Contains(ara) && x.DURUM == true);
+                value = db.Tbl_Personel.Where(x => x.AD.ToLower().Contains(ara) || x.SOYAD.ToLower().Contains(ara) || x.YETKI.ToLower().Contains(ara) || x.Tbl_Departmanlar.DEPARTMAN.ToLower().Contains(ara) || x.Tbl_Konumlar.KONUM.ToLower().Contains(ara) && x.DURUM == true);
             }
 
             return View(value.ToList().ToPagedList(page, 50));
@@ -40,6 +40,14 @@ namespace Endmer.Controllers
                                               }).ToList();
             ViewBag.Departman = departman;
 
+            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
+                                             select new SelectListItem
+                                             {
+                                                 Text = x.KONUM,
+                                                 Value = x.ID.ToString()
+                                             }).ToList();
+            ViewBag.Location = location;
+
             return View();
         }
 
@@ -47,8 +55,10 @@ namespace Endmer.Controllers
         public ActionResult PersonelEkle(Tbl_Personel p)
         {
             var departman = db.Tbl_Departmanlar.Where(x => x.ID == p.Tbl_Departmanlar.ID).FirstOrDefault();
-         
+            var location = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
+
             p.Tbl_Departmanlar = departman;
+            p.Tbl_Konumlar = location;
             p.DURUM = true;
 
             db.Tbl_Personel.Add(p);
@@ -79,6 +89,14 @@ namespace Endmer.Controllers
                                               }).ToList();
             ViewBag.Departman = departman;
 
+            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x=>x.DURUM == true)
+                                             select new SelectListItem
+                                             {
+                                                 Text = x.KONUM,
+                                                 Value = x.ID.ToString()
+                                             }).ToList();
+            ViewBag.Location = location;
+
             return View("PersonelGuncelle", value);
         }
 
@@ -88,11 +106,12 @@ namespace Endmer.Controllers
             var value = db.Tbl_Personel.Find(p.ID);
 
             var departman = db.Tbl_Departmanlar.Where(x => x.ID == p.Tbl_Departmanlar.ID).FirstOrDefault();
+            var location = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
 
             value.Tbl_Departmanlar = departman;
+            value.Tbl_Konumlar = location;
             value.AD = p.AD;
             value.SOYAD = p.SOYAD;
-            value.LOKASYON = p.LOKASYON;
             value.KULLANICIADI = p.KULLANICIADI;
             value.PAROLA = p.PAROLA;
             value.YETKI = p.YETKI;
