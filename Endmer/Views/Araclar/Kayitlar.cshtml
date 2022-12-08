@@ -22,6 +22,7 @@
                                     <th>Teslim Alan</th>
                                     <th>KM</th>
                                     <th>Lokasyon</th>
+                                    <th>Tarih</th>
                                 </tr>
                             </thead>
                             @foreach (var x in Model)
@@ -32,6 +33,7 @@
                                         <td>@x.Tbl_Personel1.AD @x.Tbl_Personel1.SOYAD</td>
                                         <td>@x.KM</td>
                                         <td>@x.Tbl_Konumlar.KONUM</td>
+                                        <td>@(((DateTime)x.TARIH).ToString("dd MMMM yyyy"))</td>
                                     </tr>
                                 </tbody>
                             }

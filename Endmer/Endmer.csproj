@@ -587,6 +587,7 @@
     <Content Include="Views\Konumlar\Index.cshtml" />
     <Content Include="Views\Konumlar\KonumEkle.cshtml" />
     <Content Include="Views\Konumlar\KonumGuncelle.cshtml" />
+    <Content Include="Views\Profil\ProfilGuncelle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

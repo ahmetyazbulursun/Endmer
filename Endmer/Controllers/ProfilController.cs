@@ -16,19 +16,37 @@ namespace Endmer.Controllers
 
         public ActionResult Index(int id)
         {
+            var value = db.Tbl_Personel.Where(x => x.ID == id).ToList();
+
             int userID = Convert.ToInt32(Session["ID"]);
-
-            var value = db.Tbl_Personel.Where(x => x.ID == id);
-
-            int session = Convert.ToInt32(Session["ID"]);
-            if (session != userID)
+            if (id != userID)
             {
                 Session.Abandon();
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Logout", "Login");
             }
 
-            return View("Index", value);
+            return View(value);
+        }
 
+        [HttpGet]
+        public ActionResult ProfilGuncelle(int id)
+        {
+            var value = db.Tbl_Personel.Find(id);
+            return View("ProfilGuncelle", value);
+        }
+
+        [HttpPost]
+        public ActionResult ProfilGuncelle(Tbl_Personel p)
+        {
+            var value = db.Tbl_Personel.Find(p.ID);
+
+            value.AD = p.AD;
+            value.SOYAD = p.SOYAD;
+            value.KULLANICIADI = p.KULLANICIADI;
+            value.PAROLA = p.PAROLA;
+
+            db.SaveChanges();
+            return RedirectToAction("Logout", "Login");
         }
 
 
