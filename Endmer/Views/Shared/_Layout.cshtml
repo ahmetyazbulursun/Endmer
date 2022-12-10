@@ -26,6 +26,8 @@
             margin: 0;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -162,13 +164,9 @@
 
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                        @using (Html.BeginForm())
-                        {
-                            <div class="input-group">
-                                <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                                <input type="text" name="ara" class="form-control" placeholder="Ara...">
-                            </div>
-                        }
+                        <div class="input-group">
+                            <input id="myInput" type="text" class="form-control" placeholder="Ara...">
+                        </div>
                     </div>
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
@@ -186,12 +184,12 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="nav-item px-3 d-flex align-items-center">
-                            <a href="javascript:;" class="nav-link text-white p-0">
-                                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item d-flex align-items-center">
+                        @*<li class="nav-item px-3 d-flex align-items-center">
+                                <a href="javascript:;" class="nav-link text-white p-0">
+                                    <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                                </a>
+                            </li>*@
+                        <li class="nav-item d-flex px-3 align-items-center">
                             <a href="/Login/Logout" class="nav-link text-white p-0">
                                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
                             </a>
@@ -213,6 +211,7 @@
     <script src="~/template/assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="~/template/assets/js/plugins/chartjs.min.js"></script>
     <script>
+
         var ctx1 = document.getElementById("chart-line").getContext("2d");
 
         var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
@@ -294,6 +293,7 @@
                 },
             },
         });
+
     </script>
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
@@ -303,6 +303,23 @@
             }
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
+    </script>
+    <script>
+
+        var tables = document.querySelectorAll('tbody');
+        for (var i = 0; i < tables.length; i++) {
+            tables[i].classList.add('myTable');
+        }
+
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $(".myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
     </script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

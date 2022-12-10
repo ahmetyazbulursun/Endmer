@@ -31,6 +31,8 @@
         <AssociationConnector Association="EndmerModel.FK_Tbl_Urunler_Tbl_Konumlar" />
         <AssociationConnector Association="EndmerModel.FK_Tbl_Araclar_Tbl_Personel" />
         <AssociationConnector Association="EndmerModel.FK_Tbl_Personel_Tbl_Konumlar" />
+        <EntityTypeShape EntityType="EndmerModel.Tbl_BakimKayit" Width="1.5" PointX="3.125" PointY="10.625" />
+        <AssociationConnector Association="EndmerModel.FK_Tbl_BakimKayit_Tbl_Araclar" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

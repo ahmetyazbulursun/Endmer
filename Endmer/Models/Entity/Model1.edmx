@@ -27,8 +27,19 @@
           <Property Name="RESIM" Type="varchar" MaxLength="500" />
           <Property Name="PLAKA" Type="varchar" MaxLength="50" />
           <Property Name="KM" Type="varchar" MaxLength="50" />
+          <Property Name="GECMISBAKIM" Type="datetime" />
+          <Property Name="BAKIMZAMANI" Type="datetime" />
           <Property Name="KULLANICI" Type="int" />
           <Property Name="LOKASYON" Type="int" />
+          <Property Name="DURUM" Type="bit" />
+        </EntityType>
+        <EntityType Name="Tbl_BakimKayit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ARAC" Type="int" />
+          <Property Name="TARIH" Type="datetime" />
           <Property Name="DURUM" Type="bit" />
         </EntityType>
         <EntityType Name="Tbl_Departmanlar">
@@ -84,7 +95,6 @@
           <Property Name="MODEL" Type="varchar" MaxLength="100" />
           <Property Name="SERINO" Type="varchar" MaxLength="50" />
           <Property Name="ACIKLAMA" Type="varchar" MaxLength="500" />
-          <Property Name="URUNDURUM" Type="varchar" MaxLength="30" />
           <Property Name="KONUM" Type="int" />
           <Property Name="DURUM" Type="bit" />
         </EntityType>
@@ -197,6 +207,18 @@
             </Principal>
             <Dependent Role="Tbl_Araclar">
               <PropertyRef Name="KULLANICI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_BakimKayit_Tbl_Araclar">
+          <End Role="Tbl_Araclar" Type="Self.Tbl_Araclar" Multiplicity="0..1" />
+          <End Role="Tbl_BakimKayit" Type="Self.Tbl_BakimKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Araclar">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_BakimKayit">
+              <PropertyRef Name="ARAC" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -335,6 +357,7 @@
         <EntityContainer Name="EndmerModelStoreContainer">
           <EntitySet Name="Tbl_AracKayit" EntityType="Self.Tbl_AracKayit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Araclar" EntityType="Self.Tbl_Araclar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_BakimKayit" EntityType="Self.Tbl_BakimKayit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Departmanlar" EntityType="Self.Tbl_Departmanlar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Kategoriler" EntityType="Self.Tbl_Kategoriler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Konumlar" EntityType="Self.Tbl_Konumlar" Schema="dbo" store:Type="Tables" />
@@ -369,6 +392,10 @@
           <AssociationSet Name="FK_Tbl_Araclar_Tbl_Personel" Association="Self.FK_Tbl_Araclar_Tbl_Personel">
             <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
             <End Role="Tbl_Araclar" EntitySet="Tbl_Araclar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_BakimKayit_Tbl_Araclar" Association="Self.FK_Tbl_BakimKayit_Tbl_Araclar">
+            <End Role="Tbl_Araclar" EntitySet="Tbl_Araclar" />
+            <End Role="Tbl_BakimKayit" EntitySet="Tbl_BakimKayit" />
           </AssociationSet>
           <AssociationSet Name="FK_Tbl_Personel_Tbl_Departmanlar" Association="Self.FK_Tbl_Personel_Tbl_Departmanlar">
             <End Role="Tbl_Departmanlar" EntitySet="Tbl_Departmanlar" />
@@ -479,7 +506,6 @@
           <NavigationProperty Name="Tbl_ZimmetAktar" Relationship="EndmerModel.FK_Tbl_ZimmetAktar_Tbl_Urunler" FromRole="Tbl_Urunler" ToRole="Tbl_ZimmetAktar" />
           <Property Name="KONUM" Type="Int32" />
           <NavigationProperty Name="Tbl_Konumlar" Relationship="EndmerModel.FK_Tbl_Urunler_Tbl_Konumlar" FromRole="Tbl_Urunler" ToRole="Tbl_Konumlar" />
-          <Property Name="URUNDURUM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="ARIZALIADET" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Tbl_Personel_Tbl_Departmanlar">
@@ -584,6 +610,11 @@
             <End Role="Tbl_Konumlar" EntitySet="Tbl_Konumlar" />
             <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
           </AssociationSet>
+          <EntitySet Name="Tbl_BakimKayit" EntityType="EndmerModel.Tbl_BakimKayit" />
+          <AssociationSet Name="FK_Tbl_BakimKayit_Tbl_Araclar" Association="EndmerModel.FK_Tbl_BakimKayit_Tbl_Araclar">
+            <End Role="Tbl_Araclar" EntitySet="Tbl_Araclar" />
+            <End Role="Tbl_BakimKayit" EntitySet="Tbl_BakimKayit" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Tbl_Araclar">
           <Key>
@@ -600,6 +631,9 @@
           <NavigationProperty Name="Tbl_Konumlar" Relationship="EndmerModel.FK_Tbl_Araclar_Tbl_Konumlar" FromRole="Tbl_Araclar" ToRole="Tbl_Konumlar" />
           <Property Name="KULLANICI" Type="Int32" />
           <NavigationProperty Name="Tbl_Personel" Relationship="EndmerModel.FK_Tbl_Araclar_Tbl_Personel" FromRole="Tbl_Araclar" ToRole="Tbl_Personel" />
+          <Property Name="BAKIMZAMANI" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Tbl_BakimKayit" Relationship="EndmerModel.FK_Tbl_BakimKayit_Tbl_Araclar" FromRole="Tbl_Araclar" ToRole="Tbl_BakimKayit" />
+          <Property Name="GECMISBAKIM" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Tbl_AracKayit">
           <Key>
@@ -847,6 +881,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Tbl_BakimKayit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ARAC" Type="Int32" />
+          <Property Name="TARIH" Type="DateTime" Precision="3" />
+          <Property Name="DURUM" Type="Boolean" />
+          <NavigationProperty Name="Tbl_Araclar" Relationship="EndmerModel.FK_Tbl_BakimKayit_Tbl_Araclar" FromRole="Tbl_BakimKayit" ToRole="Tbl_Araclar" />
+        </EntityType>
+        <Association Name="FK_Tbl_BakimKayit_Tbl_Araclar">
+          <End Type="EndmerModel.Tbl_Araclar" Role="Tbl_Araclar" Multiplicity="0..1" />
+          <End Type="EndmerModel.Tbl_BakimKayit" Role="Tbl_BakimKayit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Araclar">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_BakimKayit">
+              <PropertyRef Name="ARAC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -890,7 +946,6 @@
             <EntityTypeMapping TypeName="EndmerModel.Tbl_Urunler">
               <MappingFragment StoreEntitySet="Tbl_Urunler">
                 <ScalarProperty Name="ARIZALIADET" ColumnName="ARIZALIADET" />
-                <ScalarProperty Name="URUNDURUM" ColumnName="URUNDURUM" />
                 <ScalarProperty Name="KONUM" ColumnName="KONUM" />
                 <ScalarProperty Name="ADET" ColumnName="ADET" />
                 <ScalarProperty Name="RESIM" ColumnName="RESIM" />
@@ -909,6 +964,8 @@
           <EntitySetMapping Name="Tbl_Araclar">
             <EntityTypeMapping TypeName="EndmerModel.Tbl_Araclar">
               <MappingFragment StoreEntitySet="Tbl_Araclar">
+                <ScalarProperty Name="GECMISBAKIM" ColumnName="GECMISBAKIM" />
+                <ScalarProperty Name="BAKIMZAMANI" ColumnName="BAKIMZAMANI" />
                 <ScalarProperty Name="KULLANICI" ColumnName="KULLANICI" />
                 <ScalarProperty Name="MARKA" ColumnName="MARKA" />
                 <ScalarProperty Name="KM" ColumnName="KM" />
@@ -969,6 +1026,16 @@
                 <ScalarProperty Name="URUN" ColumnName="URUN" />
                 <ScalarProperty Name="ALANPERSONEL" ColumnName="ALANPERSONEL" />
                 <ScalarProperty Name="VERENPERSONEL" ColumnName="VERENPERSONEL" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_BakimKayit">
+            <EntityTypeMapping TypeName="EndmerModel.Tbl_BakimKayit">
+              <MappingFragment StoreEntitySet="Tbl_BakimKayit">
+                <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+                <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+                <ScalarProperty Name="ARAC" ColumnName="ARAC" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

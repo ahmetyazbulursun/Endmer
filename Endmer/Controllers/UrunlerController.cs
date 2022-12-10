@@ -20,16 +20,10 @@ namespace Endmer.Controllers
 
         EndmerEntities db = new EndmerEntities();
 
-        public ActionResult Index(int page = 1, string ara = "")
+        public ActionResult Index(int page = 1)
         {
-            var value = from x in db.Tbl_Urunler.Where(x => x.DURUM == true) select x;
-
-            if (!string.IsNullOrEmpty(ara))
-            {
-                value = value.Where(x => x.URUNADI.ToLower().Contains(ara) || x.BARKODNO.ToLower().Contains(ara) || x.Tbl_Kategoriler.KATEGORIADI.ToLower().Contains(ara) || x.MARKA.ToLower().Contains(ara) || x.MODEL.ToLower().Contains(ara) || x.SERINO.ToLower().Contains(ara) || x.Tbl_Konumlar.KONUM.ToLower().Contains(ara) || x.URUNDURUM.ToLower().Contains(ara) && x.DURUM == true);
-            }
-
-            return View(value.ToList().ToPagedList(page, 50));
+            var value = db.Tbl_Urunler.Where(x => x.DURUM == true).ToList().ToPagedList(page, 50);
+            return View(value);
         }
 
         [HttpGet]
@@ -147,7 +141,6 @@ namespace Endmer.Controllers
             value.MODEL = p.MODEL;
             value.SERINO = p.SERINO;
             value.ACIKLAMA = p.ACIKLAMA;
-            value.URUNDURUM = p.URUNDURUM;
             value.ARIZALIADET = p.ARIZALIADET;
             value.ADET = p.ADET;
 
@@ -176,6 +169,13 @@ namespace Endmer.Controllers
             var value = db.Tbl_Zimmetler.Where(x => x.ZIMMET == id && x.DURUM == true && x.Tbl_Personel.DURUM == true).ToList();
             return PartialView(value);
         }
+
+        public ActionResult Yazdir()
+        {
+            var value = db.Tbl_Urunler.Where(x => x.DURUM == true && x.Tbl_Kategoriler.DURUM == true && x.Tbl_Konumlar.DURUM == true).ToList();
+            return View(value);
+        }
+
 
     }
 }

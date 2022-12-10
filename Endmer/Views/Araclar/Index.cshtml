@@ -35,21 +35,21 @@
 
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
-                        <table class="table table-hover align-items-center mb-0">
+                        <table class="table table-hover align-items-center mb-0 table-filter">
                             <thead align="center">
                                 <tr>
                                     <th>Resim</th>
-                                    <th>Marka - Model</th>
-                                    <th>Plaka</th>
-                                    <th>Kullanıcı</th>
-                                    <th>KM</th>
-                                    <th>Lokasyon</th>
+                                    <th data-field="marka" data-filter-control="select">Marka - Model</th>
+                                    <th data-field="plaka">Plaka</th>
+                                    <th data-field="kullanıcı" data-filter-control="select">Kullanıcı</th>
+                                    <th data-field="km">KM</th>
+                                    <th data-field="lokasyon" data-filter-control="select">Lokasyon</th>
                                     <th colspan="3">İşlemler</th>
                                 </tr>
                             </thead>
                             @foreach (var x in Model)
                             {
-                                <tbody align="center">
+                                <tbody id="myTable" align="center">
                                     <tr>
                                         <td><img src="@x.RESIM" width="150" /></td>
                                         <td>@x.MARKA</td>
@@ -74,8 +74,9 @@
 
 
 
-
 <script>
+
     var araclar = document.getElementById('araclar');
     araclar.classList.add('active');
+
 </script>

@@ -17,16 +17,10 @@ namespace Endmer.Controllers
 
         EndmerEntities db = new EndmerEntities();
 
-        public ActionResult Index(int page = 1, string ara = "")
+        public ActionResult Index(int page = 1)
         {
-            var value = from x in db.Tbl_ZimmetAktar.Where(x => x.DURUM == true) select x;
-
-            if(!string.IsNullOrEmpty(ara))
-            {
-                value = db.Tbl_ZimmetAktar.Where(x => x.Tbl_Personel.AD.ToLower().Contains(ara) || x.Tbl_Personel.SOYAD.ToLower().Contains(ara) || x.Tbl_Personel1.AD.ToLower().Contains(ara) || x.Tbl_Personel1.SOYAD.ToLower().Contains(ara) || x.Tbl_Urunler.URUNADI.ToLower().Contains(ara) || x.Tbl_Urunler.MARKA.ToLower().Contains(ara) || x.Tbl_Urunler.MODEL.ToLower().Contains(ara) || x.Tbl_Urunler.BARKODNO.ToLower().Contains(ara) || x.Tbl_Konumlar.KONUM.ToLower().Contains(ara) && x.DURUM == true);
-            }
-
-            return View(value.ToList().ToPagedList(page, 50));
+            var value = db.Tbl_ZimmetAktar.Where(x => x.DURUM == true).ToList().ToPagedList(page, 50);
+            return View(value);
         }
 
         public ActionResult Onayla(Tbl_ZimmetAktar p, Tbl_Zimmetler z)

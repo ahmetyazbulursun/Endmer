@@ -33,7 +33,6 @@ namespace Endmer.Models.Entity
         public string RESIM { get; set; }
         public string ADET { get; set; }
         public Nullable<int> KONUM { get; set; }
-        public string URUNDURUM { get; set; }
         public string ARIZALIADET { get; set; }
     
         public virtual Tbl_Kategoriler Tbl_Kategoriler { get; set; }

@@ -17,16 +17,10 @@ namespace Endmer.Controllers
 
         EndmerEntities db = new EndmerEntities();
 
-        public ActionResult Index(int page = 1, string ara = "")
+        public ActionResult Index(int page = 1)
         {
-            var value = from x in db.Tbl_Zimmetler.Where(x => x.DURUM == true && x.Tbl_Personel.DURUM == true && x.Tbl_Urunler.DURUM == true) select x;
-        
-            if(!string.IsNullOrEmpty(ara))
-            {
-                value = db.Tbl_Zimmetler.Where(x => x.Tbl_Urunler.URUNADI.ToLower().Contains(ara) || x.Tbl_Urunler.MARKA.ToLower().Contains(ara) || x.Tbl_Urunler.MODEL.ToLower().Contains(ara) || x.Tbl_Personel.AD.ToLower().Contains(ara) || x.Tbl_Personel.SOYAD.ToLower().Contains(ara) || x.ADET.ToLower().Contains(ara) || x.Tbl_Konumlar.KONUM.ToLower().Contains(ara) && x.DURUM == true);
-            }
-
-            return View(value.ToList().ToPagedList(page, 50));
+            var value = db.Tbl_Zimmetler.Where(x => x.DURUM == true && x.Tbl_Personel.DURUM == true && x.Tbl_Urunler.DURUM == true).ToList().ToPagedList(page, 50);
+            return View(value);
         }
 
 

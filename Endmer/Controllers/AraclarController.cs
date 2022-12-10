@@ -22,16 +22,10 @@ namespace Endmer.Controllers
 
         EndmerEntities db = new EndmerEntities();
 
-        public ActionResult Index(int page = 1, string ara = "")
+        public ActionResult Index(int page = 1)
         {
-            var value = from x in db.Tbl_Araclar.Where(x => x.DURUM == true) select x;
-
-            if (!string.IsNullOrEmpty(ara))
-            {
-                value = value.Where(x => x.MARKA.ToLower().Contains(ara) || x.PLAKA.ToLower().Contains(ara) || x.KM.ToLower().Contains(ara) || x.Tbl_Konumlar.KONUM.ToLower().Contains(ara) && x.DURUM == true);
-            }
-
-            return View(value.ToList().ToPagedList(page, 50));
+            var value = db.Tbl_Araclar.Where(x => x.DURUM == true).ToList().ToPagedList(page, 50);
+            return View(value);
         }
 
         [HttpGet]
@@ -121,7 +115,7 @@ namespace Endmer.Controllers
         }
 
         [HttpPost]
-        public ActionResult AracGuncelle(Tbl_Araclar p, HttpPostedFileBase RESIM)
+        public ActionResult AracGuncelle(Tbl_Araclar p, Tbl_BakimKayit k, HttpPostedFileBase RESIM)
         {
             var value = db.Tbl_Araclar.Find(p.ID);
 
@@ -144,6 +138,11 @@ namespace Endmer.Controllers
                 value.RESIM = value.RESIM;
             }
 
+            if(value.BAKIMZAMANI == null)
+            {
+                value.BAKIMZAMANI = value.BAKIMZAMANI;
+            }
+
             var vehicle = db.Tbl_AracKayit.Find(p.ID);
             var location = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
 
@@ -151,7 +150,13 @@ namespace Endmer.Controllers
             value.PLAKA = p.PLAKA;
             value.KM = p.KM;
             value.Tbl_Konumlar = location;
+            value.BAKIMZAMANI = p.BAKIMZAMANI;
 
+            //k.ARAC = value.ID;
+            //k.TARIH = p.BAKIMZAMANI;
+            //k.DURUM = true;
+
+            //db.Tbl_BakimKayit.Add(k);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

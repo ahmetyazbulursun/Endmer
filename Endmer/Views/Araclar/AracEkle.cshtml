@@ -37,19 +37,24 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                    <div class="col-sm-12 col-md-3 col-lg-3">
                                         <label class="form-label">Plaka</label>
                                         <input type="text" class="form-control" name="PLAKA" placeholder="Plaka.." />
                                     </div>
 
-                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                    <div class="col-sm-12 col-md-3 col-lg-3">
                                         <label class="form-label">KM</label>
                                         <input type="text" class="form-control" name="KM" placeholder="KM.." />
                                     </div>
 
-                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                    <div class="col-sm-12 col-md-3 col-lg-3">
                                         <label class="form-label">Konum</label>
                                         @Html.DropDownListFor(x => x.Tbl_Konumlar.ID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-select" })
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-3 col-lg-3">
+                                        <label class="form-label">Bakım Zamanı</label>
+                                        <input type="date" class="form-control" name="BAKIMZAMANI" />
                                     </div>
                                 </div>
 

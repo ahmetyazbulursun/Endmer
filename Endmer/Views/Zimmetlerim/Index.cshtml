@@ -38,13 +38,13 @@
                         <table class="table table-hover align-items-center mb-0">
                             <thead align="center">
                                 <tr>
+                                    <th>Durum</th>
                                     <th>Resim</th>
                                     <th>Ürün</th>
                                     <th>Marka</th>
                                     <th>Model</th>
                                     <th>Adet</th>
                                     <th>Arızalı</th>
-                                    <th>Durum</th>
                                     <th colspan="2">İşlemler</th>
                                 </tr>
                             </thead>
@@ -66,13 +66,13 @@
                                         }
                                     }
                                     <tr>
+                                        <td><span class="@color">@x.ONAYMESAJ</span></td>
                                         <td><img src="@x.Tbl_Urunler.RESIM" width="150" /></td>
                                         <td>@x.Tbl_Urunler.URUNADI</td>
                                         <td>@x.Tbl_Urunler.MARKA</td>
                                         <td>@x.Tbl_Urunler.MODEL</td>
                                         <td>@x.ADET</td>
                                         <td>@x.ARIZALIADET</td>
-                                        <td><span class="@color">@x.ONAYMESAJ</span></td>
                                         <td><a href="/Zimmetlerim/Aktar/@x.ID" class="btn btn-primary">Aktar</a></td>
                                         <td><a href="/Zimmetlerim/Guncelle/@x.ID" class="btn btn-success">Güncelle</a></td>
                                     </tr>

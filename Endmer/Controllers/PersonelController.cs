@@ -17,16 +17,10 @@ namespace Endmer.Controllers
 
         EndmerEntities db = new EndmerEntities();
 
-        public ActionResult Index(int page = 1, string ara = "")
+        public ActionResult Index(int page = 1)
         {
-            var value = from x in db.Tbl_Personel.Where(x => x.DURUM == true) select x;
-
-            if (!string.IsNullOrEmpty(ara))
-            {
-                value = db.Tbl_Personel.Where(x => x.AD.ToLower().Contains(ara) || x.SOYAD.ToLower().Contains(ara) || x.YETKI.ToLower().Contains(ara) || x.Tbl_Departmanlar.DEPARTMAN.ToLower().Contains(ara) || x.Tbl_Konumlar.KONUM.ToLower().Contains(ara) && x.DURUM == true);
-            }
-
-            return View(value.ToList().ToPagedList(page, 50));
+            var value = db.Tbl_Personel.Where(x => x.DURUM == true).ToList().ToPagedList(page, 50);
+            return View(value);
         }
 
         [HttpGet]
@@ -89,7 +83,7 @@ namespace Endmer.Controllers
                                               }).ToList();
             ViewBag.Departman = departman;
 
-            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x=>x.DURUM == true)
+            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
                                              select new SelectListItem
                                              {
                                                  Text = x.KONUM,

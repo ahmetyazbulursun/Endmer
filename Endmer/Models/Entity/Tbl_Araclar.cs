@@ -18,6 +18,7 @@ namespace Endmer.Models.Entity
         public Tbl_Araclar()
         {
             this.Tbl_AracKayit = new HashSet<Tbl_AracKayit>();
+            this.Tbl_BakimKayit = new HashSet<Tbl_BakimKayit>();
         }
     
         public int ID { get; set; }
@@ -28,10 +29,14 @@ namespace Endmer.Models.Entity
         public string KM { get; set; }
         public string MARKA { get; set; }
         public Nullable<int> KULLANICI { get; set; }
+        public Nullable<System.DateTime> BAKIMZAMANI { get; set; }
+        public Nullable<System.DateTime> GECMISBAKIM { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_AracKayit> Tbl_AracKayit { get; set; }
         public virtual Tbl_Konumlar Tbl_Konumlar { get; set; }
         public virtual Tbl_Personel Tbl_Personel { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_BakimKayit> Tbl_BakimKayit { get; set; }
     }
 }
