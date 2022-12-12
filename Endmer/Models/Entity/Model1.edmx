@@ -39,6 +39,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ARAC" Type="int" />
+          <Property Name="BAKIMDURUM" Type="varchar" MaxLength="50" />
           <Property Name="TARIH" Type="datetime" />
           <Property Name="DURUM" Type="bit" />
         </EntityType>
@@ -890,6 +891,7 @@
           <Property Name="TARIH" Type="DateTime" Precision="3" />
           <Property Name="DURUM" Type="Boolean" />
           <NavigationProperty Name="Tbl_Araclar" Relationship="EndmerModel.FK_Tbl_BakimKayit_Tbl_Araclar" FromRole="Tbl_BakimKayit" ToRole="Tbl_Araclar" />
+          <Property Name="BAKIMDURUM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Tbl_BakimKayit_Tbl_Araclar">
           <End Type="EndmerModel.Tbl_Araclar" Role="Tbl_Araclar" Multiplicity="0..1" />
@@ -1033,6 +1035,7 @@
           <EntitySetMapping Name="Tbl_BakimKayit">
             <EntityTypeMapping TypeName="EndmerModel.Tbl_BakimKayit">
               <MappingFragment StoreEntitySet="Tbl_BakimKayit">
+                <ScalarProperty Name="BAKIMDURUM" ColumnName="BAKIMDURUM" />
                 <ScalarProperty Name="DURUM" ColumnName="DURUM" />
                 <ScalarProperty Name="TARIH" ColumnName="TARIH" />
                 <ScalarProperty Name="ARAC" ColumnName="ARAC" />

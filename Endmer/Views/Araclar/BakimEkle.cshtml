@@ -1,7 +1,7 @@
-﻿@model Endmer.Models.Entity.Tbl_Kategoriler
+﻿@model Endmer.Models.Entity.Tbl_BakimKayit
 
 @{
-    ViewBag.Title = "KategoriEkle";
+    ViewBag.Title = "BakimEkle";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,7 +11,7 @@
             <div class="card mb-4">
 
                 <div class="card-header">
-                    <h6 class="text-center fs-4">Yeni Personel Ekle</h6>
+                    <h6 class="text-center fs-4">Yeni Bakım Ekle</h6>
                 </div>
 
                 <div class="card-body px-0 pt-0 pb-2">
@@ -22,13 +22,13 @@
 
                                 <div class="row mb-3">
                                     <div class="col-12">
-                                        <label class="form-label">Kategori Adı</label>
-                                        <input type="text" class="form-control" name="KATEGORIADI" placeholder="Kategori Adı.." required />
+                                        <label class="form-label">Tarih</label>
+                                        <input type="date" class="form-control" name="TARIH" />
                                     </div>
                                 </div>
 
                                 <div class="d-grid gap-2 mb-3">
-                                    <input type="submit" value="Yeni Kategori Ekle" class="btn btn-info" />
+                                    <input type="submit" value="Yeni Bakım Ekle" class="btn btn-info" />
                                 </div>
 
                             </form>

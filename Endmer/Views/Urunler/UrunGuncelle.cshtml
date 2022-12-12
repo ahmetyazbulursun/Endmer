@@ -41,28 +41,21 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Kategori</label>
                                         @Html.DropDownListFor(x => x.Tbl_Kategoriler.ID, (List<SelectListItem>)ViewBag.Category, new { @class = "form-select" })
                                     </div>
 
-                                    <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Marka</label>
                                         @Html.TextBoxFor(x => x.MARKA, new { @class = "form-control", @placeholder = "Marka..", @required = "required" })
                                     </div>
 
-                                    <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Model</label>
                                         @Html.TextBoxFor(x => x.MODEL, new { @class = "form-control", @placeholder = "Model..", @required = "required" })
                                     </div>
 
-                                    <div class="col-sm-12 col-md-3 col-lg-3">
-                                        <label class="form-label">Ürün Durumu</label>
-                                        <select class="form-select" name="URUNDURUM">
-                                            <option value="Çalışıyor">Çalışıyor</option>
-                                            <option value="Bozuk">Bozuk</option>
-                                        </select>
-                                    </div>
                                 </div>
 
                                 <div class="row mb-3">

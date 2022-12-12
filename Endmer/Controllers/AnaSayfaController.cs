@@ -28,8 +28,8 @@ namespace Endmer.Controllers
             var totalProduct = db.Tbl_Urunler.Where(x => x.DURUM == true).Count().ToString();
             ViewBag.TotalProduct = totalProduct;
 
-            var totalDepartman = db.Tbl_Departmanlar.Where(x => x.DURUM == true).Count().ToString();
-            ViewBag.TotalDepartman = totalDepartman;
+            var totalDebit = db.Tbl_Zimmetler.Where(x => x.DURUM == true).Count().ToString();
+            ViewBag.TotalDebit = totalDebit;
 
             var totalVehicles = db.Tbl_Araclar.Where(x => x.DURUM == true).Count().ToString();
             ViewBag.TotalVehicles = totalVehicles;

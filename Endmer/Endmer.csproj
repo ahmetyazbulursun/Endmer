@@ -631,12 +631,13 @@
     <Content Include="Views\Profil\ProfilGuncelle.cshtml" />
     <Content Include="Views\Hata\Hata404.cshtml" />
     <Content Include="Views\Urunler\Yazdir.cshtml" />
+    <Content Include="Views\Araclar\BakimZamani.cshtml" />
+    <Content Include="Views\Araclar\BakimEkle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\Products\" />
     <Folder Include="Images\Vehicles\" />
-    <Folder Include="SendMail\" />
     <Folder Include="Views\Mail\" />
   </ItemGroup>
   <ItemGroup>

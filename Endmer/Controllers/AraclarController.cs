@@ -25,6 +25,13 @@ namespace Endmer.Controllers
         public ActionResult Index(int page = 1)
         {
             var value = db.Tbl_Araclar.Where(x => x.DURUM == true).ToList().ToPagedList(page, 50);
+
+            var pastCare = db.Tbl_BakimKayit.Take(1).Where(x => x.DURUM == false && x.BAKIMDURUM == "Yapıldı").OrderBy(x => x.ID).Select(x => x.TARIH).FirstOrDefault();
+            ViewBag.PastCare = pastCare;
+
+            var futureCare = db.Tbl_BakimKayit.Take(1).Where(x => x.DURUM == true && x.BAKIMDURUM == "Yapılmadı").OrderBy(x => x.ID).Select(x => x.TARIH).FirstOrDefault();
+            ViewBag.FutureCare = futureCare;
+
             return View(value);
         }
 
@@ -213,6 +220,55 @@ namespace Endmer.Controllers
         {
             var value = db.Tbl_AracKayit.Where(x => x.ARAC == id && x.DURUM == true).ToList();
             return View(value);
+        }
+
+        public ActionResult BakimZamani(int id)
+        {
+            Session["VEHICLEID"] = id;
+            var value = db.Tbl_BakimKayit.Where(x => x.ARAC == id && x.DURUM == true).ToList();
+            return View(value);
+        }
+
+        [HttpGet]
+        public ActionResult BakimEkle()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult BakimEkle(Tbl_BakimKayit p, Tbl_Araclar k)
+        {
+            var value = db.Tbl_Araclar.Find(k.ID);
+
+            p.ARAC = value.ID;
+            p.TARIH = p.TARIH;
+            p.BAKIMDURUM = "Yapılmadı";
+            p.DURUM = true;
+
+            db.Tbl_BakimKayit.Add(p);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Yapildi(Tbl_BakimKayit p)
+        {
+            var value = db.Tbl_BakimKayit.Find(p.ID);
+
+            value.BAKIMDURUM = "Yapıldı";
+            value.DURUM = false;
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult BakimSil(Tbl_BakimKayit p)
+        {
+            var value = db.Tbl_BakimKayit.Find(p.ID);
+
+            value.DURUM = false;
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
 

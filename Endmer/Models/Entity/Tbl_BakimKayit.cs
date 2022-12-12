@@ -18,6 +18,7 @@ namespace Endmer.Models.Entity
         public Nullable<int> ARAC { get; set; }
         public Nullable<System.DateTime> TARIH { get; set; }
         public Nullable<bool> DURUM { get; set; }
+        public string BAKIMDURUM { get; set; }
     
         public virtual Tbl_Araclar Tbl_Araclar { get; set; }
     }
