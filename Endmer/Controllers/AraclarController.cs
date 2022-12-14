@@ -60,6 +60,14 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult AracEkle(Tbl_Araclar p, HttpPostedFileBase RESIM)
         {
+            string vehiclesFile = "~/Images/Vehicles";
+            bool exists = System.IO.Directory.Exists(Server.MapPath(vehiclesFile));
+
+            if (!exists)
+            {
+                System.IO.Directory.CreateDirectory(Server.MapPath(vehiclesFile));
+            }
+
             try
             {
                 if (RESIM.ContentLength > 0)

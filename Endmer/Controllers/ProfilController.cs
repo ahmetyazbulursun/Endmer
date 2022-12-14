@@ -42,7 +42,7 @@ namespace Endmer.Controllers
 
             value.AD = p.AD;
             value.SOYAD = p.SOYAD;
-            value.KULLANICIADI = p.KULLANICIADI;
+            value.KULLANICIADI = "@" + p.KULLANICIADI;
             value.PAROLA = p.PAROLA;
 
             db.SaveChanges();

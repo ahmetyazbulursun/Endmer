@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -46,11 +47,20 @@ namespace Endmer.Controllers
         }
 
         [HttpPost]
-        public ActionResult PersonelEkle(Tbl_Personel p)
+        public ActionResult PersonelEkle(Tbl_Personel p, string KULLANICIADI)
         {
+            //Tbl_Personel personnel = db.Tbl_Personel.Where(x => x.KULLANICIADI == KULLANICIADI).FirstOrDefault();
+
+            //if (personnel != null)
+            //{
+            //    ViewBag.ExistMessage = "Kullanıcı adı zaten kayıtlı!";
+            //    return View(personnel);
+            //}
+
             var departman = db.Tbl_Departmanlar.Where(x => x.ID == p.Tbl_Departmanlar.ID).FirstOrDefault();
             var location = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
 
+            p.KULLANICIADI = "@" + p.KULLANICIADI;
             p.Tbl_Departmanlar = departman;
             p.Tbl_Konumlar = location;
             p.DURUM = true;
@@ -58,6 +68,8 @@ namespace Endmer.Controllers
             db.Tbl_Personel.Add(p);
             db.SaveChanges();
             return RedirectToAction("Index");
+
+
         }
 
         public ActionResult PersonelSil(Tbl_Personel p)
@@ -106,7 +118,7 @@ namespace Endmer.Controllers
             value.Tbl_Konumlar = location;
             value.AD = p.AD;
             value.SOYAD = p.SOYAD;
-            value.KULLANICIADI = p.KULLANICIADI;
+            value.KULLANICIADI = "@" + p.KULLANICIADI;
             value.PAROLA = p.PAROLA;
             value.YETKI = p.YETKI;
 

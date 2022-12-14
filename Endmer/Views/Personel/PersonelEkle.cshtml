@@ -45,9 +45,16 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                    <div class="col-sm-12 col-md-4 col-lg-4 ">
                                         <label class="form-label">Kullanıcı Adı</label>
-                                        <input type="text" class="form-control" name="KULLANICIADI" placeholder="Kullanıcı adı.." required />
+                                        @if (ViewBag.ExistMessage != null && ViewBag.ExistMessage == "Exist")
+                                        {
+                                            <br /><span style="color:red;">Name already exist.</span>
+                                        }
+                                        <div class="input-group">
+                                            <span class="input-group-text">&commat;</span>
+                                            <input type="text" name="KULLANICIADI" class="form-control" placeholder="Kullanıcı adı..">
+                                        </div>
                                     </div>
 
                                     <div class="col-sm-12 col-md-4 col-lg-4">

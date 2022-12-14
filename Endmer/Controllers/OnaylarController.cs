@@ -26,10 +26,13 @@ namespace Endmer.Controllers
         public ActionResult Onayla(Tbl_ZimmetAktar p, Tbl_Zimmetler z)
         {
             var value = db.Tbl_ZimmetAktar.Find(p.ID);
-            var debit = db.Tbl_Zimmetler.Find(z.ID);
 
             value.ONAYDURUM = true;
             value.DURUM = false;
+
+            var debitID = value.ZIMMETID;
+            var debit = db.Tbl_Zimmetler.Where(x => x.ID == debitID).FirstOrDefault();
+
             debit.DURUM = false;
             debit.ONAYMESAJ = "Onaylandı";
 

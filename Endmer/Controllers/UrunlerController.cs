@@ -51,6 +51,14 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult UrunEkle(Tbl_Urunler p, HttpPostedFileBase RESIM)
         {
+            string productsFile = "~/Images/Products";
+            bool exists = System.IO.Directory.Exists(Server.MapPath(productsFile));
+
+            if(!exists) 
+            {
+                System.IO.Directory.CreateDirectory(Server.MapPath(productsFile));
+            }
+
             try
             {
                 if (RESIM.ContentLength > 0)

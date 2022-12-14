@@ -23,6 +23,7 @@ namespace Endmer.Models.Entity
         public Nullable<System.DateTime> TARIH { get; set; }
         public Nullable<bool> DURUM { get; set; }
         public Nullable<bool> ONAYDURUM { get; set; }
+        public Nullable<int> ZIMMETID { get; set; }
     
         public virtual Tbl_Konumlar Tbl_Konumlar { get; set; }
         public virtual Tbl_Personel Tbl_Personel { get; set; }

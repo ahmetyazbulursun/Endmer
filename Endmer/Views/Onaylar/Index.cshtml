@@ -59,8 +59,8 @@
                                         <td>@x.ADET</td>
                                         <td>@x.Tbl_Konumlar.KONUM</td>
                                         <td>@(((DateTime)x.TARIH).ToString("dd/MM/yyyy"))</td>
-                                        <td>@Html.ActionLink("Onayla", "Onayla", new { id = x.ID }, new { @class = "btn btn-success", onclick = "return confirm('Aktarma İşlemini Onaylamak İstediğinize Emin Misiniz?')" })</td>
-                                        <td>@Html.ActionLink("Reddet", "Reddet", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Aktarma İşlemini Reddetmek İstediğinize Emin Misiniz?')" })</td>
+                                        <td>@Html.ActionLink("Onayla", "Onayla", new { id = x.ID }, new { @class = "btn btn-success", onclick = "return confirm('Onaylamak İstediğinize Emin Misiniz?')" })</td>
+                                        <td>@Html.ActionLink("Reddet", "Reddet", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Reddetmek İstediğinize Emin Misiniz?')" })</td>
                                     </tr>
                                 </tbody>
                             }

@@ -64,6 +64,7 @@ namespace Endmer.Controllers
             p.Tbl_Konumlar = location;
             p.DURUM = true;
             p.TARIH = DateTime.Now;
+            p.ZIMMETID = debit.ID;
             debit.ONAYMESAJ = "Onay Bekliyor";
 
             db.Tbl_ZimmetAktar.Add(p);
