@@ -17,6 +17,12 @@ namespace Endmer.Controllers
 
         public ActionResult Index()
         {
+            if (Session["ID"] == null)
+            {
+                Session.Abandon();
+                return RedirectToAction("Logout", "Login");
+            }
+
             return View();
         }
 

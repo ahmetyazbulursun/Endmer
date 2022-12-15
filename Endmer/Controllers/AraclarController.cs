@@ -24,13 +24,14 @@ namespace Endmer.Controllers
 
         public ActionResult Index(int page = 1)
         {
+
+            if (Session["ID"] == null)
+            {
+                Session.Abandon();
+                return RedirectToAction("Logout", "Login");
+            }
+
             var value = db.Tbl_Araclar.Where(x => x.DURUM == true).ToList().ToPagedList(page, 50);
-
-            var pastCare = db.Tbl_BakimKayit.Take(1).Where(x => x.DURUM == false && x.BAKIMDURUM == "Yapıldı").OrderBy(x => x.ID).Select(x => x.TARIH).FirstOrDefault();
-            ViewBag.PastCare = pastCare;
-
-            var futureCare = db.Tbl_BakimKayit.Take(1).Where(x => x.DURUM == true && x.BAKIMDURUM == "Yapılmadı").OrderBy(x => x.ID).Select(x => x.TARIH).FirstOrDefault();
-            ViewBag.FutureCare = futureCare;
 
             return View(value);
         }
@@ -153,11 +154,6 @@ namespace Endmer.Controllers
                 value.RESIM = value.RESIM;
             }
 
-            if(value.BAKIMZAMANI == null)
-            {
-                value.BAKIMZAMANI = value.BAKIMZAMANI;
-            }
-
             var vehicle = db.Tbl_AracKayit.Find(p.ID);
             var location = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
 
@@ -165,7 +161,6 @@ namespace Endmer.Controllers
             value.PLAKA = p.PLAKA;
             value.KM = p.KM;
             value.Tbl_Konumlar = location;
-            value.BAKIMZAMANI = p.BAKIMZAMANI;
 
             //k.ARAC = value.ID;
             //k.TARIH = p.BAKIMZAMANI;
@@ -182,19 +177,19 @@ namespace Endmer.Controllers
             var value = db.Tbl_Araclar.Find(id);
 
             List<SelectListItem> delivery = (from x in db.Tbl_Personel.Where(x => x.DURUM == true).ToList()
-                                               select new SelectListItem
-                                               {
-                                                   Text = x.AD + " " + x.SOYAD,
-                                                   Value = x.ID.ToString()
-                                               }).ToList();
+                                             select new SelectListItem
+                                             {
+                                                 Text = x.AD + " " + x.SOYAD,
+                                                 Value = x.ID.ToString()
+                                             }).ToList();
             ViewBag.Delivery = delivery;
 
             List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).ToList()
-                                          select new SelectListItem
-                                          {
-                                              Text = x.KONUM,
-                                              Value = x.ID.ToString()
-                                          }).ToList();
+                                             select new SelectListItem
+                                             {
+                                                 Text = x.KONUM,
+                                                 Value = x.ID.ToString()
+                                             }).ToList();
             ViewBag.Location = location;
 
             return View(value);
@@ -263,7 +258,6 @@ namespace Endmer.Controllers
             var value = db.Tbl_BakimKayit.Find(p.ID);
 
             value.BAKIMDURUM = "Yapıldı";
-            value.DURUM = false;
 
             db.SaveChanges();
             return RedirectToAction("Index");

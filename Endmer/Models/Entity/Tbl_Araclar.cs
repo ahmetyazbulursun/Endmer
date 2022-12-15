@@ -38,5 +38,7 @@ namespace Endmer.Models.Entity
         public virtual Tbl_Personel Tbl_Personel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_BakimKayit> Tbl_BakimKayit { get; set; }
+
+
     }
 }

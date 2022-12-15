@@ -16,6 +16,12 @@ namespace Endmer.Controllers
 
         public ActionResult Index(int id)
         {
+            if (Session["ID"] == null)
+            {
+                Session.Abandon();
+                return RedirectToAction("Logout", "Login");
+            }
+
             var value = db.Tbl_Personel.Where(x => x.ID == id).ToList();
 
             int userID = Convert.ToInt32(Session["ID"]);

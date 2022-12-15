@@ -19,6 +19,12 @@ namespace Endmer.Controllers
 
         public ActionResult Index(int page = 1)
         {
+            if (Session["ID"] == null)
+            {
+                Session.Abandon();
+                return RedirectToAction("Logout", "Login");
+            }
+
             var value = db.Tbl_Zimmetler.Where(x => x.DURUM == true && x.Tbl_Personel.DURUM == true && x.Tbl_Urunler.DURUM == true).ToList().ToPagedList(page, 50);
             return View(value);
         }
