@@ -73,14 +73,14 @@ namespace Endmer.Controllers
             {
                 if (RESIM.ContentLength > 0)
                 {
-                    string filePath = Path.Combine(Server.MapPath("~/Images/Vehicles"), Path.GetFileName(RESIM.FileName));
-                    RESIM.SaveAs(filePath);
-
                     string fileName = Path.GetFileName(Request.Files[0].FileName);
                     string extension = Path.GetExtension(Request.Files[0].FileName);
-                    string path = "~/Images/Vehicles/" + fileName;
+                    string date = Convert.ToString(DateTime.Now.ToLongDateString());
+                    string time = Convert.ToString(DateTime.Now.ToLongTimeString()).Replace(":", "-");
+                    string dateTime = date + "-" + time + "-";
+                    string path = "~/Images/Vehicles/" + dateTime + fileName;
                     Request.Files[0].SaveAs(Server.MapPath(path));
-                    p.RESIM = "/Images/Vehicles/" + fileName;
+                    p.RESIM = "/Images/Vehicles/" + dateTime + fileName;
                 }
             }
             catch (Exception)
@@ -139,14 +139,15 @@ namespace Endmer.Controllers
             {
                 if (RESIM.ContentLength > 0)
                 {
-                    string filePath = Path.Combine(Server.MapPath("~/Images/Vehicles"), Path.GetFileName(RESIM.FileName));
-                    RESIM.SaveAs(filePath);
-
                     string fileName = Path.GetFileName(Request.Files[0].FileName);
                     string extension = Path.GetExtension(Request.Files[0].FileName);
-                    string path = "~/Images/Vehicles/" + fileName;
+                    string date = Convert.ToString(DateTime.Now.ToLongDateString());
+                    string time = Convert.ToString(DateTime.Now.ToLongTimeString()).Replace(":", "-");
+                    string dateTime = date + "-" + time + "-";
+                    string path = "~/Images/Vehicles/" + dateTime + fileName;
+                    string filePath = "/Images/Vehicles/" + dateTime + fileName;
                     Request.Files[0].SaveAs(Server.MapPath(path));
-                    value.RESIM = "/Images/Vehicles/" + fileName;
+                    value.RESIM = filePath;
                 }
             }
             catch (Exception)

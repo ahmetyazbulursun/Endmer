@@ -18,8 +18,7 @@
                     <div class="table-responsive p-0">
                         <div class="container">
 
-                            @using (Html.BeginForm("AracGuncelle", "Araclar", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                            {
+                            <form method="post" action="/Araclar/AracGuncelle" enctype="multipart/form-data">
 
                                 <div class="row mb-3">
 
@@ -59,7 +58,8 @@
                                 <div class="d-grid gap-2">
                                     <button class="btn btn-success">Güncelle</button>
                                 </div>
-                            }
+
+                            </form>
 
                         </div>
                     </div>

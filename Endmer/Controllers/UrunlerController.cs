@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -60,7 +61,7 @@ namespace Endmer.Controllers
             string productsFile = "~/Images/Products";
             bool exists = System.IO.Directory.Exists(Server.MapPath(productsFile));
 
-            if(!exists) 
+            if (!exists)
             {
                 System.IO.Directory.CreateDirectory(Server.MapPath(productsFile));
             }
@@ -69,14 +70,14 @@ namespace Endmer.Controllers
             {
                 if (RESIM.ContentLength > 0)
                 {
-                    string filePath = Path.Combine(Server.MapPath("~/Images/Products"), Path.GetFileName(RESIM.FileName));
-                    RESIM.SaveAs(filePath);
-
                     string fileName = Path.GetFileName(Request.Files[0].FileName);
                     string extension = Path.GetExtension(Request.Files[0].FileName);
-                    string path = "~/Images/Products/" + fileName;
+                    string date = Convert.ToString(DateTime.Now.ToLongDateString());
+                    string time = Convert.ToString(DateTime.Now.ToLongTimeString()).Replace(":", "-");
+                    string dateTime = date + "-" + time + "-";
+                    string path = "~/Images/Products/" + dateTime + fileName;
                     Request.Files[0].SaveAs(Server.MapPath(path));
-                    p.RESIM = "/Images/Products/" + fileName;
+                    p.RESIM = "/Images/Products/" + dateTime + fileName;
                 }
             }
             catch (Exception)
@@ -129,14 +130,15 @@ namespace Endmer.Controllers
             {
                 if (RESIM.ContentLength > 0)
                 {
-                    string filePath = Path.Combine(Server.MapPath("~/Images/Products"), Path.GetFileName(RESIM.FileName));
-                    RESIM.SaveAs(filePath);
-
                     string fileName = Path.GetFileName(Request.Files[0].FileName);
                     string extension = Path.GetExtension(Request.Files[0].FileName);
-                    string path = "~/Images/Products/" + fileName;
+                    string date = Convert.ToString(DateTime.Now.ToLongDateString());
+                    string time = Convert.ToString(DateTime.Now.ToLongTimeString()).Replace(":", "-");
+                    string dateTime = date + "-" + time + "-";
+                    string path = "~/Images/Products/" + dateTime + fileName;
+                    string filePath = "/Images/Products/" + dateTime + fileName;
                     Request.Files[0].SaveAs(Server.MapPath(path));
-                    value.RESIM = "/Images/Products/" + fileName;
+                    value.RESIM = filePath;
                 }
             }
             catch (Exception)
