@@ -1,5 +1,5 @@
 ﻿@using Endmer.Models.Entity
-@model List<Tbl_Urunler>
+@model List<Tbl_Zimmetler>
 
 @{
     Layout = null;
@@ -65,36 +65,34 @@
 
                 <div class="row">
 
-                    <h4 class="text-center" style="font-weight: bold; padding-top: 30px;">ÜRÜNLER</h4>
+                    <h4 class="text-center" style="font-weight: bold; padding-top: 30px;">ZİMMETLER</h4>
 
                     <div>
                         <table class="table table-borderless table-responsive">
                             <thead>
                                 <tr>
                                     <th class="col-2">Ürün</th>
-                                    <th class="col-1">Kategori</th>
                                     <th class="col-2">Marka</th>
                                     <th class="col-2">Model</th>
-                                    <th class="col-1">Barkod</th>
-                                    <th class="col-1">Seri No</th>
-                                    <th class="col-1">Konum</th>
+                                    <th class="col-2">Zimmet Sahibi</th>
                                     <th class="col-1">Adet</th>
                                     <th class="col-1">Arızalı</th>
+                                    <th class="col-1">Konum</th>
+                                    <th class="col-1">Tarih</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var x in Model)
                                 {
                                     <tr>
-                                        <td class="col-2">@x.URUNADI</td>
-                                        <td class="col-1">@x.Tbl_Kategoriler.KATEGORIADI</td>
-                                        <td class="col-2">@x.MARKA</td>
-                                        <td class="col-2">@x.MODEL</td>
-                                        <td class="col-1">@x.BARKODNO</td>
-                                        <td class="col-1">@x.SERINO</td>
-                                        <td class="col-1">@x.Tbl_Konumlar.KONUM</td>
-                                        <td class="col-1">@x.ADET</td>
-                                        <td class="col-1">@x.ARIZALIADET</td>
+                                        <td class="col-2">@x.Tbl_Urunler.URUNADI</td>
+                                        <td class="col-1">@x.Tbl_Urunler.MARKA</td>
+                                        <td class="col-2">@x.Tbl_Urunler.MODEL</td>
+                                        <td class="col-2">@x.Tbl_Personel.AD @x.Tbl_Personel.SOYAD</td>
+                                        <td class="col-2">@x.ADET</td>
+                                        <td class="col-2">@x.ARIZALIADET</td>
+                                        <td class="col-2">@x.Tbl_Konumlar.KONUM</td>
+                                        <td class="col-2">@(((DateTime)x.TARIH).ToString("dd MMMM yyyy"))</td>
                                     </tr>
                                 }
                             </tbody>

@@ -274,6 +274,17 @@ namespace Endmer.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Yazdir()
+        {
+            var value = db.Tbl_Araclar.Where(x => x.DURUM == true && x.Tbl_Personel.DURUM == true && x.Tbl_Konumlar.DURUM == true).ToList();
+            return View(value);
+        }
+
+        public ActionResult GecmisYazdir(int id)
+        {
+            var value = db.Tbl_AracKayit.Where(x => x.ARAC == id && x.DURUM == true && x.Tbl_Personel.DURUM == true && x.Tbl_Konumlar.DURUM == true).ToList();
+            return View(value);
+        }
 
 
     }

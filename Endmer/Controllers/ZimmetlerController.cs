@@ -107,5 +107,11 @@ namespace Endmer.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Yazdir()
+        {
+            var value = db.Tbl_Zimmetler.Where(x => x.DURUM == true && x.Tbl_Personel.DURUM == true && x.Tbl_Urunler.DURUM == true && x.Tbl_Konumlar.DURUM == true).ToList();
+            return View(value);
+        }
+
     }
 }

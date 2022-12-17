@@ -21,6 +21,7 @@
                     <div class="col">
                         <div class="float-start ms-3">
                             <a href="/Araclar/AracEkle" class="btn btn-info">Yeni Araç Ekle</a>
+                            <a href="/Araclar/Yazdir" class="btn btn-secondary"><i class="fa-solid fa-print"></i></a>
                         </div>
 
                         <div class="float-end me-3">
@@ -46,7 +47,7 @@
                                     <th>Lokasyon</th>
                                     <th>Geçmiş Bakım</th>
                                     <th>Gelecek Bakım</th>
-                                    <th colspan="4">İşlemler</th>
+                                    <th colspan="5">İşlemler</th>
                                 </tr>
                             </thead>
                             @foreach (var x in Model)
@@ -65,6 +66,7 @@
                                         <td>@Html.ActionLink("Sil", "AracSil", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstediğinize Emin Misiniz?')" })</td>
                                         <td><a href="/Araclar/AracGuncelle/@x.ID" class="btn btn-success">Güncelle</a></td>
                                         <td><a href="/Araclar/BakimZamani/@x.ID" class="btn btn-warning">Bakım Zamanı</a></td>
+                                        <td><a href="/Araclar/GecmisYazdir/@x.ID" class="btn btn-secondary">Geçmiş <i class="fa-solid fa-print"></i></a></td>
                                     </tr>
                                 </tbody>
                             }

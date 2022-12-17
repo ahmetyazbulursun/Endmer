@@ -35,7 +35,7 @@
     <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0 text-center" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html " target="_blank">
+            <a class="navbar-brand m-0 text-center" href="/AnaSayfa/Index">
                 <img src="~/template/logo.png" class="navbar-brand-img h-100" alt="main_logo">
                 Endmer Endüstri Merkezi
             </a>
@@ -306,19 +306,19 @@
     </script>
     <script>
 
-        //var tables = document.querySelectorAll('tbody');
-        //for (var i = 0; i < tables.length; i++) {
-        //    tables[i].classList.add('myTable');
-        //}
+        var tables = document.querySelectorAll('tbody');
+        for (var i = 0; i < tables.length; i++) {
+            tables[i].classList.add('myTable');
+        }
 
-        //$(document).ready(function () {
-        //    $("#myInput").on("keyup", function () {
-        //        var value = $(this).val().toLowerCase();
-        //        $(".myTable tr").filter(function () {
-        //            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        //        });
-        //    });
-        //});
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $(".myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
 
     </script>
     <!-- Github buttons -->

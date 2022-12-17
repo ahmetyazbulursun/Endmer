@@ -645,6 +645,9 @@
     <Content Include="Views\Urunler\Yazdir.cshtml" />
     <Content Include="Views\Araclar\BakimZamani.cshtml" />
     <Content Include="Views\Araclar\BakimEkle.cshtml" />
+    <Content Include="Views\Araclar\Yazdir.cshtml" />
+    <Content Include="Views\Araclar\GecmisYazdir.cshtml" />
+    <Content Include="Views\Zimmetler\Yazdir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

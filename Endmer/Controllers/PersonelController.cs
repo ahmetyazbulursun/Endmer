@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Endmer.Models.Entity;
 using PagedList;
 using PagedList.Mvc;
+using System.Data.Sql;
 
 namespace Endmer.Controllers
 {
@@ -55,14 +56,6 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult PersonelEkle(Tbl_Personel p, string KULLANICIADI)
         {
-            //Tbl_Personel personnel = db.Tbl_Personel.Where(x => x.KULLANICIADI == KULLANICIADI).FirstOrDefault();
-
-            //if (personnel != null)
-            //{
-            //    ViewBag.ExistMessage = "Kullanıcı adı zaten kayıtlı!";
-            //    return View(personnel);
-            //}
-
             var departman = db.Tbl_Departmanlar.Where(x => x.ID == p.Tbl_Departmanlar.ID).FirstOrDefault();
             var location = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
 
