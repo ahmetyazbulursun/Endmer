@@ -53,7 +53,7 @@
                                     <div class="receipt-header receipt-header-mid">
                                         <div class="text-right" style="padding-right: 15px">
                                             <div class="receipt-right">
-                                                <p><b>Tarih:</b> @DateTime.Now.ToShortDateString()</p>
+                                                <p><b>Tarih:</b> @DateTime.Now.ToString("dd'/'MM'/'yyyy")</p>
                                             </div>
                                         </div>
                                     </div>
@@ -87,8 +87,8 @@
                                         <td class="col-2">@x.MARKA</td>
                                         <td class="col-1">@x.PLAKA</td>
                                         <td class="col-2">@x.KM</td>
-                                        <td class="col-2">@x.Tbl_BakimKayit.Where(z => z.BAKIMDURUM == "Yapıldı").OrderByDescending(z => z.ID).ToList().Select(z => Convert.ToDateTime(z.TARIH).ToString("dd/MM/yyyy")).Take(1).FirstOrDefault()</td>
-                                        <td class="col-1">@x.Tbl_BakimKayit.Where(y => y.BAKIMDURUM == "Yapılmadı").OrderBy(y => y.ID).Select(y => Convert.ToDateTime(y.TARIH).ToString("dd/MM/yyyy")).Take(1).FirstOrDefault()</td>
+                                        <td class="col-2">@x.Tbl_BakimKayit.Where(z => z.BAKIMDURUM == "Yapıldı").OrderByDescending(z => z.ID).ToList().Select(z => Convert.ToDateTime(z.TARIH).ToString("dd'/'MM'/'yyyy")).Take(1).FirstOrDefault()</td>
+                                        <td class="col-1">@x.Tbl_BakimKayit.Where(y => y.BAKIMDURUM == "Yapılmadı").OrderBy(y => y.ID).Select(y => Convert.ToDateTime(y.TARIH).ToString("dd'/'MM'/'yyyy")).Take(1).FirstOrDefault()</td>
                                         <td class="col-1">@x.Tbl_Personel.AD @x.Tbl_Personel.SOYAD</td>
                                         <td class="col-1">@x.Tbl_Konumlar.KONUM</td>
                                     </tr>

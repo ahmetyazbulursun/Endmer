@@ -36,7 +36,7 @@
                             {
                                 <tbody align="center">
                                     <tr>
-                                        <td>@(((DateTime)x.TARIH).ToString("dd MMMM yyyy"))</td>
+                                        <td>@(((DateTime)x.TARIH).ToString("dd'/'MM'/'yyyy"))</td>
                                         <td>@x.BAKIMDURUM</td>
                                         <td><a href="/Araclar/Yapildi/@x.ID" class="btn btn-success">Yapıldı</a></td>
                                         <td>@Html.ActionLink("Sil", "BakimSil", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstediğinize Emin Misiniz?')" })</td>

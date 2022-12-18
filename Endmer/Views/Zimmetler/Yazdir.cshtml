@@ -53,7 +53,7 @@
                                     <div class="receipt-header receipt-header-mid">
                                         <div class="text-right" style="padding-right: 15px">
                                             <div class="receipt-right">
-                                                <p><b>Tarih:</b> @DateTime.Now.ToShortDateString()</p>
+                                                <p><b>Tarih:</b> @DateTime.Now.ToString("dd'/'MM'/'yyyy")</p>
                                             </div>
                                         </div>
                                     </div>
@@ -92,7 +92,7 @@
                                         <td class="col-2">@x.ADET</td>
                                         <td class="col-2">@x.ARIZALIADET</td>
                                         <td class="col-2">@x.Tbl_Konumlar.KONUM</td>
-                                        <td class="col-2">@(((DateTime)x.TARIH).ToString("dd MMMM yyyy"))</td>
+                                        <td class="col-2">@(((DateTime)x.TARIH).ToString("dd'/'MM'/'yyyy"))</td>
                                     </tr>
                                 }
                             </tbody>

@@ -63,7 +63,7 @@
                                         <td>@x.ADET</td>
                                         <td>@x.ARIZALIADET</td>
                                         <td>@x.Tbl_Konumlar.KONUM</td>
-                                        <td>@(((DateTime)x.TARIH).ToString("dd MMMM yyyy"))</td>
+                                        <td>@(((DateTime)x.TARIH).ToString("dd'/'MM'/'yyyy"))</td>
                                         <td>@Html.ActionLink("Sil", "ZimmetSil", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstediğinize Emin Misiniz?')" })</td>
                                         <td><a href="/Zimmetler/Guncelle/@x.ID" class="btn btn-success">Güncelle</a></td> 
                                     </tr>

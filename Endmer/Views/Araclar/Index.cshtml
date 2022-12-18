@@ -60,8 +60,8 @@
                                         <td>@x.Tbl_Personel.AD @x.Tbl_Personel.SOYAD</td>
                                         <td>@x.KM</td>
                                         <td>@x.Tbl_Konumlar.KONUM</td>
-                                        <td>@x.Tbl_BakimKayit.Where(z => z.BAKIMDURUM == "Yapıldı").OrderByDescending(z => z.ID).ToList().Select(z => Convert.ToDateTime(z.TARIH).ToString("dd/MM/yyyy")).Take(1).FirstOrDefault()</td>
-                                        <td>@x.Tbl_BakimKayit.Where(y => y.BAKIMDURUM == "Yapılmadı").OrderBy(y => y.ID).Select(y => Convert.ToDateTime(y.TARIH).ToString("dd/MM/yyyy")).Take(1).FirstOrDefault()</td>
+                                        <td>@x.Tbl_BakimKayit.Where(z => z.BAKIMDURUM == "Yapıldı").OrderByDescending(z => z.ID).ToList().Select(z => Convert.ToDateTime(z.TARIH).ToString("dd'/'MM'/'yyyy")).Take(1).FirstOrDefault()</td>
+                                        <td>@x.Tbl_BakimKayit.Where(y => y.BAKIMDURUM == "Yapılmadı").OrderBy(y => y.ID).Select(y => Convert.ToDateTime(y.TARIH).ToString("dd'/'MM'/'yyyy")).Take(1).FirstOrDefault()</td>
                                         <td><a href="/Araclar/AracDetay/@x.ID" class="btn btn-primary">Detay</a></td>
                                         <td>@Html.ActionLink("Sil", "AracSil", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstediğinize Emin Misiniz?')" })</td>
                                         <td><a href="/Araclar/AracGuncelle/@x.ID" class="btn btn-success">Güncelle</a></td>
