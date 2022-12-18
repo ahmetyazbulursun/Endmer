@@ -233,18 +233,6 @@
     <Compile Include="Roles\AdminRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataTable\assets\css\bootstrap.min.css" />
-    <Content Include="DataTable\assets\css\datatables.min.css" />
-    <Content Include="DataTable\assets\css\style.css" />
-    <Content Include="DataTable\assets\images\favicon.png" />
-    <Content Include="DataTable\assets\images\logo.png" />
-    <Content Include="DataTable\assets\js\bootstrap.bundle.min.js" />
-    <Content Include="DataTable\assets\js\custom.js" />
-    <Content Include="DataTable\assets\js\datatables.min.js" />
-    <Content Include="DataTable\assets\js\jquery-3.6.0.min.js" />
-    <Content Include="DataTable\assets\js\pdfmake.min.js" />
-    <Content Include="DataTable\assets\js\vfs_fonts.js" />
-    <Content Include="DataTable\index.html" />
     <Content Include="ErrorTemplate\css\style.css" />
     <Content Include="ErrorTemplate\index.html" />
     <Content Include="ErrorTemplate\readme.txt" />
