@@ -24,6 +24,7 @@
                                     <div class="col-12">
                                         <label class="form-label">Departman Adı</label>
                                         <input type="text" class="form-control" name="DEPARTMAN" placeholder="Departman Adı.." required />
+                                        @Html.ValidationMessageFor(x => x.DEPARTMAN, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
                                 </div>
 

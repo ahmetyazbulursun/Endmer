@@ -48,7 +48,7 @@
                                     <tr>
                                         <td>@x.DEPARTMAN</td>
                                         <td><a href="/Departmanlar/DepartmanGuncelle/@x.ID" class="btn btn-success">Güncelle</a></td>
-                                        <td>@Html.ActionLink("Sil", "KategoriSil", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Departmanı Silmek İstediğinize Emin Misiniz?')" })</td>
+                                        <td>@Html.ActionLink("Sil", "DepartmanSil", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Departmanı Silmek İstediğinize Emin Misiniz?')" })</td>
                                         <td><a href="/Departmanlar/Personeller/@x.ID" class="btn btn-primary">Personeller</a></td>
                                     </tr>
                                 </tbody>

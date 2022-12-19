@@ -24,11 +24,13 @@
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="form-label">Ad</label>
                                         <input type="text" class="form-control" name="AD" placeholder="Ad.." required />
+                                        @Html.ValidationMessageFor(x => x.AD, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="form-label">Soyad</label>
                                         <input type="text" class="form-control" name="SOYAD" placeholder="Soyad.." required />
+                                        @Html.ValidationMessageFor(x => x.SOYAD, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
                                 </div>
 
@@ -47,19 +49,17 @@
                                 <div class="row mb-3">
                                     <div class="col-sm-12 col-md-4 col-lg-4 ">
                                         <label class="form-label">Kullanıcı Adı</label>
-                                        @if (ViewBag.ExistMessage != null && ViewBag.ExistMessage == "Exist")
-                                        {
-                                            <br /><span style="color:red;">Name already exist.</span>
-                                        }
                                         <div class="input-group">
                                             <span class="input-group-text">&commat;</span>
                                             <input type="text" name="KULLANICIADI" class="form-control" placeholder="Kullanıcı adı..">
                                         </div>
+                                        @Html.ValidationMessageFor(x => x.KULLANICIADI, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Parola</label>
                                         <input type="text" class="form-control" name="PAROLA" placeholder="Parola.." required />
+                                        @Html.ValidationMessageFor(x => x.PAROLA, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
                                     <div class="col-sm-12 col-md-4 col-lg-4">

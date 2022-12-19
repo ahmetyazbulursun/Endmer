@@ -44,6 +44,11 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult ProfilGuncelle(Tbl_Personel p)
         {
+            if(!ModelState.IsValid)
+            {
+                return View("ProfilGuncelle");
+            }
+
             var value = db.Tbl_Personel.Find(p.ID);
 
             value.AD = p.AD;

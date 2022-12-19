@@ -25,6 +25,7 @@
                                     <div class="col-12">
                                         <label class="form-label">KM</label>
                                         @Html.TextBoxFor(x => x.KM, new { @class = "form-control", @placeholder = "KM.." })
+                                        @Html.ValidationMessageFor(x => x.KM, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
                                 </div>
 

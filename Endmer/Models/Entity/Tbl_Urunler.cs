@@ -38,10 +38,10 @@ namespace Endmer.Models.Entity
         public string ACIKLAMA { get; set; }
         public Nullable<bool> DURUM { get; set; }
         public string RESIM { get; set; }
-        [MinLength(3, ErrorMessage = "En az 3 karakter girilmelidir!"), MaxLength(10, ErrorMessage = "En fazla 10 karakter girilebilir!")]
+        [MinLength(1, ErrorMessage = "En az 1 karakter girilmelidir!"), MaxLength(10, ErrorMessage = "En fazla 10 karakter girilebilir!")]
         public string ADET { get; set; }
         public Nullable<int> KONUM { get; set; }
-        [MinLength(3, ErrorMessage = "En az 3 karakter girilmelidir!"), MaxLength(10, ErrorMessage = "En fazla 10 karakter girilebilir!")]
+        [MinLength(1, ErrorMessage = "En az 1 karakter girilmelidir!"), MaxLength(10, ErrorMessage = "En fazla 10 karakter girilebilir!")]
         public string ARIZALIADET { get; set; }
     
         public virtual Tbl_Kategoriler Tbl_Kategoriler { get; set; }

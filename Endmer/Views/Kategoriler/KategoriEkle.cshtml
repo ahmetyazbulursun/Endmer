@@ -24,6 +24,7 @@
                                     <div class="col-12">
                                         <label class="form-label">Kategori Adı</label>
                                         <input type="text" class="form-control" name="KATEGORIADI" placeholder="Kategori Adı.." required />
+                                        @Html.ValidationMessageFor(x => x.KATEGORIADI, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
                                 </div>
 

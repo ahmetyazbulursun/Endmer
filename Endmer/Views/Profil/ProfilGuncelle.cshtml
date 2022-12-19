@@ -26,11 +26,13 @@
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="form-label">Ad</label>
                                         @Html.TextBoxFor(x => x.AD, new { @class = "form-control", @placeholder = "Ad..", @required = "required" })
+                                        @Html.ValidationMessageFor(x => x.AD, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="form-label">Soyad</label>
                                         @Html.TextBoxFor(x => x.SOYAD, new { @class = "form-control", @placeholder = "Soyad..", @required = "required" })
+                                        @Html.ValidationMessageFor(x => x.SOYAD, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
                                 </div>
@@ -43,11 +45,13 @@
                                             <span class="input-group-text">&commat;</span>
                                             <input type="text" name="KULLANICIADI" class="form-control" placeholder="Kullanıcı adı..">
                                         </div>
+                                        @Html.ValidationMessageFor(x => x.KULLANICIADI, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="form-label">Parola</label>
                                         @Html.TextBoxFor(x => x.PAROLA, new { @class = "form-control", @placeholder = "Parola..", @required = "required" })
+                                        @Html.ValidationMessageFor(x => x.PAROLA, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
                                 </div>

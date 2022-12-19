@@ -56,6 +56,27 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult PersonelEkle(Tbl_Personel p, string KULLANICIADI)
         {
+            if (!ModelState.IsValid)
+            {
+                List<SelectListItem> departmann = (from x in db.Tbl_Departmanlar.Where(x => x.DURUM == true).ToList()
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.DEPARTMAN,
+                                                      Value = x.ID.ToString()
+                                                  }).ToList();
+                ViewBag.Departman = departmann;
+
+                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
+                                                 select new SelectListItem
+                                                 {
+                                                     Text = x.KONUM,
+                                                     Value = x.ID.ToString()
+                                                 }).ToList();
+                ViewBag.Location = locationn;
+
+                return View("PersonelEkle");
+            }
+
             var departman = db.Tbl_Departmanlar.Where(x => x.ID == p.Tbl_Departmanlar.ID).FirstOrDefault();
             var location = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
 
@@ -67,8 +88,6 @@ namespace Endmer.Controllers
             db.Tbl_Personel.Add(p);
             db.SaveChanges();
             return RedirectToAction("Index");
-
-
         }
 
         public ActionResult PersonelSil(Tbl_Personel p)
@@ -108,6 +127,27 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult PersonelGuncelle(Tbl_Personel p)
         {
+            if (!ModelState.IsValid)
+            {
+                List<SelectListItem> departmann = (from x in db.Tbl_Departmanlar.Where(x => x.DURUM == true).ToList()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.DEPARTMAN,
+                                                       Value = x.ID.ToString()
+                                                   }).ToList();
+                ViewBag.Departman = departmann;
+
+                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.KONUM,
+                                                      Value = x.ID.ToString()
+                                                  }).ToList();
+                ViewBag.Location = locationn;
+
+                return View("PersonelEkle");
+            }
+
             var value = db.Tbl_Personel.Find(p.ID);
 
             var departman = db.Tbl_Departmanlar.Where(x => x.ID == p.Tbl_Departmanlar.ID).FirstOrDefault();

@@ -38,6 +38,11 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult KategoriEkle(Tbl_Kategoriler p)
         {
+            if(!ModelState.IsValid)
+            {
+                return View("KategoriEkle");
+            }
+
             p.DURUM = true;
 
             db.Tbl_Kategoriler.Add(p);
@@ -55,6 +60,11 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult KategoriGuncelle(Tbl_Kategoriler p)
         {
+            if(!ModelState.IsValid)
+            {
+                return View("KategoriGuncelle");
+            }
+
             var value = db.Tbl_Kategoriler.Find(p.ID);
 
             value.KATEGORIADI = p.KATEGORIADI;

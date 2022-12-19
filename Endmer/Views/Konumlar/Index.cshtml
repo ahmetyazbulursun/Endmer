@@ -48,7 +48,7 @@
                                     <tr>
                                         <td>@x.KONUM</td>
                                         <td><a href="/Konumlar/KonumGuncelle/@x.ID" class="btn btn-success">Güncelle</a></td>
-                                        <td>@Html.ActionLink("Sil", "KategoriSil", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstediğinize Emin Misiniz?')" })</td>
+                                        <td>@Html.ActionLink("Sil", "KonumSil", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstediğinize Emin Misiniz?')" })</td>
                                     </tr>
                                 </tbody>
                             }

@@ -26,11 +26,13 @@
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="form-label">Adet</label>
                                         @Html.TextBoxFor(x => x.ADET, new { @class = "form-control", @placeholder = "Adet..", @required = "required" })
+                                        @Html.ValidationMessageFor(x => x.ADET, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="form-label">Arızalı Adet</label>
                                         @Html.TextBoxFor(x => x.ARIZALIADET, new { @class = "form-control", @placeholder = "Arızalı adet..", @required = "required" })
+                                        @Html.ValidationMessageFor(x => x.ARIZALIADET, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
                                 </div>

@@ -1,4 +1,4 @@
-﻿@model Endmer.Models.Entity.Tbl_Kategoriler
+﻿@model Endmer.Models.Entity.Tbl_Konumlar
 
 @{
     ViewBag.Title = "KonumEkle";
@@ -24,6 +24,7 @@
                                     <div class="col-12">
                                         <label class="form-label">Konum</label>
                                         <input type="text" class="form-control" name="KONUM" placeholder="Konum.." required />
+                                        @Html.ValidationMessageFor(x => x.KATEGORIADI, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
                                 </div>
 

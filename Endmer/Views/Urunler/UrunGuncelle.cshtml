@@ -26,6 +26,7 @@
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Ürün Adı</label>
                                         @Html.TextBoxFor(x => x.URUNADI, new { @class = "form-control", @placeholder = "Ürün adı..", @required = "required" })
+                                        @Html.ValidationMessageFor(x => x.URUNADI, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
                                     <div class="col-sm-12 col-md-4 col-lg-4">
@@ -49,11 +50,13 @@
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Marka</label>
                                         @Html.TextBoxFor(x => x.MARKA, new { @class = "form-control", @placeholder = "Marka..", @required = "required" })
+                                        @Html.ValidationMessageFor(x => x.MARKA, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Model</label>
                                         @Html.TextBoxFor(x => x.MODEL, new { @class = "form-control", @placeholder = "Model..", @required = "required" })
+                                        @Html.ValidationMessageFor(x => x.MODEL, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
                                 </div>
@@ -63,28 +66,33 @@
                                     <div class="col-sm-12 col-md-3 col-lg-3">
                                         <label class="form-label">Barkod</label>
                                         @Html.TextBoxFor(x => x.BARKODNO, new { @class = "form-control", @placeholder = "Barkod..", @required = "required" })
+                                        @Html.ValidationMessageFor(x => x.BARKODNO, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
                                     <div class="col-sm-12 col-md-3 col-lg-3">
                                         <label class="form-label">Seri No</label>
                                         @Html.TextBoxFor(x => x.SERINO, new { @class = "form-control", @placeholder = "Seri No..", @required = "required" })
+                                        @Html.ValidationMessageFor(x => x.SERINO, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
                                     <div class="col-sm-12 col-md-3 col-lg-3">
                                         <label class="form-label">Adet</label>
                                         @Html.TextBoxFor(x => x.ADET, new { @class = "form-control", @placeholder = "Adet..", @required = "required" })
+                                        @Html.ValidationMessageFor(x => x.ADET, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
                                     <div class="col-sm-12 col-md-3 col-lg-3">
                                         <label class="form-label">Arızalı Adet</label>
                                         @Html.TextBoxFor(x => x.ARIZALIADET, new { @class = "form-control", @placeholder = "Arızalı Adet.." })
+                                        @Html.ValidationMessageFor(x => x.ARIZALIADET, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <div class="col-12">
                                         <label class="form-label">Açıklama</label>
-                                        @Html.TextAreaFor(x => x.ACIKLAMA, new { @class = "form-control", @placeholder = "Açıklama..", @rows="7" })
+                                        @Html.TextAreaFor(x => x.ACIKLAMA, new { @class = "form-control", @placeholder = "Açıklama..", @rows = "7" })
+                                        @Html.ValidationMessageFor(x => x.ACIKLAMA, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
                                 </div>
 

@@ -63,6 +63,35 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult ZimmetVer(Tbl_Zimmetler p)
         {
+            if(!ModelState.IsValid)
+            {
+                List<SelectListItem> personnell = (from x in db.Tbl_Personel.Where(x => x.DURUM == true)
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.AD + " " + x.SOYAD,
+                                                      Value = x.ID.ToString()
+                                                  }).ToList();
+                ViewBag.Personnel = personnell;
+
+                List<SelectListItem> productt = (from x in db.Tbl_Urunler.Where(x => x.DURUM == true)
+                                                select new SelectListItem
+                                                {
+                                                    Text = x.URUNADI,
+                                                    Value = x.ID.ToString()
+                                                }).ToList();
+                ViewBag.Product = productt;
+
+                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
+                                                 select new SelectListItem
+                                                 {
+                                                     Text = x.KONUM,
+                                                     Value = x.ID.ToString()
+                                                 }).ToList();
+                ViewBag.Location = locationn;
+
+                return View("ZimmetVer");
+            }
+
             var personnel = db.Tbl_Personel.Where(x => x.ID == p.Tbl_Personel.ID).FirstOrDefault();
             var product = db.Tbl_Urunler.Where(x => x.ID == p.Tbl_Urunler.ID).FirstOrDefault();
             var location = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
@@ -98,6 +127,11 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult Guncelle(Tbl_Zimmetler p)
         {
+            if(!ModelState.IsValid)
+            {
+                return View("Guncelle");
+            }
+
             var value = db.Tbl_Zimmetler.Find(p.ID);
 
             value.ADET = p.ADET;

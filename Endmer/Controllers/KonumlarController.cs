@@ -39,6 +39,11 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult KonumEkle(Tbl_Konumlar p)
         {
+            if(!ModelState.IsValid)
+            {
+                return View("KonumEkle");
+            }
+
             p.DURUM = true;
 
             db.Tbl_Konumlar.Add(p);
@@ -46,7 +51,7 @@ namespace Endmer.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult KategoriSil(Tbl_Konumlar p)
+        public ActionResult KonumSil(Tbl_Konumlar p)
         {
             var value = db.Tbl_Konumlar.Find(p.ID);
 
@@ -66,6 +71,11 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult KonumGuncelle(Tbl_Konumlar p)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("KonumEkle");
+            }
+
             var value = db.Tbl_Konumlar.Find(p.ID);
 
             value.KONUM = p.KONUM;

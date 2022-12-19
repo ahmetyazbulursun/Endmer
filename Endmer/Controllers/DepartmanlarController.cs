@@ -39,6 +39,11 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult DepartmanEkle(Tbl_Departmanlar p)
         {
+            if(!ModelState.IsValid)
+            {
+                return View("DepartmanEkle");
+            }
+
             p.DURUM = true;
 
             db.Tbl_Departmanlar.Add(p);
@@ -46,7 +51,7 @@ namespace Endmer.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult KategoriSil(int id)
+        public ActionResult DepartmanSil(int id)
         {
             var value = db.Tbl_Departmanlar.Find(id);
 
@@ -66,6 +71,11 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult DepartmanGuncelle(Tbl_Departmanlar p)
         {
+            if(!ModelState.IsValid)
+            {
+                return View("DepartmanGuncelle");
+            }
+
             var value = db.Tbl_Departmanlar.Find(p.ID);
 
             value.DEPARTMAN = p.DEPARTMAN;

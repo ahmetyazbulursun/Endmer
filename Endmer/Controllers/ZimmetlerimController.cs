@@ -58,6 +58,27 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult Aktar(Tbl_ZimmetAktar p, Tbl_Zimmetler z)
         {
+            if (!ModelState.IsValid)
+            {
+                List<SelectListItem> personnell = (from x in db.Tbl_Personel.Where(x => x.DURUM == true)
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.AD + " " + x.SOYAD,
+                                                      Value = x.ID.ToString()
+                                                  }).ToList();
+                ViewBag.Personnel = personnell;
+
+                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
+                                                 select new SelectListItem
+                                                 {
+                                                     Text = x.KONUM,
+                                                     Value = x.ID.ToString()
+                                                 }).ToList();
+                ViewBag.Location = locationn;
+
+                return View("Aktar");
+            }
+
             var giver = db.Tbl_Zimmetler.Find(z.ID);
             var personnel = db.Tbl_Personel.Where(x => x.ID == p.Tbl_Personel.ID).FirstOrDefault();
             var product = db.Tbl_Zimmetler.Find(z.ID);
@@ -88,6 +109,11 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult Guncelle(Tbl_Zimmetler p)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Aktar");
+            }
+
             var value = db.Tbl_Zimmetler.Find(p.ID);
 
             value.ADET = p.ADET;

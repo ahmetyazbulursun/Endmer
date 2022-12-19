@@ -38,6 +38,11 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult Guncelle(Tbl_Araclar p, Tbl_AracKayit k)
         {
+            if(!ModelState.IsValid)
+            {
+                return View("Guncelle");
+            }
+
             var value = db.Tbl_Araclar.Find(p.ID);
             var vehicle = db.Tbl_Araclar.Find(p.ID);
 

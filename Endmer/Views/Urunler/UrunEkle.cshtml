@@ -23,6 +23,7 @@
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Ürün Adı</label>
                                         <input type="text" class="form-control" name="URUNADI" placeholder="Ürün Adı.." required />
+                                        @Html.ValidationMessageFor(x => x.URUNADI, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
                                     <div class="col-sm-12 col-md-4 col-lg-4">
@@ -45,11 +46,13 @@
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Marka</label>
                                         <input type="text" class="form-control" name="MARKA" placeholder="Marka.." required />
+                                        @Html.ValidationMessageFor(x => x.MARKA, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Model</label>
                                         <input type="text" class="form-control" name="MODEL" placeholder="Model.." required />
+                                        @Html.ValidationMessageFor(x => x.MODEL, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
                                 </div>
 
@@ -57,16 +60,19 @@
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Barkod</label>
                                         <input type="text" class="form-control" name="BARKODNO" placeholder="Barkod.." required />
+                                        @Html.ValidationMessageFor(x => x.BARKODNO, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Seri No</label>
                                         <input type="text" class="form-control" name="SERINO" placeholder="Seri No.." required />
+                                        @Html.ValidationMessageFor(x => x.SERINO, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Adet</label>
                                         <input type="text" class="form-control" name="ADET" placeholder="Adet.." required />
+                                        @Html.ValidationMessageFor(x => x.ADET, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
                                 </div>
 
@@ -74,6 +80,7 @@
                                     <div class="col-12">
                                         <label class="form-label">Açıklama</label>
                                         <textarea class="form-control" rows="7" name="ACIKLAMA" placeholder="Açıklama.."></textarea>
+                                        @Html.ValidationMessageFor(x => x.ACIKLAMA, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
                                 </div>
 
