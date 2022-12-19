@@ -11,7 +11,8 @@ namespace Endmer.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Tbl_Personel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,17 +25,21 @@ namespace Endmer.Models.Entity
             this.Tbl_ZimmetAktar1 = new HashSet<Tbl_ZimmetAktar>();
             this.Tbl_Araclar = new HashSet<Tbl_Araclar>();
         }
-    
+
         public int ID { get; set; }
+        [MinLength(3, ErrorMessage = "En az 3 karakter girilmelidir!"), MaxLength(30, ErrorMessage = "En fazla 30 karakter girilebilir!")]
         public string AD { get; set; }
+        [MinLength(3, ErrorMessage = "En az 3 karakter girilmelidir!"), MaxLength(30, ErrorMessage = "En fazla 30 karakter girilebilir!")]
         public string SOYAD { get; set; }
         public Nullable<int> DEPARTMAN { get; set; }
         public Nullable<bool> DURUM { get; set; }
+        [MinLength(3, ErrorMessage = "En az 3 karakter girilmelidir!"), MaxLength(50, ErrorMessage = "En fazla 50 karakter girilebilir!")]
         public string KULLANICIADI { get; set; }
+        [MinLength(3, ErrorMessage = "En az 3 karakter girilmelidir!"), MaxLength(10, ErrorMessage = "En fazla 10 karakter girilebilir!")]
         public string PAROLA { get; set; }
         public string YETKI { get; set; }
         public Nullable<int> LOKASYON { get; set; }
-    
+
         public virtual Tbl_Departmanlar Tbl_Departmanlar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_AracKayit> Tbl_AracKayit { get; set; }

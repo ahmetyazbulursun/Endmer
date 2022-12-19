@@ -11,7 +11,8 @@ namespace Endmer.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Tbl_AracKayit
     {
         public int ID { get; set; }
@@ -20,6 +21,7 @@ namespace Endmer.Models.Entity
         public Nullable<int> TESLIMALAN { get; set; }
         public Nullable<System.DateTime> TARIH { get; set; }
         public Nullable<bool> DURUM { get; set; }
+        [MinLength(3, ErrorMessage = "En az 3 karakter girilmelidir!"), MaxLength(50, ErrorMessage = "En fazla 50 karakter girilebilir!")]
         public string KM { get; set; }
         public Nullable<int> LOKASYON { get; set; }
     

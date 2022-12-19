@@ -5,7 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Web;
+using System.Web;   
 using System.Web.Mvc;
 using Endmer.Models.Entity;
 using Newtonsoft.Json.Linq;
@@ -24,7 +24,6 @@ namespace Endmer.Controllers
 
         public ActionResult Index(int page = 1)
         {
-
             if (Session["ID"] == null)
             {
                 Session.Abandon();
@@ -61,6 +60,27 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult AracEkle(Tbl_Araclar p, HttpPostedFileBase RESIM)
         {
+            if (!ModelState.IsValid)
+            {
+                List<SelectListItem> debitt = (from x in db.Tbl_Personel.Where(x => x.DURUM == true)
+                                              select new SelectListItem
+                                              {
+                                                  Text = x.AD + " " + x.SOYAD,
+                                                  Value = x.ID.ToString()
+                                              }).ToList();
+                ViewBag.Debit = debitt;
+
+                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
+                                                 select new SelectListItem
+                                                 {
+                                                     Text = x.KONUM,
+                                                     Value = x.ID.ToString()
+                                                 }).ToList();
+                ViewBag.Location = locationn;
+
+                return View("AracEkle");
+            }
+
             string vehiclesFile = "~/Images/Vehicles";
             bool exists = System.IO.Directory.Exists(Server.MapPath(vehiclesFile));
 
@@ -133,6 +153,19 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult AracGuncelle(Tbl_Araclar p, Tbl_BakimKayit k, HttpPostedFileBase RESIM)
         {
+            if (!ModelState.IsValid)
+            {
+                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
+                                                 select new SelectListItem
+                                                 {
+                                                     Text = x.KONUM,
+                                                     Value = x.ID.ToString()
+                                                 }).ToList();
+                ViewBag.Location = locationn;
+
+                return View("AracGuncelle");
+            }
+
             var value = db.Tbl_Araclar.Find(p.ID);
 
             try
@@ -199,6 +232,27 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult YeniKullanici(Tbl_Araclar p, Tbl_AracKayit k)
         {
+            if (!ModelState.IsValid)
+            {
+                List<SelectListItem> deliveryy = (from x in db.Tbl_Personel.Where(x => x.DURUM == true).ToList()
+                                                 select new SelectListItem
+                                                 {
+                                                     Text = x.AD + " " + x.SOYAD,
+                                                     Value = x.ID.ToString()
+                                                 }).ToList();
+                ViewBag.Delivery = deliveryy;
+
+                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).ToList()
+                                                 select new SelectListItem
+                                                 {
+                                                     Text = x.KONUM,
+                                                     Value = x.ID.ToString()
+                                                 }).ToList();
+                ViewBag.Location = locationn;
+
+                return View("YeniKullanici");
+            }            
+
             var vehicle = db.Tbl_Araclar.Find(p.ID);
             var newDebit = db.Tbl_Personel.Where(x => x.ID == p.Tbl_Personel.ID).FirstOrDefault();
             var newLocation = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();

@@ -11,7 +11,8 @@ namespace Endmer.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Tbl_Urunler
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,17 +23,25 @@ namespace Endmer.Models.Entity
         }
     
         public int ID { get; set; }
+        [MinLength(3, ErrorMessage = "En az 3 karakter girilmelidir!"), MaxLength(200, ErrorMessage = "En fazla 200 karakter girilebilir!")]
         public string URUNADI { get; set; }
+        [MinLength(3, ErrorMessage = "En az 3 karakter girilmelidir!"), MaxLength(50, ErrorMessage = "En fazla 50 karakter girilebilir!")]
         public string BARKODNO { get; set; }
         public Nullable<int> KATEGORI { get; set; }
+        [MinLength(3, ErrorMessage = "En az 3 karakter girilmelidir!"), MaxLength(100, ErrorMessage = "En fazla 100 karakter girilebilir!")]
         public string MARKA { get; set; }
+        [MinLength(3, ErrorMessage = "En az 3 karakter girilmelidir!"), MaxLength(100, ErrorMessage = "En fazla 100 karakter girilebilir!")]
         public string MODEL { get; set; }
+        [MinLength(3, ErrorMessage = "En az 3 karakter girilmelidir!"), MaxLength(50, ErrorMessage = "En fazla 50 karakter girilebilir!")]
         public string SERINO { get; set; }
+        [MinLength(3, ErrorMessage = "En az 3 karakter girilmelidir!"), MaxLength(500, ErrorMessage = "En fazla 500 karakter girilebilir!")]
         public string ACIKLAMA { get; set; }
         public Nullable<bool> DURUM { get; set; }
         public string RESIM { get; set; }
+        [MinLength(3, ErrorMessage = "En az 3 karakter girilmelidir!"), MaxLength(10, ErrorMessage = "En fazla 10 karakter girilebilir!")]
         public string ADET { get; set; }
         public Nullable<int> KONUM { get; set; }
+        [MinLength(3, ErrorMessage = "En az 3 karakter girilmelidir!"), MaxLength(10, ErrorMessage = "En fazla 10 karakter girilebilir!")]
         public string ARIZALIADET { get; set; }
     
         public virtual Tbl_Kategoriler Tbl_Kategoriler { get; set; }
