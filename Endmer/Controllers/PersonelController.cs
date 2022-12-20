@@ -34,7 +34,7 @@ namespace Endmer.Controllers
         [HttpGet]
         public ActionResult PersonelEkle()
         {
-            List<SelectListItem> departman = (from x in db.Tbl_Departmanlar.Where(x => x.DURUM == true).ToList()
+            List<SelectListItem> departman = (from x in db.Tbl_Departmanlar.Where(x => x.DURUM == true).ToList().OrderBy(x => x.DEPARTMAN)
                                               select new SelectListItem
                                               {
                                                   Text = x.DEPARTMAN,
@@ -42,7 +42,7 @@ namespace Endmer.Controllers
                                               }).ToList();
             ViewBag.Departman = departman;
 
-            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
+            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).OrderBy(x => x.KONUM)
                                              select new SelectListItem
                                              {
                                                  Text = x.KONUM,
@@ -58,20 +58,20 @@ namespace Endmer.Controllers
         {
             if (!ModelState.IsValid)
             {
-                List<SelectListItem> departmann = (from x in db.Tbl_Departmanlar.Where(x => x.DURUM == true).ToList()
-                                                  select new SelectListItem
-                                                  {
-                                                      Text = x.DEPARTMAN,
-                                                      Value = x.ID.ToString()
-                                                  }).ToList();
+                List<SelectListItem> departmann = (from x in db.Tbl_Departmanlar.Where(x => x.DURUM == true).ToList().OrderBy(x => x.DEPARTMAN)
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.DEPARTMAN,
+                                                       Value = x.ID.ToString()
+                                                   }).ToList();
                 ViewBag.Departman = departmann;
 
-                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
-                                                 select new SelectListItem
-                                                 {
-                                                     Text = x.KONUM,
-                                                     Value = x.ID.ToString()
-                                                 }).ToList();
+                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).OrderBy(x => x.KONUM)
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.KONUM,
+                                                      Value = x.ID.ToString()
+                                                  }).ToList();
                 ViewBag.Location = locationn;
 
                 return View("PersonelEkle");
@@ -105,7 +105,7 @@ namespace Endmer.Controllers
         {
             var value = db.Tbl_Personel.Find(id);
 
-            List<SelectListItem> departman = (from x in db.Tbl_Departmanlar.Where(x => x.DURUM == true).ToList()
+            List<SelectListItem> departman = (from x in db.Tbl_Departmanlar.Where(x => x.DURUM == true).ToList().OrderBy(x => x.DEPARTMAN)
                                               select new SelectListItem
                                               {
                                                   Text = x.DEPARTMAN,
@@ -113,7 +113,7 @@ namespace Endmer.Controllers
                                               }).ToList();
             ViewBag.Departman = departman;
 
-            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
+            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).OrderBy(x => x.KONUM)
                                              select new SelectListItem
                                              {
                                                  Text = x.KONUM,
@@ -129,7 +129,7 @@ namespace Endmer.Controllers
         {
             if (!ModelState.IsValid)
             {
-                List<SelectListItem> departmann = (from x in db.Tbl_Departmanlar.Where(x => x.DURUM == true).ToList()
+                List<SelectListItem> departmann = (from x in db.Tbl_Departmanlar.Where(x => x.DURUM == true).ToList().OrderBy(x => x.DEPARTMAN)
                                                    select new SelectListItem
                                                    {
                                                        Text = x.DEPARTMAN,
@@ -137,7 +137,7 @@ namespace Endmer.Controllers
                                                    }).ToList();
                 ViewBag.Departman = departmann;
 
-                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
+                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).OrderBy(x => x.KONUM)
                                                   select new SelectListItem
                                                   {
                                                       Text = x.KONUM,

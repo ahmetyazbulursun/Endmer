@@ -33,7 +33,7 @@ namespace Endmer.Controllers
         [HttpGet]
         public ActionResult ZimmetVer()
         {
-            List<SelectListItem> personnel = (from x in db.Tbl_Personel.Where(x => x.DURUM == true)
+            List<SelectListItem> personnel = (from x in db.Tbl_Personel.Where(x => x.DURUM == true).OrderBy(x => x.AD + x.SOYAD)
                                               select new SelectListItem
                                               {
                                                   Text = x.AD + " " + x.SOYAD,
@@ -41,7 +41,7 @@ namespace Endmer.Controllers
                                               }).ToList();
             ViewBag.Personnel = personnel;
 
-            List<SelectListItem> product = (from x in db.Tbl_Urunler.Where(x => x.DURUM == true)
+            List<SelectListItem> product = (from x in db.Tbl_Urunler.Where(x => x.DURUM == true).OrderBy(x => x.URUNADI)
                                             select new SelectListItem
                                             {
                                                 Text = x.URUNADI,
@@ -49,7 +49,7 @@ namespace Endmer.Controllers
                                             }).ToList();
             ViewBag.Product = product;
 
-            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
+            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).OrderBy(x => x.KONUM)
                                              select new SelectListItem
                                              {
                                                  Text = x.KONUM,
@@ -63,30 +63,30 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult ZimmetVer(Tbl_Zimmetler p)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                List<SelectListItem> personnell = (from x in db.Tbl_Personel.Where(x => x.DURUM == true)
-                                                  select new SelectListItem
-                                                  {
-                                                      Text = x.AD + " " + x.SOYAD,
-                                                      Value = x.ID.ToString()
-                                                  }).ToList();
+                List<SelectListItem> personnell = (from x in db.Tbl_Personel.Where(x => x.DURUM == true).OrderBy(x => x.AD + x.SOYAD)
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.AD + " " + x.SOYAD,
+                                                       Value = x.ID.ToString()
+                                                   }).ToList();
                 ViewBag.Personnel = personnell;
 
-                List<SelectListItem> productt = (from x in db.Tbl_Urunler.Where(x => x.DURUM == true)
-                                                select new SelectListItem
-                                                {
-                                                    Text = x.URUNADI,
-                                                    Value = x.ID.ToString()
-                                                }).ToList();
-                ViewBag.Product = productt;
-
-                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
+                List<SelectListItem> productt = (from x in db.Tbl_Urunler.Where(x => x.DURUM == true).OrderBy(x => x.URUNADI)
                                                  select new SelectListItem
                                                  {
-                                                     Text = x.KONUM,
+                                                     Text = x.URUNADI,
                                                      Value = x.ID.ToString()
                                                  }).ToList();
+                ViewBag.Product = productt;
+
+                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).OrderBy(x => x.KONUM)
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.KONUM,
+                                                      Value = x.ID.ToString()
+                                                  }).ToList();
                 ViewBag.Location = locationn;
 
                 return View("ZimmetVer");
@@ -127,7 +127,7 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult Guncelle(Tbl_Zimmetler p)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View("Guncelle");
             }

@@ -171,6 +171,7 @@
     <Compile Include="Controllers\AraclarController.cs" />
     <Compile Include="Controllers\AraclarimController.cs" />
     <Compile Include="Controllers\DepartmanlarController.cs" />
+    <Compile Include="Controllers\DokumantasyonController.cs" />
     <Compile Include="Controllers\HataController.cs" />
     <Compile Include="Controllers\KategorilerController.cs" />
     <Compile Include="Controllers\KonumlarController.cs" />
@@ -642,6 +643,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Dokumantasyon\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

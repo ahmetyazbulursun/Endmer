@@ -5,7 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Web;   
+using System.Web;
 using System.Web.Mvc;
 using Endmer.Models.Entity;
 using Newtonsoft.Json.Linq;
@@ -38,7 +38,7 @@ namespace Endmer.Controllers
         [HttpGet]
         public ActionResult AracEkle()
         {
-            List<SelectListItem> debit = (from x in db.Tbl_Personel.Where(x => x.DURUM == true)
+            List<SelectListItem> debit = (from x in db.Tbl_Personel.Where(x => x.DURUM == true).OrderBy(x => x.AD + x.SOYAD)
                                           select new SelectListItem
                                           {
                                               Text = x.AD + " " + x.SOYAD,
@@ -46,7 +46,7 @@ namespace Endmer.Controllers
                                           }).ToList();
             ViewBag.Debit = debit;
 
-            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
+            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).OrderBy(x => x.KONUM)
                                              select new SelectListItem
                                              {
                                                  Text = x.KONUM,
@@ -62,20 +62,20 @@ namespace Endmer.Controllers
         {
             if (!ModelState.IsValid)
             {
-                List<SelectListItem> debitt = (from x in db.Tbl_Personel.Where(x => x.DURUM == true)
-                                              select new SelectListItem
-                                              {
-                                                  Text = x.AD + " " + x.SOYAD,
-                                                  Value = x.ID.ToString()
-                                              }).ToList();
+                List<SelectListItem> debitt = (from x in db.Tbl_Personel.Where(x => x.DURUM == true).OrderBy(x => x.AD + x.SOYAD)
+                                               select new SelectListItem
+                                               {
+                                                   Text = x.AD + " " + x.SOYAD,
+                                                   Value = x.ID.ToString()
+                                               }).ToList();
                 ViewBag.Debit = debitt;
 
-                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
-                                                 select new SelectListItem
-                                                 {
-                                                     Text = x.KONUM,
-                                                     Value = x.ID.ToString()
-                                                 }).ToList();
+                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).OrderBy(x => x.KONUM)
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.KONUM,
+                                                      Value = x.ID.ToString()
+                                                  }).ToList();
                 ViewBag.Location = locationn;
 
                 return View("AracEkle");
@@ -139,7 +139,7 @@ namespace Endmer.Controllers
         {
             var value = db.Tbl_Araclar.Find(id);
 
-            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
+            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).OrderBy(x => x.KONUM)
                                              select new SelectListItem
                                              {
                                                  Text = x.KONUM,
@@ -155,12 +155,12 @@ namespace Endmer.Controllers
         {
             if (!ModelState.IsValid)
             {
-                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
-                                                 select new SelectListItem
-                                                 {
-                                                     Text = x.KONUM,
-                                                     Value = x.ID.ToString()
-                                                 }).ToList();
+                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).OrderBy(x => x.KONUM)
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.KONUM,
+                                                      Value = x.ID.ToString()
+                                                  }).ToList();
                 ViewBag.Location = locationn;
 
                 return View("AracGuncelle");
@@ -210,7 +210,7 @@ namespace Endmer.Controllers
         {
             var value = db.Tbl_Araclar.Find(id);
 
-            List<SelectListItem> delivery = (from x in db.Tbl_Personel.Where(x => x.DURUM == true).ToList()
+            List<SelectListItem> delivery = (from x in db.Tbl_Personel.Where(x => x.DURUM == true).ToList().OrderBy(x => x.AD + x.SOYAD)
                                              select new SelectListItem
                                              {
                                                  Text = x.AD + " " + x.SOYAD,
@@ -218,7 +218,7 @@ namespace Endmer.Controllers
                                              }).ToList();
             ViewBag.Delivery = delivery;
 
-            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).ToList()
+            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).ToList().OrderBy(x => x.KONUM)
                                              select new SelectListItem
                                              {
                                                  Text = x.KONUM,
@@ -234,24 +234,24 @@ namespace Endmer.Controllers
         {
             if (!ModelState.IsValid)
             {
-                List<SelectListItem> deliveryy = (from x in db.Tbl_Personel.Where(x => x.DURUM == true).ToList()
-                                                 select new SelectListItem
-                                                 {
-                                                     Text = x.AD + " " + x.SOYAD,
-                                                     Value = x.ID.ToString()
-                                                 }).ToList();
+                List<SelectListItem> deliveryy = (from x in db.Tbl_Personel.Where(x => x.DURUM == true).ToList().OrderBy(x => x.AD + x.SOYAD)
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.AD + " " + x.SOYAD,
+                                                      Value = x.ID.ToString()
+                                                  }).ToList();
                 ViewBag.Delivery = deliveryy;
 
-                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).ToList()
-                                                 select new SelectListItem
-                                                 {
-                                                     Text = x.KONUM,
-                                                     Value = x.ID.ToString()
-                                                 }).ToList();
+                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).ToList().OrderBy(x => x.KONUM)
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.KONUM,
+                                                      Value = x.ID.ToString()
+                                                  }).ToList();
                 ViewBag.Location = locationn;
 
                 return View("YeniKullanici");
-            }            
+            }
 
             var vehicle = db.Tbl_Araclar.Find(p.ID);
             var newDebit = db.Tbl_Personel.Where(x => x.ID == p.Tbl_Personel.ID).FirstOrDefault();

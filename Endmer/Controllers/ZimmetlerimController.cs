@@ -36,7 +36,7 @@ namespace Endmer.Controllers
         [HttpGet]
         public ActionResult Aktar(int id)
         {
-            List<SelectListItem> personnel = (from x in db.Tbl_Personel.Where(x => x.DURUM == true)
+            List<SelectListItem> personnel = (from x in db.Tbl_Personel.Where(x => x.DURUM == true).OrderBy(x => x.AD + x.SOYAD)
                                               select new SelectListItem
                                               {
                                                   Text = x.AD + " " + x.SOYAD,
@@ -44,7 +44,7 @@ namespace Endmer.Controllers
                                               }).ToList();
             ViewBag.Personnel = personnel;
 
-            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x=>x.DURUM == true)
+            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).OrderBy(x => x.KONUM)
                                              select new SelectListItem
                                              {
                                                  Text = x.KONUM,
@@ -60,7 +60,7 @@ namespace Endmer.Controllers
         {
             if (!ModelState.IsValid)
             {
-                List<SelectListItem> personnell = (from x in db.Tbl_Personel.Where(x => x.DURUM == true)
+                List<SelectListItem> personnell = (from x in db.Tbl_Personel.Where(x => x.DURUM == true).OrderBy(x=>x.AD+ x.SOYAD)
                                                   select new SelectListItem
                                                   {
                                                       Text = x.AD + " " + x.SOYAD,
@@ -68,7 +68,7 @@ namespace Endmer.Controllers
                                                   }).ToList();
                 ViewBag.Personnel = personnell;
 
-                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
+                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).OrderBy(x => x.KONUM)
                                                  select new SelectListItem
                                                  {
                                                      Text = x.KONUM,

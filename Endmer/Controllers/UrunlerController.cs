@@ -37,7 +37,7 @@ namespace Endmer.Controllers
         [HttpGet]
         public ActionResult UrunEkle()
         {
-            List<SelectListItem> category = (from x in db.Tbl_Kategoriler.Where(x => x.DURUM == true).ToList()
+            List<SelectListItem> category = (from x in db.Tbl_Kategoriler.Where(x => x.DURUM == true).ToList().OrderBy(x => x.KATEGORIADI)
                                              select new SelectListItem
                                              {
                                                  Text = x.KATEGORIADI,
@@ -45,7 +45,7 @@ namespace Endmer.Controllers
                                              }).ToList();
             ViewBag.Category = category;
 
-            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
+            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).OrderBy(x => x.KONUM)
                                              select new SelectListItem
                                              {
                                                  Text = x.KONUM,
@@ -61,7 +61,7 @@ namespace Endmer.Controllers
         {
             if (!ModelState.IsValid)
             {
-                List<SelectListItem> categoryy = (from x in db.Tbl_Kategoriler.Where(x => x.DURUM == true).ToList()
+                List<SelectListItem> categoryy = (from x in db.Tbl_Kategoriler.Where(x => x.DURUM == true).ToList().OrderBy(x => x.KATEGORIADI)
                                                   select new SelectListItem
                                                   {
                                                       Text = x.KATEGORIADI,
@@ -69,7 +69,7 @@ namespace Endmer.Controllers
                                                   }).ToList();
                 ViewBag.Category = categoryy;
 
-                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
+                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).OrderBy(x => x.KONUM)
                                                   select new SelectListItem
                                                   {
                                                       Text = x.KONUM,
@@ -124,7 +124,7 @@ namespace Endmer.Controllers
         {
             var value = db.Tbl_Urunler.Find(id);
 
-            List<SelectListItem> category = (from x in db.Tbl_Kategoriler.Where(x => x.DURUM == true)
+            List<SelectListItem> category = (from x in db.Tbl_Kategoriler.Where(x => x.DURUM == true).OrderBy(x => x.KATEGORIADI)
                                              select new SelectListItem
                                              {
                                                  Text = x.KATEGORIADI,
@@ -132,7 +132,7 @@ namespace Endmer.Controllers
                                              }).ToList();
             ViewBag.Category = category;
 
-            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
+            List<SelectListItem> location = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).OrderBy(x => x.KONUM)
                                              select new SelectListItem
                                              {
                                                  Text = x.KONUM,
@@ -148,20 +148,20 @@ namespace Endmer.Controllers
         {
             if (!ModelState.IsValid)
             {
-                List<SelectListItem> categoryy = (from x in db.Tbl_Kategoriler.Where(x => x.DURUM == true)
-                                                 select new SelectListItem
-                                                 {
-                                                     Text = x.KATEGORIADI,
-                                                     Value = x.ID.ToString()
-                                                 }).ToList();
+                List<SelectListItem> categoryy = (from x in db.Tbl_Kategoriler.Where(x => x.DURUM == true).OrderBy(x => x.KATEGORIADI)
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.KATEGORIADI,
+                                                      Value = x.ID.ToString()
+                                                  }).ToList();
                 ViewBag.Category = categoryy;
 
-                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true)
-                                                 select new SelectListItem
-                                                 {
-                                                     Text = x.KONUM,
-                                                     Value = x.ID.ToString()
-                                                 }).ToList();
+                List<SelectListItem> locationn = (from x in db.Tbl_Konumlar.Where(x => x.DURUM == true).OrderBy(x => x.KONUM)
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.KONUM,
+                                                      Value = x.ID.ToString()
+                                                  }).ToList();
                 ViewBag.Location = locationn;
             }
 
@@ -172,66 +172,66 @@ namespace Endmer.Controllers
                 if (RESIM.ContentLength > 0)
                 {
                     string fileName = Path.GetFileName(Request.Files[0].FileName);
-        string extension = Path.GetExtension(Request.Files[0].FileName);
-        string date = Convert.ToString(DateTime.Now.ToLongDateString());
-        string time = Convert.ToString(DateTime.Now.ToLongTimeString()).Replace(":", "-");
-        string dateTime = date + "-" + time + "-";
-        string path = "~/Images/Products/" + dateTime + fileName;
-        string filePath = "/Images/Products/" + dateTime + fileName;
-        Request.Files[0].SaveAs(Server.MapPath(path));
-        value.RESIM = filePath;
+                    string extension = Path.GetExtension(Request.Files[0].FileName);
+                    string date = Convert.ToString(DateTime.Now.ToLongDateString());
+                    string time = Convert.ToString(DateTime.Now.ToLongTimeString()).Replace(":", "-");
+                    string dateTime = date + "-" + time + "-";
+                    string path = "~/Images/Products/" + dateTime + fileName;
+                    string filePath = "/Images/Products/" + dateTime + fileName;
+                    Request.Files[0].SaveAs(Server.MapPath(path));
+                    value.RESIM = filePath;
                 }
-}
+            }
             catch (Exception)
-{
-    value.RESIM = value.RESIM;
-}
+            {
+                value.RESIM = value.RESIM;
+            }
 
-var category = db.Tbl_Kategoriler.Where(x => x.ID == p.Tbl_Kategoriler.ID).FirstOrDefault();
-var location = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
+            var category = db.Tbl_Kategoriler.Where(x => x.ID == p.Tbl_Kategoriler.ID).FirstOrDefault();
+            var location = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
 
-value.Tbl_Kategoriler = category;
-value.Tbl_Konumlar = location;
-value.URUNADI = p.URUNADI;
-value.BARKODNO = p.BARKODNO;
-value.MARKA = p.MARKA;
-value.MODEL = p.MODEL;
-value.SERINO = p.SERINO;
-value.ACIKLAMA = p.ACIKLAMA;
-value.ARIZALIADET = p.ARIZALIADET;
-value.ADET = p.ADET;
+            value.Tbl_Kategoriler = category;
+            value.Tbl_Konumlar = location;
+            value.URUNADI = p.URUNADI;
+            value.BARKODNO = p.BARKODNO;
+            value.MARKA = p.MARKA;
+            value.MODEL = p.MODEL;
+            value.SERINO = p.SERINO;
+            value.ACIKLAMA = p.ACIKLAMA;
+            value.ARIZALIADET = p.ARIZALIADET;
+            value.ADET = p.ADET;
 
-db.SaveChanges();
-return RedirectToAction("Index");
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public ActionResult UrunDetay(int id)
-{
-    var value = db.Tbl_Urunler.Find(id);
-    return View("UrunDetay", value);
-}
+        {
+            var value = db.Tbl_Urunler.Find(id);
+            return View("UrunDetay", value);
+        }
 
-public ActionResult UrunSil(Tbl_Urunler p)
-{
-    var value = db.Tbl_Urunler.Find(p.ID);
+        public ActionResult UrunSil(Tbl_Urunler p)
+        {
+            var value = db.Tbl_Urunler.Find(p.ID);
 
-    value.DURUM = false;
+            value.DURUM = false;
 
-    db.SaveChanges();
-    return RedirectToAction("Index");
-}
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
-public PartialViewResult ZimmetSahipleri(int id)
-{
-    var value = db.Tbl_Zimmetler.Where(x => x.ZIMMET == id && x.DURUM == true && x.Tbl_Personel.DURUM == true).ToList();
-    return PartialView(value);
-}
+        public PartialViewResult ZimmetSahipleri(int id)
+        {
+            var value = db.Tbl_Zimmetler.Where(x => x.ZIMMET == id && x.DURUM == true && x.Tbl_Personel.DURUM == true).ToList();
+            return PartialView(value);
+        }
 
-public ActionResult Yazdir()
-{
-    var value = db.Tbl_Urunler.Where(x => x.DURUM == true && x.Tbl_Kategoriler.DURUM == true && x.Tbl_Konumlar.DURUM == true).ToList();
-    return View(value);
-}
+        public ActionResult Yazdir()
+        {
+            var value = db.Tbl_Urunler.Where(x => x.DURUM == true && x.Tbl_Kategoriler.DURUM == true && x.Tbl_Konumlar.DURUM == true).ToList();
+            return View(value);
+        }
 
 
     }
