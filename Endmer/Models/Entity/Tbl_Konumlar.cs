@@ -11,8 +11,7 @@ namespace Endmer.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Tbl_Konumlar
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -27,7 +26,6 @@ namespace Endmer.Models.Entity
         }
     
         public int ID { get; set; }
-        [MinLength(3, ErrorMessage = "En az 3 karakter girilmelidir!"), MaxLength(200, ErrorMessage = "En fazla 200 karakter girilebilir!")]
         public string KONUM { get; set; }
         public Nullable<bool> DURUM { get; set; }
     

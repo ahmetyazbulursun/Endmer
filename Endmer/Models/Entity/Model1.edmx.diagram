@@ -33,6 +33,13 @@
         <AssociationConnector Association="EndmerModel.FK_Tbl_Personel_Tbl_Konumlar" />
         <EntityTypeShape EntityType="EndmerModel.Tbl_BakimKayit" Width="1.5" PointX="3.125" PointY="10.625" />
         <AssociationConnector Association="EndmerModel.FK_Tbl_BakimKayit_Tbl_Araclar" />
+        <EntityTypeShape EntityType="EndmerModel.Tbl_Dokuman" Width="1.5" PointX="12.625" PointY="0.625" />
+        <EntityTypeShape EntityType="EndmerModel.Tbl_DokumanKonu" Width="1.5" PointX="10.75" PointY="1.125" />
+        <EntityTypeShape EntityType="EndmerModel.Tbl_DokumanResim" Width="1.5" PointX="14.5" PointY="0.75" />
+        <AssociationConnector Association="EndmerModel.FK_Tbl_Dokuman_Tbl_DokumanKonu" />
+        <AssociationConnector Association="EndmerModel.FK_Tbl_DokumanResim_Tbl_Dokuman" />
+        <EntityTypeShape EntityType="EndmerModel.Tbl_Yetkiler" Width="1.5" PointX="5.125" PointY="6.5" />
+        <AssociationConnector Association="EndmerModel.FK_Tbl_Personel_Tbl_Yetkiler" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

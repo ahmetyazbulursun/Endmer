@@ -11,8 +11,7 @@ namespace Endmer.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Tbl_Zimmetler
     {
         public int ID { get; set; }
@@ -21,10 +20,8 @@ namespace Endmer.Models.Entity
         public Nullable<System.DateTime> TARIH { get; set; }
         public Nullable<bool> DURUM { get; set; }
         public Nullable<int> KONUM { get; set; }
-        [MinLength(1, ErrorMessage = "En az 1 karakter girilmelidir!"), MaxLength(10, ErrorMessage = "En fazla 10 karakter girilebilir!")]
         public string ADET { get; set; }
         public string ONAYMESAJ { get; set; }
-        [MinLength(1, ErrorMessage = "En az 1 karakter girilmelidir!"), MaxLength(10, ErrorMessage = "En fazla 10 karakter girilebilir!")]
         public string ARIZALIADET { get; set; }
     
         public virtual Tbl_Personel Tbl_Personel { get; set; }

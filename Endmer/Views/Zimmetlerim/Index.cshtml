@@ -54,19 +54,19 @@
                                     @{
                                         if (x.ONAYMESAJ == "Zimmetli")
                                         {
-                                            color = "border border-success rounded p-2 bg-success text-white";
+                                            color = "p-2 bg-gradient-success";
                                         }
                                         if (x.ONAYMESAJ == "Onay Bekliyor")
                                         {
-                                            color = "border border-warning rounded p-2 bg-warning text-white";
+                                            color = "p-2 bg-gradient-warning";
                                         }
                                         if (x.ONAYMESAJ == "Reddedildi")
                                         {
-                                            color = "border border-danger rounded p-2 bg-danger text-white";
+                                            color = "p-2 bg-gradient-danger";
                                         }
                                     }
                                     <tr>
-                                        <td><span class="@color">@x.ONAYMESAJ</span></td>
+                                        <td><span class="badge badge-sm @color">@x.ONAYMESAJ</span></td>
                                         <td><img src="@x.Tbl_Urunler.RESIM" width="150" /></td>
                                         <td>@x.Tbl_Urunler.URUNADI</td>
                                         <td>@x.Tbl_Urunler.MARKA</td>

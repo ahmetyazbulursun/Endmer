@@ -17,6 +17,5 @@ namespace Endmer.Controllers
             return View();
         }
 
-
     }
 }

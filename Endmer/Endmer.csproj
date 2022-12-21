@@ -212,6 +212,15 @@
     <Compile Include="Models\Entity\Tbl_Departmanlar.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entity\Tbl_Dokuman.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Tbl_DokumanKonu.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Tbl_DokumanResim.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Entity\Tbl_Kategoriler.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -222,6 +231,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entity\Tbl_Urunler.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Tbl_Yetkiler.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entity\Tbl_ZimmetAktar.cs">
@@ -640,10 +652,10 @@
     <Content Include="Views\Zimmetler\Yazdir.cshtml" />
     <Content Include="Views\Araclarim\Index.cshtml" />
     <Content Include="Views\Araclarim\Guncelle.cshtml" />
+    <Content Include="Views\Dokumantasyon\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Dokumantasyon\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

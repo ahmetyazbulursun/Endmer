@@ -8,6 +8,8 @@ using Endmer.Models.Entity;
 using PagedList;
 using PagedList.Mvc;
 using System.Data.Sql;
+using Newtonsoft.Json.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Endmer.Controllers
 {
@@ -50,6 +52,14 @@ namespace Endmer.Controllers
                                              }).ToList();
             ViewBag.Location = location;
 
+            List<SelectListItem> authority = (from x in db.Tbl_Yetkiler.Where(x=>x.DURUM == true).OrderBy(x=>x.YETKI)
+                                              select new SelectListItem
+                                              {
+                                                  Text = x.YETKI,
+                                                  Value = x.ID.ToString()
+                                              }).ToList();
+            ViewBag.Authority = authority;
+
             return View();
         }
 
@@ -74,15 +84,25 @@ namespace Endmer.Controllers
                                                   }).ToList();
                 ViewBag.Location = locationn;
 
+                List<SelectListItem> authorityy = (from x in db.Tbl_Yetkiler.Where(x => x.DURUM == true).OrderBy(x => x.YETKI)
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.YETKI,
+                                                      Value = x.ID.ToString()
+                                                  }).ToList();
+                ViewBag.Authority = authorityy;
+
                 return View("PersonelEkle");
             }
 
             var departman = db.Tbl_Departmanlar.Where(x => x.ID == p.Tbl_Departmanlar.ID).FirstOrDefault();
             var location = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
+            var authority = db.Tbl_Yetkiler.Where(x => x.ID == p.Tbl_Yetkiler.ID).FirstOrDefault();
 
             p.KULLANICIADI = "@" + p.KULLANICIADI;
             p.Tbl_Departmanlar = departman;
             p.Tbl_Konumlar = location;
+            p.Tbl_Yetkiler = authority;
             p.DURUM = true;
 
             db.Tbl_Personel.Add(p);
@@ -121,6 +141,14 @@ namespace Endmer.Controllers
                                              }).ToList();
             ViewBag.Location = location;
 
+            List<SelectListItem> authority = (from x in db.Tbl_Yetkiler.Where(x => x.DURUM == true).OrderBy(x => x.YETKI)
+                                              select new SelectListItem
+                                              {
+                                                  Text = x.YETKI,
+                                                  Value = x.ID.ToString()
+                                              }).ToList();
+            ViewBag.Authority = authority;
+
             return View("PersonelGuncelle", value);
         }
 
@@ -145,6 +173,14 @@ namespace Endmer.Controllers
                                                   }).ToList();
                 ViewBag.Location = locationn;
 
+                List<SelectListItem> authorityy = (from x in db.Tbl_Yetkiler.Where(x => x.DURUM == true).OrderBy(x => x.YETKI)
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.YETKI,
+                                                      Value = x.ID.ToString()
+                                                  }).ToList();
+                ViewBag.Authority = authorityy;
+
                 return View("PersonelEkle");
             }
 
@@ -152,14 +188,20 @@ namespace Endmer.Controllers
 
             var departman = db.Tbl_Departmanlar.Where(x => x.ID == p.Tbl_Departmanlar.ID).FirstOrDefault();
             var location = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
+            var authority = db.Tbl_Yetkiler.Where(x => x.ID == p.Tbl_Yetkiler.ID).FirstOrDefault();
+
+            if (value.KULLANICIADI.Contains("@"))
+            {
+                value.KULLANICIADI.Replace("@", "");
+            }
 
             value.Tbl_Departmanlar = departman;
             value.Tbl_Konumlar = location;
+            value.Tbl_Yetkiler = authority;
             value.AD = p.AD;
             value.SOYAD = p.SOYAD;
             value.KULLANICIADI = "@" + p.KULLANICIADI;
             value.PAROLA = p.PAROLA;
-            value.YETKI = p.YETKI;
 
             db.SaveChanges();
             return RedirectToAction("Index");

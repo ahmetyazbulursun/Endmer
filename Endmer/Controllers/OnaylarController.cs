@@ -58,7 +58,9 @@ namespace Endmer.Controllers
         public ActionResult Reddet(Tbl_ZimmetAktar p, Tbl_Zimmetler z)
         {
             var value = db.Tbl_ZimmetAktar.Find(p.ID);
-            var debit = db.Tbl_Zimmetler.Find(z.ID);
+
+            var debitID = value.ZIMMETID;
+            var debit = db.Tbl_Zimmetler.Where(x => x.ID == debitID).FirstOrDefault();
 
             value.ONAYDURUM = false;
             value.DURUM = false;

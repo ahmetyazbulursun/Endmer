@@ -51,7 +51,7 @@
                                         <label class="form-label">Kullanıcı Adı</label>
                                         <div class="input-group">
                                             <span class="input-group-text">&commat;</span>
-                                            <input type="text" name="KULLANICIADI" class="form-control" placeholder="Kullanıcı adı..">
+                                            @Html.TextBoxFor(x => x.KULLANICIADI, new { @class = "form-control", @placeholder = "Kullanıcı adı..", @required = "required" })
                                         </div>
                                         @Html.ValidationMessageFor(x => x.KULLANICIADI, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
@@ -64,10 +64,7 @@
 
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Yetki</label>
-                                        <select class="form-select" name="YETKI">
-                                            <option value="A">Admin</option>
-                                            <option value="P">Personel</option>
-                                        </select>
+                                        @Html.DropDownListFor(x => x.Tbl_Yetkiler.ID, (List<SelectListItem>)ViewBag.Authority, new { @class = "form-select" })
                                     </div>
                                 </div>
 

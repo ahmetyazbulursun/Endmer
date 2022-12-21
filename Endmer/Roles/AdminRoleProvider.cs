@@ -40,7 +40,7 @@ namespace Endmer.Roles
         {
             EndmerEntities db = new EndmerEntities();
             var user = db.Tbl_Personel.FirstOrDefault(x => x.KULLANICIADI == username);
-            return new string[] { user.YETKI };  
+            return new string[] { user.Tbl_Yetkiler.YETKIHARF };  
         }
 
         public override string[] GetUsersInRole(string roleName)

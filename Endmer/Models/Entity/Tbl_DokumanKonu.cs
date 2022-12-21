@@ -12,19 +12,18 @@ namespace Endmer.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Tbl_Departmanlar
+    public partial class Tbl_DokumanKonu
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tbl_Departmanlar()
+        public Tbl_DokumanKonu()
         {
-            this.Tbl_Personel = new HashSet<Tbl_Personel>();
+            this.Tbl_Dokuman = new HashSet<Tbl_Dokuman>();
         }
     
         public int ID { get; set; }
-        public string DEPARTMAN { get; set; }
-        public Nullable<bool> DURUM { get; set; }
+        public string KONU { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tbl_Personel> Tbl_Personel { get; set; }
+        public virtual ICollection<Tbl_Dokuman> Tbl_Dokuman { get; set; }
     }
 }

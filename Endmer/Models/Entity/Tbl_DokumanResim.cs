@@ -12,20 +12,13 @@ namespace Endmer.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Tbl_AracKayit
+    public partial class Tbl_DokumanResim
     {
         public int ID { get; set; }
-        public Nullable<int> ARAC { get; set; }
-        public Nullable<int> TESLIMEDEN { get; set; }
-        public Nullable<int> TESLIMALAN { get; set; }
-        public Nullable<System.DateTime> TARIH { get; set; }
+        public Nullable<int> DOKUMAN { get; set; }
+        public string RESIM { get; set; }
         public Nullable<bool> DURUM { get; set; }
-        public string KM { get; set; }
-        public Nullable<int> LOKASYON { get; set; }
     
-        public virtual Tbl_Araclar Tbl_Araclar { get; set; }
-        public virtual Tbl_Personel Tbl_Personel { get; set; }
-        public virtual Tbl_Personel Tbl_Personel1 { get; set; }
-        public virtual Tbl_Konumlar Tbl_Konumlar { get; set; }
+        public virtual Tbl_Dokuman Tbl_Dokuman { get; set; }
     }
 }
