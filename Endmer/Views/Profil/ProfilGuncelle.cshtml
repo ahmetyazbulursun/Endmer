@@ -39,11 +39,18 @@
 
                                 <div class="row mb-3">
 
+                                    @{
+                                        if (Model.KULLANICIADI.Contains("@"))
+                                        {
+                                            Model.KULLANICIADI = Model.KULLANICIADI.Replace("@", "");
+                                        }
+                                    }
+
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="form-label">Kullanıcı Adı</label>
                                         <div class="input-group">
                                             <span class="input-group-text">&commat;</span>
-                                            <input type="text" name="KULLANICIADI" class="form-control" placeholder="Kullanıcı adı..">
+                                            @Html.TextBoxFor(x => x.KULLANICIADI, new { @class = "form-control", @placeholder = "Kullanıcı adı..", @required = "required" })
                                         </div>
                                         @Html.ValidationMessageFor(x => x.KULLANICIADI, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>

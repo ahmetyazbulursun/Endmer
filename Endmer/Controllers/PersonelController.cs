@@ -64,8 +64,10 @@ namespace Endmer.Controllers
         }
 
         [HttpPost]
-        public ActionResult PersonelEkle(Tbl_Personel p, string KULLANICIADI)
+        public ActionResult PersonelEkle(Tbl_Personel p)
         {
+            
+            
             if (!ModelState.IsValid)
             {
                 List<SelectListItem> departmann = (from x in db.Tbl_Departmanlar.Where(x => x.DURUM == true).ToList().OrderBy(x => x.DEPARTMAN)
@@ -189,11 +191,6 @@ namespace Endmer.Controllers
             var departman = db.Tbl_Departmanlar.Where(x => x.ID == p.Tbl_Departmanlar.ID).FirstOrDefault();
             var location = db.Tbl_Konumlar.Where(x => x.ID == p.Tbl_Konumlar.ID).FirstOrDefault();
             var authority = db.Tbl_Yetkiler.Where(x => x.ID == p.Tbl_Yetkiler.ID).FirstOrDefault();
-
-            if (value.KULLANICIADI.Contains("@"))
-            {
-                value.KULLANICIADI.Replace("@", "");
-            }
 
             value.Tbl_Departmanlar = departman;
             value.Tbl_Konumlar = location;

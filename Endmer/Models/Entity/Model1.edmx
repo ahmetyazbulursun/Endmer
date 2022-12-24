@@ -97,7 +97,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AD" Type="varchar" MaxLength="30" />
           <Property Name="SOYAD" Type="varchar" MaxLength="30" />
           <Property Name="KULLANICIADI" Type="varchar" MaxLength="50" />

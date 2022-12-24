@@ -42,7 +42,7 @@
                                         <label class="form-label">Konum</label>
                                         @Html.DropDownListFor(x => x.Tbl_Konumlar.ID, (List<SelectListItem>)ViewBag.Location, new { @class = "form-select" })
                                     </div>
-
+                                    
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Marka</label>
                                         <input type="text" class="form-control" name="MARKA" placeholder="Marka.." required />
@@ -71,7 +71,7 @@
 
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Adet</label>
-                                        <input type="text" class="form-control" name="ADET" placeholder="Adet.." required />
+                                        <input type="number" class="form-control" name="ADET" placeholder="Adet.." required />
                                         @Html.ValidationMessageFor(x => x.ADET, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
                                 </div>
