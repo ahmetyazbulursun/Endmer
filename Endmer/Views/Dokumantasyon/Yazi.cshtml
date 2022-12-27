@@ -1,0 +1,45 @@
+﻿@model Endmer.Models.Entity.Tbl_Dokuman
+
+@{
+    ViewBag.Title = "Yazi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+
+                <div class="card-body px-0 pt-0 pb-2">
+
+                    <form method="post">
+
+                        <div class="mx-3 mb-3 mt-3">
+                            <label class="form-label">Başlık</label>
+                            <input type="text" class="form-control" name="BASLIK" />
+                        </div>
+
+                        <div class="mx-3 mb-3 mt-3">
+                            <label class="form-label">İçerik</label>
+                            @Html.TextAreaFor(x => x.ICERIK, new { @class = "form-control", @id = "content" })
+                        </div>
+
+                        <div class="mx-3 d-grid gap-2 mb-2">
+                            <input type="submit" class="btn btn-info" value="Ekle" />
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="//cdn.ckeditor.com/4.19.0/full/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('content');
+</script>

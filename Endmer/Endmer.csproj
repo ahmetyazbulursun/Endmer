@@ -218,9 +218,6 @@
     <Compile Include="Models\Entity\Tbl_DokumanKonu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entity\Tbl_DokumanResim.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Entity\Tbl_Kategoriler.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -653,6 +650,9 @@
     <Content Include="Views\Araclarim\Index.cshtml" />
     <Content Include="Views\Araclarim\Guncelle.cshtml" />
     <Content Include="Views\Dokumantasyon\Index.cshtml" />
+    <Content Include="Views\Dokumantasyon\Yazi.cshtml" />
+    <Content Include="Views\Dokumantasyon\DokumanDetay.cshtml" />
+    <Content Include="Views\Konumlar\Urunler.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,23 +11,17 @@ namespace Endmer.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.Mvc;
+
     public partial class Tbl_Dokuman
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tbl_Dokuman()
-        {
-            this.Tbl_DokumanResim = new HashSet<Tbl_DokumanResim>();
-        }
-    
         public int ID { get; set; }
         public string BASLIK { get; set; }
+        [AllowHtml]
         public string ICERIK { get; set; }
         public Nullable<int> KONU { get; set; }
         public Nullable<bool> DURUM { get; set; }
     
         public virtual Tbl_DokumanKonu Tbl_DokumanKonu { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tbl_DokumanResim> Tbl_DokumanResim { get; set; }
     }
 }

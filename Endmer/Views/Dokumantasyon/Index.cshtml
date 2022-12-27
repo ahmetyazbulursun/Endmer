@@ -17,8 +17,11 @@
 
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
-                        
-                        <p></p>
+
+                        @foreach (var x in Model)
+                        {
+                            <a href="/Dokumantasyon/DokumanDetay/@x.ID"><h3>@x.BASLIK</h3></a>
+                        }
 
                     </div>
                 </div>

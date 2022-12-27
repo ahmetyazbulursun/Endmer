@@ -67,15 +67,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="KONU" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Tbl_DokumanResim">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DOKUMAN" Type="int" />
-          <Property Name="RESIM" Type="varchar" MaxLength="500" />
-          <Property Name="DURUM" Type="bit" />
+          <Property Name="DURUM" Type="int" />
         </EntityType>
         <EntityType Name="Tbl_Kategoriler">
           <Key>
@@ -271,18 +263,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Tbl_DokumanResim_Tbl_Dokuman">
-          <End Role="Tbl_Dokuman" Type="Self.Tbl_Dokuman" Multiplicity="0..1" />
-          <End Role="Tbl_DokumanResim" Type="Self.Tbl_DokumanResim" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tbl_Dokuman">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Tbl_DokumanResim">
-              <PropertyRef Name="DOKUMAN" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Tbl_Personel_Tbl_Departmanlar">
           <End Role="Tbl_Departmanlar" Type="Self.Tbl_Departmanlar" Multiplicity="0..1" />
           <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="*" />
@@ -434,7 +414,6 @@
           <EntitySet Name="Tbl_Departmanlar" EntityType="Self.Tbl_Departmanlar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Dokuman" EntityType="Self.Tbl_Dokuman" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_DokumanKonu" EntityType="Self.Tbl_DokumanKonu" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Tbl_DokumanResim" EntityType="Self.Tbl_DokumanResim" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Kategoriler" EntityType="Self.Tbl_Kategoriler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Konumlar" EntityType="Self.Tbl_Konumlar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Personel" EntityType="Self.Tbl_Personel" Schema="dbo" store:Type="Tables" />
@@ -477,10 +456,6 @@
           <AssociationSet Name="FK_Tbl_Dokuman_Tbl_DokumanKonu" Association="Self.FK_Tbl_Dokuman_Tbl_DokumanKonu">
             <End Role="Tbl_DokumanKonu" EntitySet="Tbl_DokumanKonu" />
             <End Role="Tbl_Dokuman" EntitySet="Tbl_Dokuman" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tbl_DokumanResim_Tbl_Dokuman" Association="Self.FK_Tbl_DokumanResim_Tbl_Dokuman">
-            <End Role="Tbl_Dokuman" EntitySet="Tbl_Dokuman" />
-            <End Role="Tbl_DokumanResim" EntitySet="Tbl_DokumanResim" />
           </AssociationSet>
           <AssociationSet Name="FK_Tbl_Personel_Tbl_Departmanlar" Association="Self.FK_Tbl_Personel_Tbl_Departmanlar">
             <End Role="Tbl_Departmanlar" EntitySet="Tbl_Departmanlar" />
@@ -707,14 +682,9 @@
           </AssociationSet>
           <EntitySet Name="Tbl_Dokuman" EntityType="EndmerModel.Tbl_Dokuman" />
           <EntitySet Name="Tbl_DokumanKonu" EntityType="EndmerModel.Tbl_DokumanKonu" />
-          <EntitySet Name="Tbl_DokumanResim" EntityType="EndmerModel.Tbl_DokumanResim" />
           <AssociationSet Name="FK_Tbl_Dokuman_Tbl_DokumanKonu" Association="EndmerModel.FK_Tbl_Dokuman_Tbl_DokumanKonu">
             <End Role="Tbl_DokumanKonu" EntitySet="Tbl_DokumanKonu" />
             <End Role="Tbl_Dokuman" EntitySet="Tbl_Dokuman" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tbl_DokumanResim_Tbl_Dokuman" Association="EndmerModel.FK_Tbl_DokumanResim_Tbl_Dokuman">
-            <End Role="Tbl_Dokuman" EntitySet="Tbl_Dokuman" />
-            <End Role="Tbl_DokumanResim" EntitySet="Tbl_DokumanResim" />
           </AssociationSet>
           <EntitySet Name="Tbl_Yetkiler" EntityType="EndmerModel.Tbl_Yetkiler" />
           <AssociationSet Name="FK_Tbl_Personel_Tbl_Yetkiler" Association="EndmerModel.FK_Tbl_Personel_Tbl_Yetkiler">
@@ -1021,7 +991,6 @@
           <Property Name="KONU" Type="Int32" />
           <Property Name="DURUM" Type="Boolean" />
           <NavigationProperty Name="Tbl_DokumanKonu" Relationship="EndmerModel.FK_Tbl_Dokuman_Tbl_DokumanKonu" FromRole="Tbl_Dokuman" ToRole="Tbl_DokumanKonu" />
-          <NavigationProperty Name="Tbl_DokumanResim" Relationship="EndmerModel.FK_Tbl_DokumanResim_Tbl_Dokuman" FromRole="Tbl_Dokuman" ToRole="Tbl_DokumanResim" />
         </EntityType>
         <EntityType Name="Tbl_DokumanKonu">
           <Key>
@@ -1030,16 +999,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="KONU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Tbl_Dokuman" Relationship="EndmerModel.FK_Tbl_Dokuman_Tbl_DokumanKonu" FromRole="Tbl_DokumanKonu" ToRole="Tbl_Dokuman" />
-        </EntityType>
-        <EntityType Name="Tbl_DokumanResim">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DOKUMAN" Type="Int32" />
-          <Property Name="RESIM" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="DURUM" Type="Boolean" />
-          <NavigationProperty Name="Tbl_Dokuman" Relationship="EndmerModel.FK_Tbl_DokumanResim_Tbl_Dokuman" FromRole="Tbl_DokumanResim" ToRole="Tbl_Dokuman" />
+          <Property Name="DURUM" Type="Int32" />
         </EntityType>
         <Association Name="FK_Tbl_Dokuman_Tbl_DokumanKonu">
           <End Type="EndmerModel.Tbl_DokumanKonu" Role="Tbl_DokumanKonu" Multiplicity="0..1" />
@@ -1050,18 +1010,6 @@
             </Principal>
             <Dependent Role="Tbl_Dokuman">
               <PropertyRef Name="KONU" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Tbl_DokumanResim_Tbl_Dokuman">
-          <End Type="EndmerModel.Tbl_Dokuman" Role="Tbl_Dokuman" Multiplicity="0..1" />
-          <End Type="EndmerModel.Tbl_DokumanResim" Role="Tbl_DokumanResim" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tbl_Dokuman">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Tbl_DokumanResim">
-              <PropertyRef Name="DOKUMAN" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1240,17 +1188,8 @@
           <EntitySetMapping Name="Tbl_DokumanKonu">
             <EntityTypeMapping TypeName="EndmerModel.Tbl_DokumanKonu">
               <MappingFragment StoreEntitySet="Tbl_DokumanKonu">
-                <ScalarProperty Name="KONU" ColumnName="KONU" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tbl_DokumanResim">
-            <EntityTypeMapping TypeName="EndmerModel.Tbl_DokumanResim">
-              <MappingFragment StoreEntitySet="Tbl_DokumanResim">
                 <ScalarProperty Name="DURUM" ColumnName="DURUM" />
-                <ScalarProperty Name="RESIM" ColumnName="RESIM" />
-                <ScalarProperty Name="DOKUMAN" ColumnName="DOKUMAN" />
+                <ScalarProperty Name="KONU" ColumnName="KONU" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

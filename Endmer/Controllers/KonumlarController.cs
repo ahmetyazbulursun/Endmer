@@ -39,7 +39,7 @@ namespace Endmer.Controllers
         [HttpPost]
         public ActionResult KonumEkle(Tbl_Konumlar p)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View("KonumEkle");
             }
@@ -82,6 +82,12 @@ namespace Endmer.Controllers
 
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Urunler(int id)
+        {
+            var value = db.Tbl_Urunler.Where(x => x.KONUM == id && x.DURUM == true).ToList();
+            return View(value);
         }
 
 
