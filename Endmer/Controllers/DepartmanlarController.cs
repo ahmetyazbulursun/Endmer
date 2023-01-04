@@ -90,6 +90,12 @@ namespace Endmer.Controllers
             return View(value);
         }
 
+        public ActionResult Yazdir()
+        {
+            var value = db.Tbl_Departmanlar.Where(x => x.DURUM == true).ToList();
+            return View(value);
+        }
+
 
     }
 }

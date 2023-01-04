@@ -38,6 +38,10 @@
         <AssociationConnector Association="EndmerModel.FK_Tbl_Dokuman_Tbl_DokumanKonu" />
         <EntityTypeShape EntityType="EndmerModel.Tbl_Yetkiler" Width="1.5" PointX="5.125" PointY="6.5" />
         <AssociationConnector Association="EndmerModel.FK_Tbl_Personel_Tbl_Yetkiler" />
+        <EntityTypeShape EntityType="EndmerModel.Tbl_UrunGecmis" Width="1.5" PointX="7.5" PointY="0.75" />
+        <AssociationConnector Association="EndmerModel.FK_Tbl_UrunGecmis_Tbl_Personel" />
+        <AssociationConnector Association="EndmerModel.FK_Tbl_UrunGecmis_Tbl_Personel1" />
+        <AssociationConnector Association="EndmerModel.FK_Tbl_UrunGecmis_Tbl_Urunler" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -12,14 +12,17 @@ namespace Endmer.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Tbl_Dokuman
+    public partial class Tbl_UrunGecmis
     {
         public int ID { get; set; }
-        public string BASLIK { get; set; }
-        public string ICERIK { get; set; }
-        public Nullable<int> KONU { get; set; }
+        public Nullable<int> URUN { get; set; }
+        public Nullable<int> TESLIMEDEN { get; set; }
+        public Nullable<int> TESLIMALAN { get; set; }
+        public Nullable<System.DateTime> TARIH { get; set; }
         public Nullable<bool> DURUM { get; set; }
     
-        public virtual Tbl_DokumanKonu Tbl_DokumanKonu { get; set; }
+        public virtual Tbl_Personel Tbl_Personel { get; set; }
+        public virtual Tbl_Personel Tbl_Personel1 { get; set; }
+        public virtual Tbl_Urunler Tbl_Urunler { get; set; }
     }
 }

@@ -6,227 +6,113 @@
 }
 
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <!--  This file has been downloaded from bootdey.com bootdey on twitter -->
-    <!--  All snippets are MIT license http://bootdey.com/license -->
-    <title>Rapor</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="icon" type="image/x-icon" href="~/template/logo.ico" />
-    <style>
-        td {
-            text-align: center;
-        }
-
-        th {
-            text-align: center;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürünler</title>
+    <link rel="icon" type="image/png" href="~/template/logo.ico">
+    <link href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.dataTables.min.css" rel="stylesheet" />
 </head>
 <body>
 
-    <div class="text-right">
-        <button style="margin-left: 20px" id="btnReport" class="btn btn-outline-info">
-            <i class="bi bi-printer-fill" style="font-size: 40px"></i>
-        </button>
-    </div>
+    <table id="example" class="display nowrap" style="width:100%">
+        <thead>
+            <tr>
+                <th>Ürün</th>
+                <th>Kategori</th>
+                <th>Marka</th>
+                <th>Model</th>
+                <th>Barkod</th>
+                <th>Konum</th>
+                <th>Adet</th>
+                <th>Arızalı</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model)
+            {
 
-    <div class="col-md-12" id="report">
-        <div class="row">
+                string defective = "";
 
-            <div class="receipt-main col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
-                <div class="row">
-                    <div class="receipt-header">
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                            <div class="receipt-left">
-                                <img width="50" alt="logo" src="~/template/logo.png">
-                            </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-                            <div class="receipt-right">
-                                <div class="row">
-                                    <div class="receipt-header receipt-header-mid">
-                                        <div class="text-right" style="padding-right: 15px">
-                                            <div class="receipt-right">
-                                                <p><b>Tarih:</b> @DateTime.Now.ToString("dd'/'MM'/'yyyy")</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                if (x.ARIZALIADET == null)
+                {
+                    defective = "Girilmedi";
+                }
 
-                <div class="row">
-
-                    <h4 class="text-center" style="font-weight: bold; padding-top: 30px;">ÜRÜNLER</h4>
-
-                    <div>
-                        <table class="table table-borderless table-responsive">
-                            <thead>
-                                <tr>
-                                    <th class="col-2">Ürün</th>
-                                    <th class="col-1">Kategori</th>
-                                    <th class="col-2">Marka</th>
-                                    <th class="col-2">Model</th>
-                                    <th class="col-1">Barkod</th>
-                                    <th class="col-1">Seri No</th>
-                                    <th class="col-1">Konum</th>
-                                    <th class="col-1">Adet</th>
-                                    <th class="col-1">Arızalı</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var x in Model)
-                                {
-                                    <tr>
-                                        <td class="col-2">@x.URUNADI</td>
-                                        <td class="col-1">@x.Tbl_Kategoriler.KATEGORIADI</td>
-                                        <td class="col-2">@x.MARKA</td>
-                                        <td class="col-2">@x.MODEL</td>
-                                        <td class="col-1">@x.BARKODNO</td>
-                                        <td class="col-1">@x.SERINO</td>
-                                        <td class="col-1">@x.Tbl_Konumlar.KONUM</td>
-                                        <td class="col-1">@x.ADET</td>
-                                        <td class="col-1">@x.ARIZALIADET</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-
-
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <style type="text/css">
-        body {
-            background: #eee;
-            margin-top: 20px;
-        }
-
-        .text-danger strong {
-            color: #9f181c;
-        }
-
-        .receipt-main {
-            background: #ffffff none repeat scroll 0 0;
-            border-bottom: 12px solid #333333;
-            border-top: 12px solid #9f181c;
-            margin-top: 50px;
-            margin-bottom: 50px;
-            padding: 40px 30px !important;
-            position: relative;
-            box-shadow: 0 1px 21px #acacac;
-            color: #333333;
-            font-family: open sans;
-        }
-
-            .receipt-main p {
-                color: #333333;
-                font-family: open sans;
-                line-height: 1.42857;
+                <tr>
+                    <td>@x.URUNADI</td>
+                    <td>@x.Tbl_Kategoriler.KATEGORIADI</td>
+                    <td>@x.MARKA</td>
+                    <td>@x.MODEL</td>
+                    <td>@x.BARKODNO</td>
+                    <td>@x.Tbl_Konumlar.KONUM</td>
+                    <td>@x.ADET</td>
+                    <td>@defective  @x.ARIZALIADET</td>
+                </tr>
             }
-
-        .receipt-footer h1 {
-            font-size: 15px;
-            font-weight: 400 !important;
-            margin: 0 !important;
-        }
-
-        .receipt-main::after {
-            background: #414143 none repeat scroll 0 0;
-            content: "";
-            height: 5px;
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: -13px;
-        }
-
-        .receipt-main thead {
-            background: #414143 none repeat scroll 0 0;
-        }
-
-            .receipt-main thead th {
-                color: #fff;
-            }
-
-        .receipt-right h5 {
-            font-size: 16px;
-            font-weight: bold;
-            margin: 0 0 7px 0;
-        }
-
-        .receipt-right p {
-            font-size: 12px;
-            margin: 0px;
-        }
-
-            .receipt-right p i {
-                text-align: center;
-                width: 18px;
-            }
-
-        .receipt-main td {
-            padding: 9px 20px !important;
-        }
-
-        .receipt-main th {
-            padding: 13px 20px !important;
-        }
-
-        .receipt-main td {
-            font-size: 13px;
-            font-weight: initial !important;
-        }
-
-            .receipt-main td p:last-child {
-                margin: 0;
-                padding: 0;
-            }
-
-            .receipt-main td h2 {
-                font-size: 20px;
-                font-weight: 900;
-                margin: 0;
-                text-transform: uppercase;
-            }
-
-        .receipt-header-mid .receipt-left h1 {
-            font-weight: 100;
-            margin: 34px 0 0;
-            text-align: right;
-            text-transform: uppercase;
-        }
-
-        .receipt-header-mid {
-            margin: 24px 0;
-            overflow: hidden;
-        }
-
-        #container {
-            background-color: #dcdcdc;
-        }
-    </style>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Ürün</th>
+                <th>Kategori</th>
+                <th>Marka</th>
+                <th>Model</th>
+                <th>Barkod</th>
+                <th>Konum</th>
+                <th>Adet</th>
+                <th>Arızalı</th>
+            </tr>
+        </tfoot>
+    </table>
 
 
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
     <script>
-        $('#btnReport').click(function () {
-            document.body.innerHTML = document.all.item("report").innerHTML
-            window.print()
-            window.location.reload()
-        });</script>
 
+        $(document).ready(function () {
+            $('#example').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+                initComplete: function () {
+                    this.api()
+                        .columns()
+                        .every(function () {
+                            var column = this;
+                            var select = $('<select><option value=""></option></select>')
+                                .appendTo($(column.footer()).empty())
+                                .on('change', function () {
+                                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                                    column.search(val ? '^' + val + '$' : '', true, false).draw();
+                                });
+
+                            column
+                                .data()
+                                .unique()
+                                .sort()
+                                .each(function (d, j) {
+                                    select.append('<option value="' + d + '">' + d + '</option>');
+                                });
+                        });
+                }
+            });
+        });
+
+    </script>
 </body>
 </html>

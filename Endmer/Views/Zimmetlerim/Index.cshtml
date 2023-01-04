@@ -52,6 +52,15 @@
                             {
                                 <tbody align="center">
                                     @{
+                                        string defective = "";
+
+                                        if (x.ARIZALIADET == null)
+                                        {
+                                            defective = "Girilmedi";
+                                        }
+
+
+
                                         if (x.ONAYMESAJ == "Zimmetli")
                                         {
                                             color = "p-2 bg-gradient-success";
@@ -72,7 +81,7 @@
                                         <td>@x.Tbl_Urunler.MARKA</td>
                                         <td>@x.Tbl_Urunler.MODEL</td>
                                         <td>@x.ADET</td>
-                                        <td>@x.ARIZALIADET</td>
+                                        <td>@defective  @x.ARIZALIADET</td>
                                         <td><a href="/Zimmetlerim/Aktar/@x.ID" class="btn btn-primary">Aktar</a></td>
                                         <td><a href="/Zimmetlerim/Guncelle/@x.ID" class="btn btn-success">Güncelle</a></td>
                                     </tr>

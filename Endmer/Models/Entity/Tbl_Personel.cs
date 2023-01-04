@@ -23,6 +23,8 @@ namespace Endmer.Models.Entity
             this.Tbl_ZimmetAktar = new HashSet<Tbl_ZimmetAktar>();
             this.Tbl_ZimmetAktar1 = new HashSet<Tbl_ZimmetAktar>();
             this.Tbl_Araclar = new HashSet<Tbl_Araclar>();
+            this.Tbl_UrunGecmis = new HashSet<Tbl_UrunGecmis>();
+            this.Tbl_UrunGecmis1 = new HashSet<Tbl_UrunGecmis>();
         }
     
         public int ID { get; set; }
@@ -50,5 +52,9 @@ namespace Endmer.Models.Entity
         public virtual ICollection<Tbl_Araclar> Tbl_Araclar { get; set; }
         public virtual Tbl_Konumlar Tbl_Konumlar { get; set; }
         public virtual Tbl_Yetkiler Tbl_Yetkiler { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_UrunGecmis> Tbl_UrunGecmis { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_UrunGecmis> Tbl_UrunGecmis1 { get; set; }
     }
 }

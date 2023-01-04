@@ -53,6 +53,14 @@
                             </thead>
                             @foreach (var x in Model)
                             {
+
+                                string defective = "";
+
+                                if (x.ARIZALIADET == null)
+                                {
+                                    defective = "Girilmedi";
+                                }
+
                                 <tbody align="center">
                                     <tr>
                                         <td><img src="@x.Tbl_Urunler.RESIM" width="150" /></td>
@@ -61,7 +69,7 @@
                                         <td>@x.Tbl_Urunler.MODEL</td>
                                         <td>@x.Tbl_Personel.AD @x.Tbl_Personel.SOYAD</td>
                                         <td>@x.ADET</td>
-                                        <td>@x.ARIZALIADET</td>
+                                        <td>@defective @x.ARIZALIADET</td>
                                         <td>@x.Tbl_Konumlar.KONUM</td>
                                         <td>@(((DateTime)x.TARIH).ToString("dd'/'MM'/'yyyy"))</td>
                                         <td>@Html.ActionLink("Sil", "ZimmetSil", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstediğinize Emin Misiniz?')" })</td>

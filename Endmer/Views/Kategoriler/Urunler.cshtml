@@ -1,7 +1,5 @@
 ﻿@using Endmer.Models.Entity
-@using PagedList
-@using PagedList.Mvc
-@model PagedList.IPagedList<Tbl_Urunler>
+@model List<Tbl_Zimmetler>
 
 @{
     ViewBag.Title = "Urunler";
@@ -13,7 +11,7 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header">
-                    <h6 class="text-center fs-4">Kategoriye Ait Ürünler</h6>
+                    <h6 class="text-center fs-4">Kategoriye Ait Zimmetli Ürünler</h6>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
@@ -25,6 +23,9 @@
                                     <th>Marka</th>
                                     <th>Model</th>
                                     <th>Barkod</th>
+                                    <th>Zimmet Sahibi</th>
+                                    <th>Konum</th>
+                                    <th>Tarih</th>
                                     <th>Adet</th>
                                     <th>Arızalı Adet</th>
                                 </tr>
@@ -33,11 +34,14 @@
                             {
                                 <tbody align="center">
                                     <tr>
-                                        <td><img src="@x.RESIM" width="150" /></td>
-                                        <td>@x.URUNADI</td>
-                                        <td>@x.MARKA</td>
-                                        <td>@x.MODEL</td>
-                                        <td>@x.BARKODNO</td>
+                                        <td><img src="@x.Tbl_Urunler.RESIM" width="150" /></td>
+                                        <td>@x.Tbl_Urunler.URUNADI</td>
+                                        <td>@x.Tbl_Urunler.MARKA</td>
+                                        <td>@x.Tbl_Urunler.MODEL</td>
+                                        <td>@x.Tbl_Urunler.BARKODNO</td>
+                                        <td>@x.Tbl_Personel.AD @x.Tbl_Personel.SOYAD</td>
+                                        <td>@x.Tbl_Konumlar.KONUM</td>
+                                        <td>@x.TARIH</td>
                                         <td>@x.ADET</td>
                                         <td>@x.ARIZALIADET</td>
                                     </tr>

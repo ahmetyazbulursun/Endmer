@@ -38,5 +38,6 @@ namespace Endmer.Models.Entity
         public virtual DbSet<Tbl_Dokuman> Tbl_Dokuman { get; set; }
         public virtual DbSet<Tbl_DokumanKonu> Tbl_DokumanKonu { get; set; }
         public virtual DbSet<Tbl_Yetkiler> Tbl_Yetkiler { get; set; }
+        public virtual DbSet<Tbl_UrunGecmis> Tbl_UrunGecmis { get; set; }
     }
 }

@@ -22,7 +22,7 @@
                                 <div class="row mb-3">
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Marka - Model</label>
-                                        <input type="text" class="form-control" name="MARKA" placeholder="Marka - Model.." />
+                                        <input type="text" class="form-control" name="MARKA" placeholder="Marka - Model.." required />
                                         @Html.ValidationMessageFor(x=>x.MARKA, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
@@ -40,13 +40,13 @@
                                 <div class="row mb-3">
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">Plaka</label>
-                                        <input type="text" class="form-control" name="PLAKA" placeholder="Plaka.." />
+                                        <input type="text" class="form-control" name="PLAKA" placeholder="Plaka.." required />
                                         @Html.ValidationMessageFor(x => x.PLAKA, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 
                                     <div class="col-sm-12 col-md-4 col-lg-4">
                                         <label class="form-label">KM</label>
-                                        <input type="number" class="form-control" name="KM" placeholder="KM.." />
+                                        <input type="number" class="form-control" name="KM" placeholder="KM.." required />
                                         @Html.ValidationMessageFor(x => x.KM, "", new { @style = "color: red; font-size: 15px; text-align: center; display: block;" })
                                     </div>
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Web;
 using System.Web.Mvc;
 using Endmer.Models.Entity;
@@ -85,7 +86,13 @@ namespace Endmer.Controllers
 
         public ActionResult Urunler(int id, int page = 1)
         {
-            var value = db.Tbl_Urunler.Where(x => x.KATEGORI == id && x.DURUM == true).ToList().ToPagedList(page, 50);
+            var value = db.Tbl_Zimmetler.Where(x => x.Tbl_Urunler.KATEGORI == id && x.DURUM == true).ToList();
+            return View(value);
+        }
+
+        public ActionResult Yazdir()
+        {
+            var value = db.Tbl_Kategoriler.Where(x => x.DURUM == true).ToList();
             return View(value);
         }
 

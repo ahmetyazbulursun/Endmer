@@ -210,5 +210,11 @@ namespace Endmer.Controllers
             return View(value);
         }
 
+        public ActionResult Yazdir()
+        {
+            var value = db.Tbl_Personel.Where(x => x.DURUM == true && x.Tbl_Departmanlar.DURUM == true && x.Tbl_Konumlar.DURUM == true).ToList();
+            return View(value);
+        }
+
     }
 }

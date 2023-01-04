@@ -1,5 +1,5 @@
 ﻿@using Endmer.Models.Entity
-@model List<Tbl_Araclar>
+@model List<Tbl_Konumlar>
 
 @{
     Layout = null;
@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Araçlar</title>
+    <title>Konumlar</title>
     <link rel="icon" type="image/png" href="~/template/logo.ico">
     <link href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.dataTables.min.css" rel="stylesheet" />
@@ -21,46 +21,20 @@
     <table id="example" class="display nowrap" style="width:100%">
         <thead>
             <tr>
-                <th>Marka - Model</th>
-                <th>Plaka</th>
-                <th>Kullanıcı</th>
-                <th>KM</th>
-                <th>Lokasyon</th>
-                <th>Geçmiş Bakım</th>
-                <th>Gelecek Bakım</th>
+                <th>Konum</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var x in Model)
             {
-
-                string status = "";
-
-                if (x.Tbl_BakimKayit.Select(z => z.BAKIMDURUM).FirstOrDefault() == null)
-                {
-                    status = "Girilmedi";
-                }
-
                 <tr>
-                    <td>@x.MARKA</td>
-                    <td>@x.PLAKA</td>
-                    <td>@x.Tbl_Personel.AD @x.Tbl_Personel.SOYAD</td>
-                    <td>@x.KM</td>
-                    <td>@x.Tbl_Konumlar.KONUM</td>
-                    <td>@status @x.Tbl_BakimKayit.Where(z => z.BAKIMDURUM == "Yapıldı").OrderByDescending(z => z.ID).ToList().Select(z => Convert.ToDateTime(z.TARIH).ToString("dd'/'MM'/'yyyy")).Take(1).FirstOrDefault()</td>
-                    <td>@status @x.Tbl_BakimKayit.Where(y => y.BAKIMDURUM == "Yapılmadı").OrderBy(y => y.ID).Select(y => Convert.ToDateTime(y.TARIH).ToString("dd'/'MM'/'yyyy")).Take(1).FirstOrDefault()</td>
+                    <td>@x.KONUM</td>
                 </tr>
             }
         </tbody>
         <tfoot>
             <tr>
-                <th>Marka - Model</th>
-                <th>Plaka</th>
-                <th>Kullanıcı</th>
-                <th>KM</th>
-                <th>Lokasyon</th>
-                <th>Geçmiş Bakım</th>
-                <th>Gelecek Bakım</th>
+                <th>Konum</th>
             </tr>
         </tfoot>
     </table>

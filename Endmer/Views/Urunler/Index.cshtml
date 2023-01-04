@@ -55,6 +55,14 @@
                             </thead>
                             @foreach (var x in Model)
                             {
+
+                                string defective = "";
+
+                                if (x.ARIZALIADET == null)
+                                {
+                                    defective = "Girilmedi";
+                                }
+
                                 <tbody align="center">
                                     <tr>
                                         <td><img src="@x.RESIM" width="150" /></td>
@@ -65,7 +73,7 @@
                                         <td>@x.BARKODNO</td>
                                         <td>@x.Tbl_Konumlar.KONUM</td>
                                         <td>@x.ADET</td>
-                                        <td>@x.ARIZALIADET</td>
+                                        <td>@defective @x.ARIZALIADET</td>
                                         <td><a href="/Urunler/UrunDetay/@x.ID" class="btn btn-primary">Detay</a></td>
                                         <td>@Html.ActionLink("Sil", "UrunSil", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstediğinize Emin Misiniz?')" })</td>
                                         <td><a href="/Urunler/UrunGuncelle/@x.ID" class="btn btn-success">Güncelle</a></td>

@@ -99,6 +99,17 @@
           <Property Name="LOKASYON" Type="int" />
           <Property Name="DURUM" Type="bit" />
         </EntityType>
+        <EntityType Name="Tbl_UrunGecmis">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URUN" Type="int" />
+          <Property Name="TESLIMEDEN" Type="int" />
+          <Property Name="TESLIMALAN" Type="int" />
+          <Property Name="TARIH" Type="datetime" />
+          <Property Name="DURUM" Type="bit" />
+        </EntityType>
         <EntityType Name="Tbl_Urunler">
           <Key>
             <PropertyRef Name="ID" />
@@ -299,6 +310,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tbl_UrunGecmis_Tbl_Personel">
+          <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
+          <End Role="Tbl_UrunGecmis" Type="Self.Tbl_UrunGecmis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Personel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_UrunGecmis">
+              <PropertyRef Name="TESLIMEDEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_UrunGecmis_Tbl_Personel1">
+          <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
+          <End Role="Tbl_UrunGecmis" Type="Self.Tbl_UrunGecmis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Personel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_UrunGecmis">
+              <PropertyRef Name="TESLIMALAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_UrunGecmis_Tbl_Urunler">
+          <End Role="Tbl_Urunler" Type="Self.Tbl_Urunler" Multiplicity="0..1" />
+          <End Role="Tbl_UrunGecmis" Type="Self.Tbl_UrunGecmis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Urunler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_UrunGecmis">
+              <PropertyRef Name="URUN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tbl_Urunler_Tbl_Kategoriler">
           <End Role="Tbl_Kategoriler" Type="Self.Tbl_Kategoriler" Multiplicity="0..1" />
           <End Role="Tbl_Urunler" Type="Self.Tbl_Urunler" Multiplicity="*" />
@@ -417,6 +464,7 @@
           <EntitySet Name="Tbl_Kategoriler" EntityType="Self.Tbl_Kategoriler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Konumlar" EntityType="Self.Tbl_Konumlar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Personel" EntityType="Self.Tbl_Personel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_UrunGecmis" EntityType="Self.Tbl_UrunGecmis" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Urunler" EntityType="Self.Tbl_Urunler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Yetkiler" EntityType="Self.Tbl_Yetkiler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_ZimmetAktar" EntityType="Self.Tbl_ZimmetAktar" Schema="dbo" store:Type="Tables" />
@@ -468,6 +516,18 @@
           <AssociationSet Name="FK_Tbl_Personel_Tbl_Yetkiler" Association="Self.FK_Tbl_Personel_Tbl_Yetkiler">
             <End Role="Tbl_Yetkiler" EntitySet="Tbl_Yetkiler" />
             <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_UrunGecmis_Tbl_Personel" Association="Self.FK_Tbl_UrunGecmis_Tbl_Personel">
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+            <End Role="Tbl_UrunGecmis" EntitySet="Tbl_UrunGecmis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_UrunGecmis_Tbl_Personel1" Association="Self.FK_Tbl_UrunGecmis_Tbl_Personel1">
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+            <End Role="Tbl_UrunGecmis" EntitySet="Tbl_UrunGecmis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_UrunGecmis_Tbl_Urunler" Association="Self.FK_Tbl_UrunGecmis_Tbl_Urunler">
+            <End Role="Tbl_Urunler" EntitySet="Tbl_Urunler" />
+            <End Role="Tbl_UrunGecmis" EntitySet="Tbl_UrunGecmis" />
           </AssociationSet>
           <AssociationSet Name="FK_Tbl_Urunler_Tbl_Kategoriler" Association="Self.FK_Tbl_Urunler_Tbl_Kategoriler">
             <End Role="Tbl_Kategoriler" EntitySet="Tbl_Kategoriler" />
@@ -550,6 +610,8 @@
           <NavigationProperty Name="Tbl_Araclar" Relationship="EndmerModel.FK_Tbl_Araclar_Tbl_Personel" FromRole="Tbl_Personel" ToRole="Tbl_Araclar" />
           <NavigationProperty Name="Tbl_Konumlar" Relationship="EndmerModel.FK_Tbl_Personel_Tbl_Konumlar" FromRole="Tbl_Personel" ToRole="Tbl_Konumlar" />
           <NavigationProperty Name="Tbl_Yetkiler" Relationship="EndmerModel.FK_Tbl_Personel_Tbl_Yetkiler" FromRole="Tbl_Personel" ToRole="Tbl_Yetkiler" />
+          <NavigationProperty Name="Tbl_UrunGecmis" Relationship="EndmerModel.FK_Tbl_UrunGecmis_Tbl_Personel" FromRole="Tbl_Personel" ToRole="Tbl_UrunGecmis" />
+          <NavigationProperty Name="Tbl_UrunGecmis1" Relationship="EndmerModel.FK_Tbl_UrunGecmis_Tbl_Personel1" FromRole="Tbl_Personel" ToRole="Tbl_UrunGecmis" />
           </EntityType>
         <EntityType Name="Tbl_Urunler">
           <Key>
@@ -572,6 +634,7 @@
           <Property Name="KONUM" Type="Int32" />
           <NavigationProperty Name="Tbl_Konumlar" Relationship="EndmerModel.FK_Tbl_Urunler_Tbl_Konumlar" FromRole="Tbl_Urunler" ToRole="Tbl_Konumlar" />
           <Property Name="ARIZALIADET" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_UrunGecmis" Relationship="EndmerModel.FK_Tbl_UrunGecmis_Tbl_Urunler" FromRole="Tbl_Urunler" ToRole="Tbl_UrunGecmis" />
         </EntityType>
         <Association Name="FK_Tbl_Personel_Tbl_Departmanlar">
           <End Role="Tbl_Departmanlar" Type="Self.Tbl_Departmanlar" Multiplicity="0..1" />
@@ -690,6 +753,19 @@
           <AssociationSet Name="FK_Tbl_Personel_Tbl_Yetkiler" Association="EndmerModel.FK_Tbl_Personel_Tbl_Yetkiler">
             <End Role="Tbl_Yetkiler" EntitySet="Tbl_Yetkiler" />
             <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+          </AssociationSet>
+          <EntitySet Name="Tbl_UrunGecmis" EntityType="EndmerModel.Tbl_UrunGecmis" />
+          <AssociationSet Name="FK_Tbl_UrunGecmis_Tbl_Personel" Association="EndmerModel.FK_Tbl_UrunGecmis_Tbl_Personel">
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+            <End Role="Tbl_UrunGecmis" EntitySet="Tbl_UrunGecmis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_UrunGecmis_Tbl_Personel1" Association="EndmerModel.FK_Tbl_UrunGecmis_Tbl_Personel1">
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+            <End Role="Tbl_UrunGecmis" EntitySet="Tbl_UrunGecmis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_UrunGecmis_Tbl_Urunler" Association="EndmerModel.FK_Tbl_UrunGecmis_Tbl_Urunler">
+            <End Role="Tbl_Urunler" EntitySet="Tbl_Urunler" />
+            <End Role="Tbl_UrunGecmis" EntitySet="Tbl_UrunGecmis" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Tbl_Araclar">
@@ -1035,6 +1111,56 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Tbl_UrunGecmis">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URUN" Type="Int32" />
+          <Property Name="TESLIMEDEN" Type="Int32" />
+          <Property Name="TESLIMALAN" Type="Int32" />
+          <Property Name="TARIH" Type="DateTime" Precision="3" />
+          <Property Name="DURUM" Type="Boolean" />
+          <NavigationProperty Name="Tbl_Personel" Relationship="EndmerModel.FK_Tbl_UrunGecmis_Tbl_Personel" FromRole="Tbl_UrunGecmis" ToRole="Tbl_Personel" />
+          <NavigationProperty Name="Tbl_Personel1" Relationship="EndmerModel.FK_Tbl_UrunGecmis_Tbl_Personel1" FromRole="Tbl_UrunGecmis" ToRole="Tbl_Personel" />
+          <NavigationProperty Name="Tbl_Urunler" Relationship="EndmerModel.FK_Tbl_UrunGecmis_Tbl_Urunler" FromRole="Tbl_UrunGecmis" ToRole="Tbl_Urunler" />
+        </EntityType>
+        <Association Name="FK_Tbl_UrunGecmis_Tbl_Personel">
+          <End Type="EndmerModel.Tbl_Personel" Role="Tbl_Personel" Multiplicity="0..1" />
+          <End Type="EndmerModel.Tbl_UrunGecmis" Role="Tbl_UrunGecmis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Personel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_UrunGecmis">
+              <PropertyRef Name="TESLIMEDEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_UrunGecmis_Tbl_Personel1">
+          <End Type="EndmerModel.Tbl_Personel" Role="Tbl_Personel" Multiplicity="0..1" />
+          <End Type="EndmerModel.Tbl_UrunGecmis" Role="Tbl_UrunGecmis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Personel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_UrunGecmis">
+              <PropertyRef Name="TESLIMALAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_UrunGecmis_Tbl_Urunler">
+          <End Type="EndmerModel.Tbl_Urunler" Role="Tbl_Urunler" Multiplicity="0..1" />
+          <End Type="EndmerModel.Tbl_UrunGecmis" Role="Tbl_UrunGecmis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Urunler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_UrunGecmis">
+              <PropertyRef Name="URUN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1200,6 +1326,18 @@
                 <ScalarProperty Name="DURUM" ColumnName="DURUM" />
                 <ScalarProperty Name="YETKIHARF" ColumnName="YETKIHARF" />
                 <ScalarProperty Name="YETKI" ColumnName="YETKI" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_UrunGecmis">
+            <EntityTypeMapping TypeName="EndmerModel.Tbl_UrunGecmis">
+              <MappingFragment StoreEntitySet="Tbl_UrunGecmis">
+                <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+                <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+                <ScalarProperty Name="TESLIMALAN" ColumnName="TESLIMALAN" />
+                <ScalarProperty Name="TESLIMEDEN" ColumnName="TESLIMEDEN" />
+                <ScalarProperty Name="URUN" ColumnName="URUN" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
